@@ -9,26 +9,33 @@ class Node{
         Node(int);
         int number;
         void add_epsilon(Node*);
+        void add_node(char,Node*);
         bool accepting;
-        std::map<char,Node*> nodes;
-        std::list<Node*> epsilon_trans;
+        char next;
+        Node* next_node;
+        Node* epsilon[2];
 };
 
 Node::Node(int cur){
     number = cur;
+    next = '\0';
     accepting = false;
 }
 
 void Node::add_epsilon(Node* node){
-    std::list<Node*>::iterator it;
-    it = epsilon_trans.begin();
-    epsilon_trans.insert(it,node);
+    epsilon[0] = node;
+}
+
+void Node::add_node(char reg,Node* node){
+    next = reg;
+    next_node = node;
 }
 
 //Create a ? subexpression
 Node* optional(Node* start, char reg, int cur){
     Node* next = new Node(cur);
-    start->nodes[reg] = next;
+    start->next = reg;
+    start->next_node = next;
     start->add_epsilon(next);
     return next;
 }
@@ -40,10 +47,10 @@ Node* star(Node* start, char reg, int cur){
         nodes[i] = new Node(cur+i);
     }
     start->add_epsilon(nodes[0]);
-    start->add_epsilon(nodes[2]);
-    nodes[1]->add_epsilon(nodes[0]);
+    start->epsilon[1] = nodes[2];
     nodes[1]->add_epsilon(nodes[2]);
-    nodes[0]->nodes[reg] = nodes[1];
+    nodes[0]->next = reg;
+    nodes[0]->next_node = nodes[1]; 
     return nodes[2];
 }
 
@@ -54,8 +61,9 @@ Node* plus(Node* start, char reg,int cur){
         nodes[i] = new Node(cur+i);
     } 
     start->add_epsilon(nodes[0]);
-    nodes[0]->nodes[reg] = nodes[1];
-    nodes[1]->add_epsilon(nodes[0]);
+    nodes[0]->next = reg;
+    nodes[0]->next_node = nodes[1];
+    nodes[1]->epsilon[1] = nodes[0];
     nodes[1]->add_epsilon(nodes[2]);
     return nodes[2];
 }
@@ -63,7 +71,8 @@ Node* plus(Node* start, char reg,int cur){
 //Create a normal subexpression
 Node* standard(Node* start, char reg1,int cur){
     Node* next = new Node(cur);
-    start->nodes[reg1] = next;
+    start->next = reg1;
+    start->next_node = next;
     return next;
 }
 
@@ -100,7 +109,8 @@ Node* create_subexpr(std::string regex,Node* start_node,int cur_number){
     }
     if(i < regex.length()){
         Node* last = new Node(cur);
-        cur_node->nodes[regex[i]] = last;
+        cur_node->next = regex[i];
+        cur_node->next_node = last;
         cur_node = last;
     }
     return cur_node;
@@ -117,45 +127,82 @@ int read_until(std::string regex, int start){
     return i;
 }
 
-parse_regex(Node* start_node, std::string regex, int cur){
 
-}
-
-/*
-Node* parse_regex(Node* start_node, std::string regex){
-    std::map<int,Node*> parentheses;
+Node* parse_regex(std::string regex){
+    Node* parentheses[10][2];
     int par_count = 0;
-    Node* cur_node = start_node;
-    std::string reg;
+    Node* init_node = new Node(0);
+    Node* start_node = init_node;
+    Node* temp_node;
+    Node* end_node;
+    int cur = 1;
+    std::string sub_reg;
     for(int i = 0; i < regex.length(); i++){
-        switch(regex[i]){
-            case '(':
-                parentheses[par_count] = cur_node;
-                par_count++;
-                int a; 
-                a = read_until(regex,i+1);
-                reg = regex.substr(i+1,a-i);
-                create_regex(reg,cur_node);
-                break;
-            case ')':
+        if(regex[i] == '('){
+                temp_node = new Node(cur);
+                cur++;
+                start_node->add_epsilon(temp_node);
                 
-                par_count--;
-                return cur_node;
-                break;
-            default:
-                Node* new_node = new Node();
-                cur_node->nodes[regex[i]] = new_node;
-                break;
+                parentheses[par_count][0] = start_node;  
+                
+                int a;
+                a = read_until(regex,i+1);
+                sub_reg = regex.substr(i+1,a-i);
+                end_node = create_subexpr(sub_reg,temp_node,cur);
+                
+                parentheses[par_count][1] = end_node; 
+                cur = end_node->number+1;
+                
+                start_node = end_node;
+                i = a;
+                par_count++;
+        } if(regex[i] == ')'){
+            par_count--;
+            switch(regex[i+1]){
+                case '?':
+                    break;
+                case '+':
+                    temp_node = parentheses[par_count][0]->epsilon[0];
+                    end_node->epsilon[1] = temp_node;
+                    i++;
+                    break;
+                case '*':
+
+                    break;
+                default:
+                    break;
+            }
         }
     }
-    return NULL;
-}*/
+    temp_node = new Node(cur);
+    end_node->add_epsilon(temp_node);
+    temp_node->accepting = true;
 
+    return init_node;
+}
+
+void printNFA(Node* start_node){
+    Node* next = start_node;
+    std::cout << "start in 0 \n";
+    while(!next->accepting){
+        if(next->next == '\0'){
+            std::cout << "epsilon to " << next->epsilon[0]->number << "\n";
+            if(next->epsilon[1] != 0){
+            std::cout << "epsilon to " << next->epsilon[1]->number << "\n";
+            }
+            next = next->epsilon[0];
+        }
+        else{
+            std::cout << next->next << " to " << next->next_node->number << "\n";
+            next = next->next_node;
+        }
+    }   
+}
 
 
 int main(){
-    Node* ne = new Node(0);
-    Node* reg = create_regex("abcd+",ne,1);
-    std::cout << reg->number;
+    //std::cout << read_until("aasss(sasas",0);
+    Node* reg = parse_regex("(12(34)+)+");
+    printNFA(reg);
   return 0;
 }
