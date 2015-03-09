@@ -1,0 +1,14 @@
+
+
+=================================TODO===========================================
+Praktisk to-do
+* Wrapper til TRE
+  * Negation af patterns
+
+
+Tre-teori
+* Hvordan håndterer TRE mismatches/insertions/deletions?
+* Find ud af TREs håndtering af linjeskift
+
+Teoretisk to-do
+* Skriv noget RegEx teori
