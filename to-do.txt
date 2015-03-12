@@ -12,3 +12,12 @@ Tre-teori
 
 Teoretisk to-do
 * Skriv noget RegEx teori
+
+AGREP
+* agrep.c Linje 283 
+  * Der skal ændres i hvordan new_records bliver bestemt - lige nu bliver der 
+    fundet en delimiter (default \n), hvor efter en match der bliver defaultet 
+    til denne nye record. I stedet skal den nye record bestemmes når der er en 
+    match, hvor bufferen skal pege umiddelbart efter denne record.
+  * Der skal undersøges/spørges hvor stor en match kan blive, så en fornuftig 
+    buffer størrelse kan bestemmes.
