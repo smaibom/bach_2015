@@ -117,6 +117,7 @@ std::ostream& operator << (std::ostream &o, const World &w){
 	return o;
 }
 
+//a
 Node* create_node(World *world){
 	Node *node = new Node();
 	node->value = world->count->num;
@@ -125,6 +126,7 @@ Node* create_node(World *world){
 	return node;
 }
 
+//a+
 World* add_plus(World *world){
 	Node *node1 = create_node(world);
 	Node *node2 = create_node(world);
@@ -136,6 +138,7 @@ World* add_plus(World *world){
 	return world;
 }
 
+//a*
 World* add_star(World *world){
 	Node *start = create_node(world);
 	Node *end = create_node(world);
@@ -149,6 +152,7 @@ World* add_star(World *world){
 	return world;
 }
 
+//a|b
 World* add_or(World *lworld, World *rworld){
 	World *world = new World();
 	world->count = lworld->count;
@@ -165,22 +169,37 @@ World* add_or(World *lworld, World *rworld){
 	return world;
 }
 
-
+//a?
 World* add_question(World *world){
 	world->start->epsilons.push_back(world->end);
 	return world;
 }
 
+// ab
 World* connect(World *first, World *last){
 	World *world = new World();
 	world->count = first->count;
 	world->start = first->start;
 	world->end = last->end;
-//	first->end->epsilons.push_back(last->start);
 	first->end->epsilons.merge(last->start->epsilons);
+
+	// Hacky måde at gøre det på, men first's end node bør være tom, så det ok.
+	first->end->nexts = last->start->nexts;
+
 	last->nodes.remove(last->start);
 	world->nodes.merge(first->nodes);
 	world->nodes.merge(last->nodes);
+	return world;
+}
+
+World* new_world(char chr, Counter *count){
+	World *world = new World();
+	world->count = count;
+	Node *start = create_node(world);
+	Node *end = create_node(world);
+	start->nexts[chr] = end;
+	world->start=start;
+	world->end=end;
 	return world;
 }
 
@@ -188,44 +207,26 @@ int main(){
 	Counter *count = new Counter();
 	count->num=0;
 	// a
-	World *world1 = new World();
-	world1->count = count;
-	Node *node1 = create_node(world1);
-	Node *node2 = create_node(world1);
-	node1->nexts['a'] = node2;
-	world1->start=node1;
-	world1->end=node2;
+	World *a = new_world('a', count);
 	// a*
-	world1 = add_star(world1);
+	World *a_s = add_star(a);
 
 	// b
-	World *world2 = new World();
-	world2->count = count;
-	Node *node3 = create_node(world2);
-	Node *node4 = create_node(world2);
-	node3->nexts['b'] = node4;
-	world2->start=node3;
-	world2->end=node4;
+	World *b = new_world('b', count);
 
 	// cd
-	World *world3 = new World();
-	world3->count = count;
-	Node *node5 = create_node(world3);
-	Node *node6 = create_node(world3);
-	Node *node7 = create_node(world3);
-	node5->nexts['c'] = node6;
-	node6->nexts['d'] = node7;
-	world3->start=node5;
-	world3->end=node7;
+	World *c = new_world('c', count);
+	World *d = new_world('d', count);
+	World *cd = connect(c,d);
 
 	// b|cd
-	World *bcd = add_or(world2, world3);
+	World *bcd = add_or(b, cd);
 
 	// (b|cd)*
 	bcd = add_star(bcd);
 
 	// a*(b|cd)*
-	World *full = connect(world1, bcd);
+	World *full = connect(a_s, bcd);
 	cout << *full;
 
 /*
