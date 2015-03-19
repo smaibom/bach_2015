@@ -1,5 +1,5 @@
 /*
- * node.h
+ * Koden her kan bruges til at lave .dot kode, som kan overføres til http://graphs.grevian.org/graph hvor man kan få en fin lille NFA.
  *
  *  Created on: 02/03/2015
  *      Author: Martin
