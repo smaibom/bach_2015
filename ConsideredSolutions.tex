@@ -1,0 +1,43 @@
+\documentclass[11pt,twoside,a4paper]{article}
+
+\begin{document}
+\section{Considered Solutions}
+\subsection{Kleene Meets Church}
+At first we wanted to implement scan\_for\_matches' functionality in the 
+KMC engine, as our project synopsis states. This was because we had heard of 
+how fast the KMC engine is, so it seemed like the logical engine to use. 
+However we turned to other solutions when we found out that 
+KMC is intended only for text-markup, meaning it doesn't return the position 
+of a match. 
+
+\subsection{TRE}
+A regex engine that we considered for our implementation of scan\_for\_matches 
+was TRE. TRE is an open-source engine implemented in C by Ville Laurikari for 
+his master's thesis in 2001 with the goal to implement approximate matching in 
+regex. By using a mix of Levenshtein distancing (which describes 
+approximate matching) and tagged NFAs (tNFA), Laurikari accomplished this with a 
+linear complexity of O(MN), where M is the size of a regular expression and N is the 
+size of the input string\cite{LaurikariComplex}, which means that it maintains the 
+regex standard complexity even with approximate matching. \\
+While this is impressive, a few problems with the implementation meant that we 
+had to look for another solution. The first problem we found with TRE was that 
+it used the POSIX.2 regex standard. This means that TRE does not support the 
+global pattern modifier, so TRE would only return the earliest best-matching 
+match per delimiter\cite{Best-Match}. This combined with another problem we found 
+- TRE is unable to match a string which spans over a delimiter - meant that 
+TRE would require modification for it to work how we wanted it to. Given our 
+limited time as well as the insufficient documentation in the code meant that 
+we had to look for another solution.
+
+\begin{thebibliography}{9}
+\bibitem{LaurikariComplex}
+Ville Laurikari.
+\textit{Efficient submatch addressing for regular expressions, section 3.3.2}
+2001
+
+\bibitem{Best-Match}
+\textit{A best-matching match is a match with the lowest Levenshtein Distance among other matches}
+
+\end{thebibliography}
+
+\end{document}
