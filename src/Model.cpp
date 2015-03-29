@@ -6,116 +6,7 @@
  */
 #define _epsilon_ '\u0190'
 
-#include <iostream>
-#include <map>
-#include <list>
-
-using namespace std;
-
-struct Counter{
-	int num;
-};
-
-struct Node{
-	int value;
-	map<char, Node*> nexts;
-	list<Node*> epsilons;
-};
-
-std::ostream& operator << (std::ostream &o, const Node &n){
-	typedef map<char, Node*>::const_iterator MapIterator;
-	for (MapIterator iter = n.nexts.begin(); iter != n.nexts.end(); iter++)
-	{
-		Node* value = iter->second;
-		if (value->nexts.empty()){
-			o << *value;
-		}else{
-			o << "node" << n.value  <<" -> "<< "node" << (*value).value << "[label=" << iter->first << "]" << endl;
-		}
-	}
-
-	list<Node*> s = n.epsilons;
-	std::list<Node*>::const_iterator i;
-	for( i = s.begin(); i != s.end(); ++i)
-	{
-		o << "node" << n.value  << " -> " << "node"<< (*i)->value << "[label=\"&epsilon;\"]" << endl;
-	}
-	return o;
-}
-
-struct World{
-	list<Node*> nodes;
-	Counter* count;
-	Node* start;
-	Node* end;
-};
-
-std::ostream& operator << (std::ostream &o, const World &w){
-	o << "digraph {" << endl;
-	o << "  node [shape=circle]" << endl;
-
-// START NODE, FOR PRETTY PRINTING
-	o << "  node"<<w.start->value << " [shape=circle]" << endl;
-	list<Node*> start = w.start->epsilons;
-	std::list<Node*>::const_iterator ii;
-
-	for( ii = start.begin(); ii != start.end(); ++ii)
-	{
-		o << "  node" << w.start->value  << " -> " << "node"<< (*ii)->value << "[label=\"&epsilon;\"];" << endl;
-	}
-
-	typedef map<char, Node*>::const_iterator MapIterator;
-	for (MapIterator iter = w.start->nexts.begin(); iter != w.start->nexts.end(); iter++)
-	{
-		Node* value = iter->second;
-			o << "  node" << w.start->value  <<" -> "<< "node" << (*value).value << "[label=" << iter->first << "];" << endl;
-	}
-// NORMAL NODES
-	list<Node*> s = w.nodes;
-	std::list<Node*>::const_iterator i;
-	for( i = s.begin(); i != s.end(); ++i)
-	{
-		if(w.start == *i){
-			//o << "node"<<(*i)->value << " [shape=doublecircle]" << endl;
-		}else if(w.end == *i){
-			//o << "node"<<(*i)->value << " [shape=box]" << endl;
-		}else{
-			list<Node*> s = (*i)->epsilons;
-			std::list<Node*>::const_iterator ii;
-			for( ii = s.begin(); ii != s.end(); ++ii)
-			{
-				o << "  node" << (*i)->value  << " -> " << "node"<< (*ii)->value << "[label=\"&epsilon;\"];" << endl;
-			}
-
-			typedef map<char, Node*>::const_iterator MapIterator;
-			for (MapIterator iter = (*i)->nexts.begin(); iter != (*i)->nexts.end(); iter++)
-			{
-				Node* value = iter->second;
-					o << "  node" << (*i)->value  <<" -> "<< "node" << (*value).value << "[label=" << iter->first << "];" << endl;
-			}
-		}
-	}
-// END NODE, FOR PRETTY PRINTING
-	o << "  node"<<w.end->value << " [shape=doublecircle]" << endl;
-
-	list<Node*> end = w.end->epsilons;
-	std::list<Node*>::const_iterator iii;
-
-	for( iii = end.begin(); iii != end.end(); ++iii)
-	{
-		o << "  node" << w.end->value  << " -> " << "node"<< (*iii)->value << "[label=\"&epsilon;\"];" << endl;
-	}
-
-	typedef map<char, Node*>::const_iterator MapIterator;
-	for (MapIterator iter = w.end->nexts.begin(); iter != w.end->nexts.end(); iter++)
-	{
-		Node* value = iter->second;
-			o << "  node" << w.end->value  <<" -> "<< "node" << (*value).value << "[label=" << iter->first << "];" << endl;
-	}
-
-	o << "}";
-	return o;
-}
+#include "Model.h"
 
 //a
 Node* create_node(World *world){
@@ -203,7 +94,41 @@ World* new_world(char chr, Counter *count){
 	return world;
 }
 
+/*
+ std::string parse(std::string s) {
+	std::string parse_me;
+	std::string::iterator pos;
+
+
+	pos = std::find(s.begin(), s.end(), ')');
+	std::string s1(s.begin(), pos);
+	if (!s1.empty() and s1.length() < s.length())
+	{
+		std::string rest(pos + 1, s.end());
+		std::string parsed = parse(s1);
+		std::string first(s.begin(), pos-parsed.length() - 1);
+//		std::cout << first << " " << parse(s1) << " " << rest;
+		parse_me = first + " " + parse(s1) + " " + rest;
+		parse(parse_me);
+	}
+
+	std::reverse(s.begin(), s.end());
+	std::string s2(s.begin(), std::find(s.begin(), s.end(), '('));
+	if (!s2.empty() and s2.length() < s.length())
+	{
+		std::reverse(s2.begin(), s2.end());
+		return s2;
+	}
+
+
+	std::reverse(s.begin(), s.end());
+	std::cout << s;
+	return "";
+}
+*/
+
 int main(){
+/*
 	Counter *count = new Counter();
 	count->num=0;
 	// a
@@ -227,8 +152,12 @@ int main(){
 
 	// a*(b|cd)*
 	World *full = connect(a_s, bcd);
-	cout << *full;
-
+	std::cout << *full;
+*/
+// Den korte version:
+	Counter *new_count = new Counter();
+	new_count->num=0;
+	std::cout << *connect(add_star(new_world('a', new_count)),add_or(new_world('b', new_count),connect(new_world('c', new_count),new_world('d', new_count))));
 /*
 	// a
 	World *a = new World();
@@ -253,6 +182,7 @@ int main(){
 	b = add_star(b);
 	World *full = connect(a, b);
 	cout << *full;
-*/
-	return 0;
+//	std::string s = "(abe(ka(a)t)*sutter)";
+//	parse(s);
+ */
 }
