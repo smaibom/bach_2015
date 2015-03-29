@@ -1,0 +1,58 @@
+\begin{document}
+\subsection{Scan\_for\_matches Patterns to Regex Theory}
+Scan\_for\_matches' functionality is limited, yet is regarded as a powerful tool 
+for finding matches in large text files. What is arguably the most important 
+function of scan\_for\_matches is its ability to use fuzzy approximation. 
+Fuzzy approximation has three important functionalities; 
+\begin{itemize}
+\item Mismatches
+\item Insertion
+\item Deletion
+\end{itemize}
+Because regex doesn't natively support fuzzy approximation, our task has been 
+to create workarounds for these functions in regex. 
+In this section we will discuss what this has resulted to.
+
+\subsubsection*{Mismatches}
+A mismatch occurs when an encountered char is different than what is being 
+searched for in a string. Normally when this happens in regular expressions, 
+the candidate match is discarded, and the regular expression attempts to 
+match the next char. Scan\_for\_matches allows a limited number 
+of mismatches, based on what the user defines, which is not natively possible 
+in regular expressions. It is possible, however, to create a workaround by 
+making extensive use of the alternation operator (\|) and the wildcard character 
+(.).\\\\
+In its simplest form, a mismatch can be represented by simply alternating 
+all the different possible permutations of the possible result. For example, 
+if we have the string \"ABCDE\", and we wish to allow for two mismatches, we 
+could write this as \"(..CDE|.B.DE|.BC.E|.BCD.|A..DE|A.C.E|A.CD.|AB..E|AB.D.|ABC..)\". 
+Note that the original string \"ABCDE\" is not included, as this matches any of 
+the earlier options. The before-mentioned expression can be improved upon by using 
+submatching, since submatching lets you generalize an option. This essentially 
+means that instead of having to choose one of many options, we only ever 
+give the regular expression two choices to choose from, which reduces the size 
+of the generated non-deterministic finite automata (NFA). By using submatching, 
+we get the following regular expression: 
+\"((A(B(C..|(.(D.|.E)))|.(C(D.|.E)|.DE))))|(.(B(C(D.|.E)|.DE)|.CDE))\".
+What happens in the regular expression is that we specify first what will 
+match the expression if the first character matches our string, and if it doesn't, 
+then try to match it as a wildcard. The reason why we first try to match 
+the literal string is to avoid ambiguity. After generating an NFA for both 
+regular expressions, we can see that the number of states is reduced, from 
+77 to 60.\\\\
+When creating regular expressions like this, we can calculate approximately how 
+large the resulting NFA will be, in terms of states. In order to do this, we 
+first use formula 1 to calculate how many different strings matches our 
+string. Since (A|B), our base case, contains six states, we can say that 
+the total amount of states will roughly be equal to $6m$. There is a degree 
+of uncertainty to this (the largest deviation we have found is +6 states) 
+so it's purely to give an idea of how large the resultant NFA becomes when 
+mismatching is allowed.
+
+\begin{figure}
+\caption{Formula 1}
+$$m = \frac{l!}{(l-n)!(n!)}$$,\\
+Where m is the amount of matches, l is the length of the matched string, 
+and n is the amount of mismatches we wish to allow
+\end{figure}
+\end{document}
