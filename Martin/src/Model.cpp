@@ -104,20 +104,11 @@ void print(State state){
 }
 
 int main(){
-
-// Den korte version:
 	Counter *new_count = new Counter();
 	new_count->num=0;
 	World *world = new World();;
-/*	gccgggcgcagtggctcacgcctgtaatccca
-	gcactttgggaggcgaggcgggcggatcacgaggtcaggagatcgagacc
-	atcctggcgaacacggtgaaaacctgtctctactaaaaatacaaaaaatt
-	agccgggcatggtggcgggtgcctgtagtcccagctactcgggaggctga
-	gacaggagaatggtatgaaccctggaggtggagcttgcagtgagccgaga
-	tcgcagcactgcactccagcctgggtgacagagc
-*/
 
-	// (g(a|c)+ (tc+)+a+)+
+	// g(a|c)+ (tc+)+a+
 	*world = *connect(
 +			add_plus(connect(new_world('g', new_count), add_plus(add_or(new_world('a', new_count), new_world('c', new_count))))),
 			connect(add_plus(connect(new_world('t', new_count), add_plus(new_world('c', new_count)))),
