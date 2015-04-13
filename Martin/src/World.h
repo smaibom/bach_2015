@@ -9,6 +9,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <memory>
 
 struct Counter{
 	int num;
@@ -16,10 +17,11 @@ struct Counter{
 
 
 struct World{
-	std::list<Node*> nodes;
-	Counter* count;
-	Node* start;
-	Node* end;
+	std::list<std::shared_ptr<Node>> nodes;
+//	std::list<Node*> nodes;
+	std::shared_ptr<Counter> count;
+	std::shared_ptr<Node> start;
+	std::shared_ptr<Node> end;
 };
 
 

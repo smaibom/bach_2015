@@ -3,13 +3,14 @@
 
 #include "World.h"
 #include "Node.h"
+#include <memory>
 
-Node* create_node(World *world);
-World* add_or(World *lworld, World *rworld);
-World* add_plus(World* world);
-World* add_question(World* world);
-World* add_star(World* world);
-World* connect(World* first, World* last);
-World* new_world(char chr, Counter *count);
+std::shared_ptr<Node> create_node(std::shared_ptr<World> world);
+std::shared_ptr<World> add_or(std::shared_ptr<World> lworld, std::shared_ptr<World> rworld);
+std::shared_ptr<World> add_plus(std::shared_ptr<World> world);
+std::shared_ptr<World> add_question(std::shared_ptr<World> world);
+std::shared_ptr<World> add_star(std::shared_ptr<World> world);
+std::shared_ptr<World> connect(std::shared_ptr<World> first, std::shared_ptr<World> last);
+std::shared_ptr<World> new_world(char chr, std::shared_ptr<Counter> count);
 
 #endif
