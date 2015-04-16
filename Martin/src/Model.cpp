@@ -107,6 +107,7 @@ int main(){
 	std::shared_ptr<World> world = std::make_shared<World>();
 
 	// g(a|c)+(tc+)+a+
+	/*
 	*world = *
 		connect(
 			add_plus(
@@ -125,6 +126,7 @@ int main(){
 				add_plus(new_world('a', count))
 			)
 		);
+	*/
 //	*world = *connect(add_star(new_world('a', new_count)),connect(new_world('t', new_count),connect(new_world('c', new_count),connect(new_world('t', new_count),connect(new_world('c', new_count), connect(new_world('a', new_count), connect(new_world('a', new_count), new_world('a', new_count))))))));
 //	*world = *add_star(new_world('a', count));
 //	*world = *connect(add_star(new_world('a', new_count)),add_star(add_or(new_world('g', new_count)));
@@ -140,7 +142,7 @@ int main(){
 	*world = *connect(world, new_world('t', count));
 */
 
-//	*world = *connect(new_world('g', count), connect(new_world('g', count), new_world('g', count)));
+	*world = *connect(new_world('g', count), connect(new_world('g', count), new_world('g', count)));
 
 	std::cout << *world;
 	std::shared_ptr<States> states = std::make_shared<States>();
