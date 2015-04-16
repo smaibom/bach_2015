@@ -3,129 +3,135 @@
 
 #include "Node.h"
 #include "World.h"
-#include <String>
 #include <algorithm>
-#include <mutex>
 #include <memory>
-#include <thread>
-
+#include <string>
 class State{
 	private:
-		std::mutex *path_mutex;
 		std::string path;
 	public:
 		std::shared_ptr<Node> node;
         State() {
-        	path_mutex = new std::mutex;
         	path = "";
         }
         ~State() {
         	path.clear();
-        	delete path_mutex;
         	node.reset();
         }
-        std::string* getPath();
+        std::string getPath();
         void *setNode(std::shared_ptr<Node> node);
-        void *setPath(std::string* str);
+        void setPath(std::string str);
         bool emptyPath();
         void *addPath(char* chr);
+
+		int deletions;
+		int mutations;
+		int insertions;
 };
 
-std::string* State::getPath(){
-	return &path;
+std::string State::getPath(){
+	return path;
 }
 
-void *State::setPath(std::string* str){
-	path_mutex->lock();
-	path = *str;
-	path_mutex->unlock();
+void State::setPath(std::string str){
+	path = str;
 }
 
-void *State::setNode(std::shared_ptr<Node> new_node){
-	node = new_node;
+void *State::setNode(std::shared_ptr<Node> next_node){
+	node = next_node;
+	next_node.reset();
 }
 
 bool State::emptyPath(){
-	return path == "";
+	return (path == "");
 }
 
 void *State::addPath(char * chr){
-	path_mutex->lock();
 	path += *chr;
-	path_mutex->unlock();
 }
 
 class States{
-	friend void* proxy_function(void*);
-	friend void task1(std::string msg);
 	public:
+
+		int deletions;
+		int mutations;
+		int insertions;
+
+
+		std::shared_ptr<char> buffer;
 		char *chr;
 		std::list<std::shared_ptr<State>> states;
-		std::list<std::shared_ptr<State>> new_states;
+		std::shared_ptr<Node> end;
+		std::list<std::shared_ptr<State>> next_states;
 		void add_state(std::shared_ptr<Node> node);
-		std::shared_ptr<std::mutex> g_pages_mutex;
 		States(){
-			std::shared_ptr<std::mutex> mutex(new std::mutex);
-			g_pages_mutex = mutex;
 		}
 		~States(){
-			g_pages_mutex.reset();
-
+			next_states.clear();
+			states.clear();
+			end.reset();
+			buffer.reset();
 		}
-		void something();
+		std::string check_values();
 
 	private:
-		void create_thread();
 		typedef std::list<std::shared_ptr<Node>> listMyClass;
 
 };
 
 void States::add_state(std::shared_ptr<Node> node){
-	std::shared_ptr<State> state(new State());
+	std::shared_ptr<State> state(std::make_shared<State>());
 	state->setNode(node);
+	state->insertions = insertions;
+	state->deletions = deletions;
+	state->mutations = mutations;
 	states.push_back(state);
 	state.reset();
+	node.reset(); // May very well be overkill
 }
 
-void States::something(){
+std::string States::check_values(){
+	std::string result = "";
 	if (states.empty()){
-		g_pages_mutex->unlock();
-		return;
+		return result;
 	}
 	std::shared_ptr<State> state = states.back();
 	states.pop_back();
 
-	g_pages_mutex->unlock();
-
-	if(state->node->value == 3 and !state->emptyPath()){ // Hacky måde, 3 er slutpunktet, taget fra NFA'en
-		std::cout << *state->getPath() <<  std::endl;
+	if(state->node == end and !state->emptyPath()){
+		result = std::string(state->getPath());
+		return result;
 	}
 
 	for(listMyClass::iterator listMyClassIter = state->node->epsilons.begin();
 	    listMyClassIter != state->node->epsilons.end();
 	    listMyClassIter ++)
 	{
-		std::shared_ptr<State> new_state(new State());
-		new_state->setPath(state->getPath());
-		new_state->setNode((std::shared_ptr<Node>)*listMyClassIter);
-      	g_pages_mutex->lock();
-		states.push_back(new_state);
-		new_state.reset();
-       	g_pages_mutex->unlock();
+		std::shared_ptr<State> next_state = std::make_shared<State>();
+		next_state->setPath(state->getPath());
+		next_state->setNode((std::shared_ptr<Node>)*listMyClassIter);
+		next_state->insertions = state->insertions;
+		next_state->deletions = state->deletions;
+		next_state->mutations = state->mutations;
+		states.push_back(next_state);
+		next_state.reset();
 	}
 
 	if(state->node->nexts[*chr]){
 		state->node = state->node->nexts[*chr];
 		state->addPath(chr);
-      	g_pages_mutex->lock();
-		new_states.push_back(state);
-		state.reset();
-       	g_pages_mutex->unlock();
-	}else{
-       	g_pages_mutex->lock();
-		state.reset();
-       	g_pages_mutex->unlock();
-	}
+		next_states.push_back(state);
+	}else if(state->insertions > 0){
+		state->insertions -= 1;
+		state->addPath(chr);
+		next_states.push_back(state);
+	}//else if(state->deletions > 0){
+//     Gå til alle næste mulige states, med lad være med at tilføj til path
+//	}else if(state->mutations > 0){
+//     Gå til alle næste mulige states, og tilføj til path
+//	}
+	state.reset();
+	return "";
 }
 
 #endif

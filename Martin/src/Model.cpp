@@ -12,13 +12,12 @@
 #include "State.h"
 #include "Pretty.h"
 #include <fstream>
-#include <string>
 #include <pthread.h>
 #include <memory.h>
-#include <thread>
+
 //a
 std::shared_ptr<Node> create_node(std::shared_ptr<World> world){
-	std::shared_ptr<Node>node(new Node());
+	std::shared_ptr<Node>node = std::make_shared<Node>();
 	node->value = world->count->num;
 	world->count->num = world->count->num+1;
 	world->nodes.push_back(node);
@@ -53,7 +52,7 @@ std::shared_ptr<World> add_star(std::shared_ptr<World> world){
 
 //a|b
 std::shared_ptr<World> add_or(std::shared_ptr<World> lworld, std::shared_ptr<World> rworld){
-	std::shared_ptr<World> world(new World());
+	std::shared_ptr<World> world = std::make_shared<World>();
 	world->count = lworld->count;
 	std::shared_ptr<Node> start = create_node(world);
 	std::shared_ptr<Node> end = create_node(world);
@@ -76,7 +75,7 @@ std::shared_ptr<World> add_question(std::shared_ptr<World> world){
 
 // ab
 std::shared_ptr<World> connect(std::shared_ptr<World> first, std::shared_ptr<World> last){
-	std::shared_ptr<World> world(new World());
+	std::shared_ptr<World> world = std::make_shared<World>();
 	world->count = first->count;
 	world->start = first->start;
 	world->end = last->end;
@@ -92,8 +91,7 @@ std::shared_ptr<World> connect(std::shared_ptr<World> first, std::shared_ptr<Wor
 }
 
 std::shared_ptr<World> new_world(char chr, std::shared_ptr<Counter> count){
-	std::shared_ptr<World> world(new World());
-//	World *world = new World();
+	std::shared_ptr<World> world = std::make_shared<World>();
 	world->count = count;
 	std::shared_ptr<Node> start = create_node(world);
 	std::shared_ptr<Node> end = create_node(world);
@@ -103,50 +101,107 @@ std::shared_ptr<World> new_world(char chr, std::shared_ptr<Counter> count){
 	return world;
 }
 
-/*void print(State state){
-	std::cout << state.node->value << " /  " << state.path <<  std::endl;
-}*/
-
 int main(){
-	std::shared_ptr<Counter> new_count(new Counter());
-	new_count->num=0;
-	std::shared_ptr<World> world(new World());
+	std::shared_ptr<Counter> count = std::make_shared<Counter>();
+	count->num=0;
+	std::shared_ptr<World> world = std::make_shared<World>();
 
-	// g(a|c)+ (tc+)+a+
-	*world = *connect(
-			add_plus(connect(new_world('g', new_count), add_plus(add_or(new_world('a', new_count), new_world('c', new_count))))),
-			connect(add_plus(connect(new_world('t', new_count), add_plus(new_world('c', new_count)))),
-			add_plus(new_world('a', new_count))
-			));
+	// g(a|c)+(tc+)+a+
+	*world = *
+		connect(
+			add_plus(
+				connect(
+				new_world('g', count),
+				add_plus(
+					add_or(
+							new_world('a', count),
+							new_world('c', count))))),
+			connect(
+				add_plus(
+					connect(
+						new_world('t', count),
+						add_plus(
+							new_world('c', count)))),
+				add_plus(new_world('a', count))
+			)
+		);
 //	*world = *connect(add_star(new_world('a', new_count)),connect(new_world('t', new_count),connect(new_world('c', new_count),connect(new_world('t', new_count),connect(new_world('c', new_count), connect(new_world('a', new_count), connect(new_world('a', new_count), new_world('a', new_count))))))));
-//	*world = *connect(add_star(new_world('a', new_count)),add_star(add_or(new_world('b', new_count),connect(new_world('c', new_count),new_world('d', new_count)))));
+//	*world = *add_star(new_world('a', count));
+//	*world = *connect(add_star(new_world('a', new_count)),add_star(add_or(new_world('g', new_count)));
+
+
+// GGGTGCAAGCGTTAAT[2,1,1] 50...350 AGCGTGGGGAGCAAAC[2,1,1]
+/*
+	*world = *connect(new_world('g', count), connect(new_world('g', count), new_world('g', count)));
+	*world = *connect(world, connect(new_world('t', count), connect(new_world('g', count), new_world('c', count))));
+	*world = *connect(world, connect(new_world('a', count), connect(new_world('a', count), new_world('g', count))));
+	*world = *connect(world, connect(new_world('c', count), connect(new_world('g', count), new_world('t', count))));
+	*world = *connect(world, connect(new_world('t', count), connect(new_world('a', count), new_world('a', count))));
+	*world = *connect(world, new_world('t', count));
+*/
+
+//	*world = *connect(new_world('g', count), connect(new_world('g', count), new_world('g', count)));
+
 	std::cout << *world;
+	std::shared_ptr<States> states = std::make_shared<States>();
+	states->end = world->end;
+	states->insertions = 1;
+	states->deletions = 0;
+	states->mutations = 0;
 
-	std::shared_ptr<States> states(new States());
+	char * buffer;
+	int length;
 
-	std::ifstream file("../data/fas1.fa");
-    std::string str;
-	#define N 5
-    pthread_t my_thread[N];
-    while (std::getline(file, str))
-    {
-    	for(int i = 0; i < str.length(); i++)
-    	{
-    		states->add_state(world->start);
-    		char chr = tolower(str[i]);
-    		states->chr = &chr;
-    		while(!states->states.empty()){
-    			states->g_pages_mutex->lock();
-    			std::shared_ptr<std::thread> t1(new std::thread (&States::something,states));
-    			states->g_pages_mutex->lock();
-    			std::shared_ptr<std::thread> t2(new std::thread (&States::something,states));
+	std::ifstream is ("../data/fas1.fa", std::ifstream::binary);
+//	std::ifstream is ("C:/Users/Martin/Desktop/scan_for_matches/fasta/chr3.fa", std::ifstream::binary);
+	if (is) {
+		// get length of file:
+		is.seekg (0, is.end);
+		length = is.tellg();
+		is.seekg (0, is.beg);
 
-    			t1->join();
-    			t1.reset();
-    			t2->join();
-    			t2.reset();
-    		}
-    		states->states.merge(states->new_states);
-    	}
-    }
+		buffer = new char [length];
+
+		std::cout << "Reading " << length << " characters... ";
+		// read data as a block:
+		is.read (buffer,length);
+
+		if (is)
+		  std::cout << "all characters read successfully.\n";
+		else
+		  std::cout << "error: only " << is.gcount() << " could be read\n";
+		is.close();
+
+		// ...buffer contains the entire file...
+	}
+
+	std::string output = "";
+
+	for(int i = 0; i < length; i++)
+	{
+		if(isspace(buffer[i])){
+			// DO NOTHING
+		}else{
+			std::string result = "";
+			states->add_state(world->start);
+
+			// Alt i over case
+			char chr = tolower(buffer[i]);
+			states->chr = &chr;
+			while(!states->states.empty()){
+				result = states->check_values();
+				if(result==""){
+					// Dont print
+				}else{
+					output += result + '\n';
+					result.clear();
+				}
+			}
+			states->states.merge(states->next_states);
+		}
+		// Printer efter hvert tegn
+		std::cout << output;
+		output.clear();
+	}
+	delete[] buffer;
 }
