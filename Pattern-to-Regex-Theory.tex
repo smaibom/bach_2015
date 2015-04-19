@@ -2,19 +2,19 @@
 \subsection{Scan\_for\_matches Patterns to Regex Theory}
 Scan\_for\_matches' functionality is limited, yet is regarded as a powerful tool 
 for finding matches in large text files. What is arguably the most important 
-function of scan\_for\_matches is its ability to use fuzzy approximation. 
-Fuzzy approximation has three important functionalities; 
+function of scan\_for\_matches is its ability to use approximate matching. 
+Approximate Matching has three important functionalities; 
 \begin{itemize}
 \item Mismatches
 \item Insertion
 \item Deletion
 \end{itemize}
-Because regex doesn't natively support fuzzy approximation, our task has been 
+Because regex doesn't natively support approximate matching, our task has been 
 to create workarounds for these functions in regex. 
 In this section we will discuss what this has resulted to.
 
 \subsubsection*{Mismatches}
-A mismatch occurs when an encountered char is different than what is being 
+A mismatch occurs when an encountered character is different than what is being 
 searched for in a string. Normally when this happens in regular expressions, 
 the candidate match is discarded, and the regular expression attempts to 
 match the next char. Scan\_for\_matches allows a limited number 
@@ -24,35 +24,65 @@ making extensive use of the alternation operator (\|) and the wildcard character
 (.).\\\\
 In its simplest form, a mismatch can be represented by simply alternating 
 all the different possible permutations of the possible result. For example, 
-if we have the string \"ABCDE\", and we wish to allow for two mismatches, we 
-could write this as \"(..CDE|.B.DE|.BC.E|.BCD.|A..DE|A.C.E|A.CD.|AB..E|AB.D.|ABC..)\". 
-Note that the original string \"ABCDE\" is not included, as this matches any of 
+if we have the string ``ABCDE'', and we wish to allow for two mismatches, we 
+could write this as ``(..CDE|.B.DE|.BC.E|.BCD.|A..DE|A.C.E|A.CD.|AB..E|AB.D.|ABC..)''. 
+Note that the original string ``ABCDE'' is not included, as this matches any of 
 the earlier options. The before-mentioned expression can be improved upon by using 
 submatching, since submatching lets you generalize an option. This essentially 
 means that instead of having to choose one of many options, we only ever 
 give the regular expression two choices to choose from, which reduces the size 
 of the generated non-deterministic finite automata (NFA). By using submatching, 
 we get the following regular expression: 
-\"((A(B(C..|(.(D.|.E)))|.(C(D.|.E)|.DE))))|(.(B(C(D.|.E)|.DE)|.CDE))\".
+``((A(B(C..|(.(D.|.E)))|.(C(D.|.E)|.DE))))|(.(B(C(D.|.E)|.DE)|.CDE))''.
 What happens in the regular expression is that we specify first what will 
 match the expression if the first character matches our string, and if it doesn't, 
 then try to match it as a wildcard. The reason why we first try to match 
 the literal string is to avoid ambiguity. After generating an NFA for both 
 regular expressions, we can see that the number of states is reduced, from 
-77 to 60.\\\\
-When creating regular expressions like this, we can calculate approximately how 
-large the resulting NFA will be, in terms of states. In order to do this, we 
-first use formula 1 to calculate how many different strings matches our 
-string. Since (A|B), our base case, contains six states, we can say that 
-the total amount of states will roughly be equal to $6m$. There is a degree 
-of uncertainty to this (the largest deviation we have found is +6 states) 
-so it's purely to give an idea of how large the resultant NFA becomes when 
-mismatching is allowed.
+77 to 60, which is relevant to the speed of the NFA-building module of our 
+program.\\\\
+%===================> Maybe not relevant <=========================
+%When creating regular expressions like this, we can calculate approximately how 
+%large the resulting NFA will be, in terms of states. In order to do this, we 
+%first use formula 1 to calculate how many different strings matches our 
+%string. Since (A|B), our base case, contains six states, we can say that 
+%the total amount of states will roughly be equal to $6m$. There is a degree 
+%of uncertainty to this (the largest deviation we have found is +6 states) 
+%so it's purely to give an idea of how large the resultant NFA becomes when 
+%mismatching is allowed.
+%\begin{figure}
+%\caption{Formula 1}
+%$$m = \frac{l!}{(l-n)!(n!)}$$,\\
+%Where m is the amount of matches, l is the length of the matched string, 
+%and n is the amount of mismatches we wish to allow
+%\end{figure}
 
-\begin{figure}
-\caption{Formula 1}
-$$m = \frac{l!}{(l-n)!(n!)}$$,\\
-Where m is the amount of matches, l is the length of the matched string, 
-and n is the amount of mismatches we wish to allow
-\end{figure}
+\subsubsection*{Insertions and Deletions}
+An insertion occurs when a character is inserted into the string. 
+For example if we have the string ``AC'' and we want to allow for one 
+insertion, we would be able to match ``ABC''. Conversely, 
+a deletion is when the opposite occurs - when a character is taken out of a string. 
+Using the same example as before, if we'd want to allow for one deletion, we 
+could match ``A''.\\
+While an insertion and deletion are opposites of each other, one would think that 
+they cancel out (so if we were matching for a string, allowing for one deletion 
+and one insertion, we would instead match for the precise string). However 
+this is not so, since a deletion isn't guaranteed to delete the inserted character. 
+To illustrate, let's say that an insertion is denoted by a ., 
+and a deleted character is represented by underscore \_. Say we wanted to match 
+for ``ABC'', and we allow for one insertion and one deletion. After an insertion, 
+we could get ``AB.C'', and after one deletion, we would get ``\_B.C'', which is a 
+far cry from the original string ``ABC''.\\\\
+Introducing insertions to regex means, like with mismatches, that many 
+alternations must be used. So matching ``ABCD'' with one insertion would be 
+written as ``(.ABCD|A.BCD|AB.CD|ABC.D|ABCD.|ABCD)''. When combined with mismatching 
+or deletion (which is talked about later in this section) our regex patterns 
+explodes in length as an insertion creates more alternations than either 
+mismatches or deletions.\\\\
+Deletions works somewhat like insertions when added to regex, though smaller 
+scale because of how deletions work. This means that matching ``ABCD'' with 
+one deletion would be written as ``(BCD|ACD|ABD|ABC|ABCD)''. Since the 
+amount of deletions depends on the size of the matching string, the number 
+of alternations also depends on the length of the string we wish to 
+match.
 \end{document}

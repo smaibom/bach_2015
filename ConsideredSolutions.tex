@@ -6,13 +6,14 @@
 Kleene Meets Church (KMC) is a regex-based markup engine being developed by 
 the KMC group in DIKU, headed by Fritz Henglein, professor at DIKU. The KMC 
 engine aims at providing a faster processing time than other regex engines, 
-while making it easier for non-computer scientists to use.\\
+while making it easy for people not intimate with computer science to use.\\
 As our project synopsis states, we first wanted to use KMC to implement 
 scan\_for\_matches. This was because we had heard of 
 how fast the KMC engine was, so it seemed like the logical engine to use. 
 However we turned to other solutions when we found out that 
 KMC is intended only for text-markup, meaning it doesn't return the position 
-of a match or the match itself. 
+of a match or the match itself. While KMC is an excellent tool for other tasks, it 
+is not compatible with our task at hand.
 
 \subsection{TRE}
 A regex engine that we considered for our implementation of scan\_for\_matches 
@@ -29,7 +30,7 @@ for TRE was to create a wrapper which would serve two purposes:
 \item Convert scan\_for\_matches patterns to TRE-style regex, and
 \item Format the output for TRE
 \end{itemize}
-While investigating our possible solutions with TRE, a few problems 
+While investigating our possible solutions involving TRE, problems 
 with the implementation meant that we 
 had to look for another solution. The first problem we found with TRE was that 
 it used the POSIX.2 regex standard. This meant that TRE does not support the 
@@ -37,8 +38,7 @@ global pattern modifier, so TRE would only return the earliest best-matching
 match per delimiter\cite{Best-Match}. This combined with another problem we found 
 - TRE is unable to match a string which spans over a delimiter - meant that 
 TRE would require heavy modification for it to work how we wanted it to. Given our 
-limited time and the insufficient documentation in the code meant that 
-we had to look for another solution.
+limited time and the insufficient documentation in the code, we had to look for another solution.
 
 \begin{thebibliography}{9}
 \bibitem{LaurikariComplex}
