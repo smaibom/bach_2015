@@ -131,7 +131,7 @@ int main(){
 //	*world = *add_star(new_world('a', count));
 //	*world = *connect(add_star(new_world('a', new_count)),add_star(add_or(new_world('g', new_count)));
 
-
+// 2 mutations, 1 deletion, 1 insertion
 // GGGTGCAAGCGTTAAT[2,1,1] 50...350 AGCGTGGGGAGCAAAC[2,1,1]
 /*
 	*world = *connect(new_world('g', count), connect(new_world('g', count), new_world('g', count)));
@@ -142,7 +142,15 @@ int main(){
 	*world = *connect(world, new_world('t', count));
 */
 
-	*world = *connect(new_world('g', count), connect(new_world('g', count), new_world('g', count)));
+// 1 insertions GGAGTGCAAGCGTT[0,0,1]
+	*world = *connect(new_world('g', count), connect(new_world('g', count), new_world('a', count)));
+	*world = *connect(world, connect(new_world('g', count), connect(new_world('t', count), new_world('g', count))));
+	*world = *connect(world, connect(new_world('c', count), connect(new_world('a', count), new_world('a', count))));
+	*world = *connect(world, connect(new_world('g', count), connect(new_world('c', count), new_world('g', count))));
+	*world = *connect(world, new_world('t', count));
+	*world = *connect(world, new_world('t', count));
+
+//	*world = *connect(new_world('g', count), connect(new_world('g', count), new_world('g', count)));
 
 	std::cout << *world;
 	std::shared_ptr<States> states = std::make_shared<States>();
@@ -154,7 +162,7 @@ int main(){
 	char * buffer;
 	int length;
 
-	std::ifstream is ("../data/fas1.fa", std::ifstream::binary);
+	std::ifstream is ("../data/fas4.fa", std::ifstream::binary);
 //	std::ifstream is ("C:/Users/Martin/Desktop/scan_for_matches/fasta/chr3.fa", std::ifstream::binary);
 	if (is) {
 		// get length of file:
