@@ -1,35 +1,72 @@
 \documentclass[11pt,twoside,a4paper]{article}
-
+\usepackage{pbox}
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
 \begin{document}
 \section{Scan\_For\_Matches}
-Scan\_for\_matches is a string-searching tool used mainly by biologists to 
-search through files of transcribed genetic material, like RNA strings in 
-chromosomes. It was developed by Ross Overbeek, David Joerg and Morgan Price, 
-and it was written in C. It uses a brute-force approach to solving its task.\\
-The reason why an alternative to scan\_for\_matches is looked after is because 
-of how it's been coded. The code is difficult to understand and navigate, 
-which makes it difficult to modify for additional functionality, something the 
-students and researchers at KU's microbiology department desires.\\
-In order to reimplement scan\_for\_matches, we must first understand how 
-it works. We will first talk about what kind of patterns scan\_for\_matches can 
-search for, after which we will talk about how it matches patterns.
-\subsection{Patterns}
-To describe what a pattern is, we can first look at the following example:
-$$p1=3..5 1..3 ~p1$$
-Above we first describe a string of a length between 3 and 5, and call that 
-p1. We next say that there must be a sequence of characters of length between 1 and 3, 
-which must be followed by the reverse complement of p1. This allows users to 
-search for sequences of a specific structure. For example, the example would 
-match a hairpin loop. One can also specify exactly what kind of sequence 
-they would want to match. If we want to specify what must be looped in the earlier 
-example, we can write $$p1=3..5 AG ~p1$$
-It is also possible to perform approximate matching. This is done by appending 
-to a pattern \[m,d,i\], where m is the number of mismatches, d is the number 
-of deletions and i is the number of insertions. Using the previous example, 
-if we want the looped sequence to allow for one mismatch, we can write 
-$$p1=3..5 AG[1,0,0] ~p1$$
-\subsection{Flaws}
-While we were testing TRE, we discovered that TRE, though slower than scan\_for\_matches, 
-found more hits. This means that throughout scan\_for\_matches' lifetime, 
-there has been times where scan\_for\_matches couldn't give all matches. 
+
+Scan\_for\_matches is a string-searching tool created by Ross Overbeek, David 
+Joerg and Morgan Price in C which searches through FASTA text files. Users specify 
+what they wish to search for by defining a pattern, and scan\_for\_matches 
+returns all matches that corresponds to the specified pattern.
+\begin{definition}\label{patd}
+A pattern is defined as follows:\\
+\begin{tabular}{|r|l|}
+\hline
+{\tt ACUG}&Match the sequence ACUG\\
+\hline
+{\tt 1...5}&Match 1 to 5 characters\\
+\hline
+{\tt 3...3}&Match exactly 3 characters\\
+\hline
+{\tt p1=1...5}&Match 1 to 5 characters, and call the sequence p1\\
+\hline
+{\tt p1 $|$ p2}&Match either p1 or p2\\
+\hline
+{\tt p1[1,0,0]}&Match p1, allowing for one mismatch\\
+\hline
+{\tt p1[0,1,0]}&Match p1, allowing for one deletion\\
+\hline
+{\tt p1[0,0,1]}&Match p1, allowing for one insertion\\
+\hline
+{\tt length(p1+p2) $<$ 5}&The combined length of p1 and p2 must not exceed 4\\
+\hline
+{\tt r1=\{AB, BA\}}&\pbox{20cm}{Create a pattern rule where A is the complement of B, \\and B is the complement of A, and call it r1}\\
+\hline
+{\tt $<$p1}&Match the reverse of p1\\
+\hline
+{\tt \textasciitilde p1}&\pbox{20cm}{Match the reverse complement of p1 using the G-C, \\C-G, A-T and T-A pairing rule}\\
+\hline
+{\tt r1\textasciitilde p1}&\pbox{20cm}{Match the reverse complement of p1 using r1 rules}\\
+\hline
+{\tt \textasciicircum ~p1}&\pbox{20cm}{Match only p1 if it is at the start of a string}\\
+\hline
+{\tt p1 \$}&Match only p1 if it is at the end of a string\\
+\hline
+\end{tabular}
+\end{definition}
+
+\begin{definition}\label{patc}
+Let {\tt E} be any pattern that's in the alphabet $\Sigma$ as defined in Definition \ref{patd}. 
+Let $\epsilon$ be the empty string.
+Let {\tt A} be a string that we are processing to see if the pattern is valid.
+A pattern may then be constructed as such: \begin{center}
+{\tt A = A* A | $\epsilon$}\\
+{\tt A* = E}\end{center}
+\end{definition}
+Definition \ref{patc} states that a pattern may be any combination of the alphabet 
+defined in \ref{patd}.
+Using these patterns, it is possible to make very specific or very broad 
+searches in a text file. 
+
+\begin{example}
+Say we want to write a pattern that finds the sequence {\tt GUUC}, allowing 
+one mismatch, followed by a random sequence which has a length between 3 and 5, 
+followed by the reverse complement of the first sequence that we found. We can 
+write this as \begin{center}
+{\tt p1=GUUC[1,0,0] 3...5 ~p1}
+\end{center}
+\end{example}
+
 \end{document}
