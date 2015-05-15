@@ -1,0 +1,59 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\begin{document}
+\section{Method/Theory}
+ \subsection{Matching}
+  \subsubsection{Pattern Matching}
+   Matching is when a part of a text is identified correctly as following some 
+   rule, defined by the user, and is returned to the user. 
+   There are different kinds of matching, for example literal matching where the 
+   user wants to find an exact word or sentence. Pattern matching is when we define 
+   a pattern as the rule that we want to match with. Since regular expressions %<========== Must check to see if defined previously
+   (regex) defines possible patterns, we can use regular expressions as our pattern rule.
+
+  \subsubsection{Approximate Matching}
+   For our implementation, we will need to implement 
+   approximate matching. Approximate matching is similar to pattern matching, 
+   however approximate matching allows errors in the searched text. 
+   \begin{definition}
+    An error is when an encountered character in a string is different from 
+    what is expected. An error can manifest itself in three different ways:
+    \begin{enumerate}
+    \item A mismatch, where a character is transformed into a different \\character
+    \item A deletion, where a character is missing, and
+    \item An insertion, where a random character has been inserted in the text
+    \end{enumerate}
+   \end{definition}
+   
+   While it is possible to perform approximate matching with regex, it is not 
+   a computationally efficient thing to do unless it is done on a regex-engine 
+   that natively supports approximate matching. This is because the complexity 
+   and size of a regular expression increases dramatically when mismatches and 
+   insertions are hardcoded for regex, as shown by example \ref{exInsert}
+   \begin{example}\label{exInsert}
+   Let {\tt ABCD} be a text string that we wish to search a text for, where we 
+   allow for one insertion. Then the resulting regular expression will be \\
+   \begin{center}
+   {\tt .ABCD$|$A.BCD$|$AB.CD$|$ABC.D$|$ABCD.$|$ABCD}
+   \end{center}
+   \end{example}
+   Allowing one insertion in our 4-character text results in six possible 
+   permutations that must be accounted for, and the blowup of the regular 
+   expression's size only increases as we try to match longer strings with more 
+   insertions.
+\section{State-of-the-Art}
+ \subsection{TRE}
+  TRE is an open-source engine created by Ville Laurikari for his 
+  master's thesis in 2001, and is written in C. The engine is able to perform 
+  approximate matching, so we decided to modify the engine so that it could 
+  support the patterns that scan\_for\_matches supports. This is expanded 
+  upon later in our Implementation section.
+  
+  
+\section{Implementation}
+ \subsection{TRE}
+  
+  
+  
+\end{document}

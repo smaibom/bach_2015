@@ -4,8 +4,7 @@
 \newtheorem{definition}{Definition}
 \newtheorem{example}{Example}
 \begin{document}
-\section{Scan\_For\_Matches}
-
+\subsection{Scan\_For\_Matches}
 Scan\_for\_matches is a string-searching tool created by Ross Overbeek, David 
 Joerg and Morgan Price in C which searches through FASTA text files. Users specify 
 what they wish to search for by defining a pattern, and scan\_for\_matches 
@@ -52,11 +51,11 @@ Let {\tt E} be any pattern that's in the alphabet $\Sigma$ as defined in Definit
 Let $\epsilon$ be the empty string.
 Let {\tt A} be a string that we are processing to see if the pattern is valid.
 A pattern may then be constructed as such: \begin{center}
-{\tt A = A* A | $\epsilon$}\\
-{\tt A* = E}\end{center}
+{\tt A = A' A | $\epsilon$}\\
+{\tt A' = E}\end{center}
 \end{definition}
 Definition \ref{patc} states that a pattern may be any combination of the alphabet 
-defined in \ref{patd}.
+defined in definition \ref{patd}.
 Using these patterns, it is possible to make very specific or very broad 
 searches in a text file. 
 
@@ -64,8 +63,8 @@ searches in a text file.
 Say we want to write a pattern that finds the sequence {\tt GUUC}, allowing 
 one mismatch, followed by a random sequence which has a length between 3 and 5, 
 followed by the reverse complement of the first sequence that we found. We can 
-write this as \begin{center}
-{\tt p1=GUUC[1,0,0] 3...5 ~p1}
+then write this as \begin{center}
+{\tt p1=GUUC[1,0,0] 3...5 \textasciitilde p1}
 \end{center}
 \end{example}
 
