@@ -12,19 +12,20 @@ Each transition in $T$ is a has a starting state, and a destination state, and i
 \end{mydef}
 
 \subsubsection{Conversion from RE to NFA}
-One of the main reasons for using NFAs when working with Regular Expressions is the direct correlation between Regular Expressions and NFA graphs. With little effort every regular expression can be translated into a graph, which can then be analysed.
-
-
- by creating nodes and connecting these by allowing them to point to other nodes, each NFA also has a starting and ending node. For example two NFAs of $a$ and $b$ will appear as shown in Figure~\ref{fig:A} \& \ref{fig:B}, each of them starts in node $0$ and ends in node $1$, and these nodes are connected by a one way pointer with a key value $A$ or $B$, it may be worth noting that our implementation always converts to lower case when constructing and matching.
+One of the main reasons for using NFAs when working with regular expressions is the direct correlation between regular expressions and NFAs. Each expression can be converted to an NFA, and vice versa.
+\\
+(( NOTE: We'll include a table with conversions ))
+\\
+%With little effort every regular expression can be translated into a graph, which can then be analysed.
 
 \begin{figure}[h!]
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[b]{0.40\linewidth}
   \centering
       \includegraphics[width=0.2\textwidth]{lib/A.png}
   \caption{NFA of the expression $a$}
 \label{fig:A}
   \end{minipage}
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[b]{0.40\linewidth}
 
   \centering
       \includegraphics[width=0.2\textwidth]{lib/B.png}
@@ -34,7 +35,10 @@ One of the main reasons for using NFAs when working with Regular Expressions is 
     \end{minipage}
 \end{figure}
 
-To construct the NFA for $A | B$  we will first construct a NFA for both $A$ and $B$, which we then combine, making a third NFA. In the case of the $|$ operator this is achieved by constructing two new nodes, the first having epsilon connections pointing to the start node of each of the two NFAs $A$ and $B$, then for each NFA $A$ and $B$ the ending node will instead of ending the NFA, have a new epsilon connection pointing to the second new node, in the figure below, Figure~\ref{fig:A_OR_B}, the two new nodes are labeled $0$ and $5$:
+
+For example two NFAs of regular expression $a$ and $b$ will appear as shown in Figure~\ref{fig:A} \& \ref{fig:B}, each of them starts in node $0$ and ends in node $1$, and these nodes are connected by a one-way transition with a value $a$ or $b$. %, it may be worth noting that our implementation always converts to lower case when constructing and matching.
+
+To construct the NFA for $A | B$ , one will first have to construct an NFA for both $A$ and $B$, which will then be combined, making the full NFA. The $|$ operator this is achieved by constructing two new nodes, the first having epsilon-transition pointing to the start node of each of the two NFAs $A$ and $B$, then for each NFA $A$ and $B$ the ending node will instead of ending the NFA, have a new epsilon-transition to the second new node, in the figure below, Figure~\ref{fig:A_OR_B}, the two new nodes are labeled $0$ and $5$:
 
 \begin{figure}[h!]
   \centering
@@ -43,7 +47,7 @@ To construct the NFA for $A | B$  we will first construct a NFA for both $A$ and
 \label{fig:A_OR_B}
 \end{figure}
 
-Once a NFA-structure has been build, it's time to start parsing the text, looking through the given text file for a match. We do this by having a list of states, each state looks at a node of the structure, and counts the number of previous hits which lead to the current state. Whenever a new character is being parsed from the text file, each state is asked to look at its node, and determine if it's possible to accept the given character in the NFA, either by moving forward through a pointer labeled with the character in question, or alternatively by epsilon pointers, each epsilon making a new state similar to the original, which then looks at its pointers for the character being parsed. If any of these match then the state moves on onto the matching pointer's node and the hit counter is incremented. %Alternatively the state will be dropped as it no longer matches the parsed string.
+Once a NFA-structure has been build, we can start match a text against the NFA, looking for a match. We do this by having a list of states, each state looks at a node of the structure, and counts the number of previous hits which lead to the current state. Whenever a new character is being parsed from the text file, each state is asked to look at its node, and determine if it's possible to accept the given character in the NFA, either by moving forward through a pointer labeled with the character in question, or alternatively by epsilon pointers, each epsilon making a new state similar to the original, which then looks at its pointers for the character being parsed. If any of these match then the state moves on onto the matching pointer's node and the hit counter is incremented. %Alternatively the state will be dropped as it no longer matches the parsed string.
 
 \begin{figure}[h!]
 \begin{minipage}[b]{0.45\linewidth}
