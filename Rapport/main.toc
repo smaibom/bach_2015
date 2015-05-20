@@ -1,10 +1,6 @@
-\contentsline {section}{\numberline {1}Introduction}{3}
-\contentsline {section}{\numberline {2}Preliminaries}{3}
-\contentsline {subsection}{\numberline {2.1}Nucleic Acids}{3}
-\contentsline {subsubsection}{\numberline {2.1.1}Ribonucleic acid}{3}
-\contentsline {subsubsection}{\numberline {2.1.2}Deoxyribonucleic acid}{3}
-\contentsline {subsubsection}{\numberline {2.1.3}Secondary Structures of Nucleic Acids}{3}
-\contentsline {subsection}{\numberline {2.2}Scan\_For\_Matches}{5}
-\contentsline {section}{\numberline {3}Theory}{6}
-\contentsline {section}{\numberline {4}Method}{6}
-\contentsline {section}{\numberline {5}Conclusion}{6}
+\contentsline {section}{\numberline {1}Nucleic Acids}{3}
+\contentsline {subsection}{\numberline {1.1}Ribonucleic acid}{3}
+\contentsline {subsection}{\numberline {1.2}Deoxyribonucleic acid}{3}
+\contentsline {subsection}{\numberline {1.3}Secondary Structures of Nucleic Acids}{3}
+\contentsline {section}{\numberline {2}Scan\_For\_Matches}{5}
+\contentsline {section}{\numberline {3}Regular expressions}{6}
