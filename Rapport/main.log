@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2014.6.3)  15 MAY 2015 14:43
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2014.6.3)  20 MAY 2015 10:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -661,11 +661,101 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
-\c@theorem=\count125
-\c@lemma=\count126
-\c@korollar=\count127
-\c@mydef=\count128
-\c@myex=\count129
+(/usr/share/texmf-dist/tex/latex/standalone/standalone.sty
+Package: standalone 2012/09/15 v1.1b Package to include TeX sub-files with prea
+mbles
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
+
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+\XKV@toks=\toks41
+\XKV@tempa@toks=\toks42
+\XKV@depth=\count125
+File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
+))
+(/usr/share/texmf-dist/tex/latex/currfile/currfile.sty
+Package: currfile 2013/02/01 v0.7b Provides the file path elements of the curre
+nt input file
+
+(/usr/share/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/share/texmf-dist/tex/latex/filehook/filehook.sty
+Package: filehook 2011/10/12 v0.5d Hooks for input files
+)
+\c@currfiledepth=\count126
+)
+(/usr/share/texmf-dist/tex/latex/gincltex/gincltex.sty
+(/usr/share/texmf-dist/tex/latex/svn-prov/svn-prov.sty
+Package: svn-prov 2010/04/24 v3.1862 Package Date/Version from SVN Keywords
+)
+Package: gincltex 2011/09/04 v0.3 Include external LaTeX files like graphics
+
+(/usr/share/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
+
+(/usr/share/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(/usr/share/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
+
+(/usr/share/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box39
+)
+\tc@llx=\dimen170
+\tc@lly=\dimen171
+\tc@urx=\dimen172
+\tc@ury=\dimen173
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+(/usr/share/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen174
+\adjbox@Height=\dimen175
+\adjbox@Depth=\dimen176
+\adjbox@Totalheight=\dimen177
+
+(/usr/share/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2011/09/13 v1.0 Conditionals for odd/even page detection
+\c@checkoddpage=\count127
+)
+(/usr/share/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box40
+\sift@deathcycles=\count128
+\@vwid@loff=\dimen178
+\@vwid@roff=\dimen179
+))
+\gincltex@box=\box41
+)
+(/usr/share/texmf-dist/tex/latex/filemod/filemod-expmin.sty
+Package: filemod-expmin 2011/09/19 v1.2 Get and compare file modification times
+ (expandable; minimal)
+))
+\c@theorem=\count129
+\c@lemma=\count130
+\c@korollar=\count131
+\c@mydef=\count132
+\c@myex=\count133
 
 (/usr/share/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
@@ -673,37 +763,37 @@ Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
 (/usr/share/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 57.
-\captionmargin=\dimen170
-\captionmargin@=\dimen171
-\captionwidth=\dimen172
-\caption@tempdima=\dimen173
-\caption@indent=\dimen174
-\caption@parindent=\dimen175
-\caption@hangindent=\dimen176
+\captionmargin=\dimen180
+\captionmargin@=\dimen181
+\captionwidth=\dimen182
+\caption@tempdima=\dimen183
+\caption@indent=\dimen184
+\caption@parindent=\dimen185
+\caption@hangindent=\dimen186
 )
-\c@ContinuedFloat=\count130
+\c@ContinuedFloat=\count134
 )
 (/usr/share/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip53
 \bibsep=\skip54
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count131
+\c@NAT@ctr=\count135
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -739,27 +829,22 @@ LaTeX Font Info:    ... okay on input line 48.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\AtBeginShipoutBox=\box39
+\AtBeginShipoutBox=\box42
 (/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count132
-\scratchdimen=\dimen177
-\scratchbox=\box40
-\nofMPsegments=\count133
-\nofMParguments=\count134
-\everyMPshowfont=\toks41
-\MPscratchCnt=\count135
-\MPscratchDim=\dimen178
-\MPnumerator=\count136
-\makeMPintoPDFobject=\count137
-\everyMPtoPDFconversion=\toks42
+\scratchcounter=\count136
+\scratchdimen=\dimen187
+\scratchbox=\box43
+\nofMPsegments=\count137
+\nofMParguments=\count138
+\everyMPshowfont=\toks43
+\MPscratchCnt=\count139
+\MPscratchDim=\dimen188
+\MPnumerator=\count140
+\makeMPintoPDFobject=\count141
+\everyMPtoPDFconversion=\toks44
 ) (/usr/share/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(/usr/share/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -775,19 +860,6 @@ Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
 (/usr/share/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
 Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
 ))
-(/usr/share/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-
-(/usr/share/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-
-(/usr/share/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
 Package grfext Info: Graphics extension search list:
 (grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
@@ -800,12 +872,12 @@ e
 ABD: EveryShipout initializing macros
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for U+msa on input line 58.
+LaTeX Font Info:    Try loading font information for U+msa on input line 59.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 58.
+LaTeX Font Info:    Try loading font information for U+msb on input line 59.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -814,17 +886,17 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: lib/natbio-farve.pdf Graphic file (type pdf)
 
 <use lib/natbio-farve.pdf>
-Package pdftex.def Info: lib/natbio-farve.pdf used on input line 61.
+Package pdftex.def Info: lib/natbio-farve.pdf used on input line 62.
 (pdftex.def)             Requested size: 702.625pt x 602.25pt.
 File: lib/natbio-farve.pdf Graphic file (type pdf)
  <use lib/natbio-farve.pdf>
-Package pdftex.def Info: lib/natbio-farve.pdf used on input line 61.
+Package pdftex.def Info: lib/natbio-farve.pdf used on input line 62.
 (pdftex.def)             Requested size: 702.625pt x 1003.75pt.
 
 <lib/nat-en.pdf, id=7, 597.23125pt x 845.1575pt>
 File: lib/nat-en.pdf Graphic file (type pdf)
  <use lib/nat-en.pdf>
-Package pdftex.def Info: lib/nat-en.pdf used on input line 61.
+Package pdftex.def Info: lib/nat-en.pdf used on input line 62.
 (pdftex.def)             Requested size: 597.22978pt x 845.15544pt.
  [1
 
@@ -834,23 +906,118 @@ Package pdftex.def Info: lib/nat-en.pdf used on input line 61.
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
- [2] (./main.aux) ) 
+ [2] (./Preliminaries/Biology.tex
+Underfull \hbox (badness 10000) in paragraph at lines 12--25
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--25
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--44
+
+ []
+
+
+Overfull \hbox (8.43849pt too wide) in paragraph at lines 37--44
+\OT1/cmr/m/n/10 Deoxyribonucleic acid (DNA) is a large molecule com-posed of ni
+-troge-nous bases nested on a deoxyribose-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--63
+
+ []
+
+<./lib/bulge.png, id=49, 647.41875pt x 401.5pt>
+File: ./lib/bulge.png Graphic file (type png)
+ <use ./lib/bulge.png>
+Package pdftex.def Info: ./lib/bulge.png used on input line 65.
+(pdftex.def)             Requested size: 258.9629pt x 160.59715pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 83--91
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 83--91
+
+ []
+
+<./lib/interior-loop.png, id=54, 647.41875pt x 401.5pt>
+File: ./lib/interior-loop.png Graphic file (type png)
+
+<use ./lib/interior-loop.png>
+Package pdftex.def Info: ./lib/interior-loop.png used on input line 93.
+(pdftex.def)             Requested size: 323.70857pt x 200.7495pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--108
+
+ []
+
+<./lib/stem-loop.png, id=55, 647.41875pt x 401.5pt>
+File: ./lib/stem-loop.png Graphic file (type png)
+ <use ./lib/stem-loop.png>
+Package pdftex.def Info: ./lib/stem-loop.png used on input line 110.
+(pdftex.def)             Requested size: 323.70857pt x 200.7495pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[4 <./lib/bulge.png>]) (./Preliminaries/Scan-For-Matches.tex [5 <./lib/interior
+-loop.png> <./lib/stem-loop.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 43.
+
+LaTeX Font Info:    No file OMScmtt.fd. on input line 43.
+
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 43.
+
+
+Overfull \hbox (6.4802pt too wide) in paragraph at lines 22--57
+[] 
+ []
+
+) [6] (./main.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ ) 
 Here is how much of TeX's memory you used:
- 14481 strings out of 493308
- 273707 string characters out of 6143617
- 321536 words of memory out of 5000000
- 17638 multiletter control sequences out of 15000+600000
- 9956 words of font info for 38 fonts, out of 8000000 for 9000
+ 15681 strings out of 493308
+ 293767 string characters out of 6143617
+ 349016 words of memory out of 5000000
+ 18764 multiletter control sequences out of 15000+600000
+ 12784 words of font info for 50 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 55i,12n,54p,406b,241s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12
-.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/shar
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on main.pdf (2 pages, 79051 bytes).
+ 57i,15n,96p,406b,412s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
+share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><
+/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on main.pdf (6 pages, 243774 bytes).
 PDF statistics:
- 62 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 113 PDF objects out of 1000 (max. 8388607)
+ 75 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

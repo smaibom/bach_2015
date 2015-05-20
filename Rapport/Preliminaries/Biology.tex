@@ -45,7 +45,7 @@ However instead of uracil, the fourth base is thymine (T).
 %Source: http://en.wikipedia.org/wiki/DNA accessed 18/05-2015 12:28
 
 
-\subsubsection{Secondary Structures of Nucleic Acids}
+\subsubsection{Secondary Structures of Nucleic Acids}\label{structs}
 The secondary structure of a nucleic acid describes how the bases of the 
 nucleic acid has bonded. The secondary structure of nucleic acids can change if 
 the nucleic acid is damaged or has mutated, causing it to gain or lose 
@@ -62,7 +62,7 @@ then the previously-bonded base will have no base to bond with.
 Below is an example of a bulge:
 \begin{myex}\centering
 \begin{figure}[h]
-\includegraphics[scale=0.4]{bulge.png}
+\includegraphics[scale=0.4]{./lib/bulge.png}
 \end{figure}
 The RNA sequence {\tt AGCAGGCUAGCCGCU}. Note the bulging {\tt A}.
 \end{myex}
@@ -85,12 +85,11 @@ f(E) &= \Lambda(E)
 \textbf{Interior Loop}\\
 An interior loop is when two or more opposing bases aren't complementary and 
 can't bond, causing them both to bulge. This occurs when one or more 
-consecutive bases mutate to another base, or there has occured a deletion or 
-insertion on both sides of the strand on the same spot. Below is an example of an interior 
+consecutive bases mutate to another base. Below is an example of an interior 
 loop:
 \begin{myex}\centering
 \begin{figure}[h]
-\includegraphics[scale=0.5]{interior-loop.png}
+\includegraphics[scale=0.5]{./lib/interior-loop.png}
 \end{figure}
 The RNA sequence {\tt AGCAGGCUAGCCGGCU}. Note the bulging {\tt A} and {\tt G} 
 creating a loop inside the bonded strand.
@@ -104,10 +103,10 @@ A stem loop, also known as a hairpin loop, occurs when a strand bonds with
 itself, but leaves a sequence of bases sticking out that doesn't bond with anything. 
 This kind of loop occurs typically in RNA as they are single-stranded, but may 
 happen in DNA if the two strands of the DNA has been separated. Below is an 
-example of a stem loop:\newpage
+example of a stem loop:
 \begin{myex}\centering
 \begin{figure}[h]
-\includegraphics[scale=0.5]{stem-loop.png}
+\includegraphics[scale=0.5]{./lib/stem-loop.png}
 \end{figure}
 A stem loop of the RNA sequence {\tt AAAAUUGGUCUUUU}.
 \end{myex}
@@ -120,7 +119,8 @@ This specific kind of loop adheres to a specific pattern that reflects from
 the example, that can be defined as follows:
 \begin{mydef}
 \centering
-Let S be a stem loop. Let $E_n$ be a sequence of characters. Let $\Sigma$ be an alphabet. Let 
+Let S be a stem loop. Let $E_n$ be a sequence of characters, where if in $E_n$ 
+and $E_m$ $m = n$, then $E_n =E_m$. Let $\Sigma$ be an alphabet. Let 
 $a \in \Sigma$. Let $\Lambda$ be a map that holds the complement to each base 
 described in the alphabet. Let $E_n^{-1}$
 denote the reverse of the sequence. Then we can define a stem loop as follows;

@@ -6,66 +6,73 @@
 \begin{document}
 \subsection{Scan\_For\_Matches}
 Scan\_for\_matches is a string-searching tool created by Ross Overbeek, David 
-Joerg and Morgan Price in C which searches through FASTA text files. Users specify 
+Joerg and Morgan Price in C which searches through text files. Users specify 
 what they wish to search for by defining a pattern, and scan\_for\_matches 
-returns all matches that corresponds to the specified pattern.
-\begin{definition}\label{patd}
-A pattern is defined as follows:\\
-\begin{tabular}{|r|l|}
-\hline
-{\tt ACUG}&Match the sequence ACUG\\
-\hline
-{\tt 1...5}&Match 1 to 5 characters\\
-\hline
-{\tt 3...3}&Match exactly 3 characters\\
-\hline
-{\tt p1=1...5}&Match 1 to 5 characters, and call the sequence p1\\
-\hline
-{\tt p1 $|$ p2}&Match either p1 or p2\\
-\hline
-{\tt p1[1,0,0]}&Match p1, allowing for one mismatch\\
-\hline
-{\tt p1[0,1,0]}&Match p1, allowing for one deletion\\
-\hline
-{\tt p1[0,0,1]}&Match p1, allowing for one insertion\\
-\hline
-{\tt length(p1+p2) $<$ 5}&The combined length of p1 and p2 must not exceed 4\\
-\hline
-{\tt r1=\{AB, BA\}}&\pbox{20cm}{Create a pattern rule where A is the complement of B, \\and B is the complement of A, and call it r1}\\
-\hline
-{\tt $<$p1}&Match the reverse of p1\\
-\hline
-{\tt \textasciitilde p1}&\pbox{20cm}{Match the reverse complement of p1 using the G-C, \\C-G, A-T and T-A pairing rule}\\
-\hline
-{\tt r1\textasciitilde p1}&\pbox{20cm}{Match the reverse complement of p1 using r1 rules}\\
-\hline
-{\tt \textasciicircum ~p1}&\pbox{20cm}{Match only p1 if it is at the start of a string}\\
-\hline
-{\tt p1 \$}&Match only p1 if it is at the end of a string\\
-\hline
-\end{tabular}
-\end{definition}
-
-\begin{definition}\label{patc}
-Let {\tt E} be any pattern that's in the alphabet $\Sigma$ as defined in Definition \ref{patd}. 
-Let $\epsilon$ be the empty string.
+returns all matches that corresponds to the specified pattern. 
+\begin{mydef}\label{patc}
+Let {\tt E} be any pattern that's in the alphabet $\Sigma$ as defined in Example \ref{patex}. 
+Let 0 be the empty string.
 Let {\tt A} be a string that we are processing to see if the pattern is valid.
 A pattern may then be constructed as such: \begin{center}
-{\tt A = A' A | $\epsilon$}\\
+{\tt A = A' A | 0}\\
 {\tt A' = E}\end{center}
-\end{definition}
+\end{mydef}
+
+\begin{myex}\label{patex}
+Let $\Sigma$ denote an alphabet. Then we can define a pattern as follows:\\
+\begin{tabular}{|r|l|}
+\hline
+{\tt h}&Match the sequence h, where $h\in\Sigma$\\
+\hline
+{\tt n...m}&Match n to m characters where n $<$ m\\
+\hline
+{\tt n...n}&Match exactly n characters\\
+\hline
+{\tt x=n...m}&Match n to m characters, and call the sequence x\\
+\hline
+{\tt x $|$ y}&Match either x or y\\
+\hline
+{\tt x[n,0,0]}&Match x, allowing for n mismatches where n $\geq$ 0\\
+\hline
+{\tt x[0,n,0]}&Match x, allowing for n deletions where n $geq$ 0\\
+\hline
+{\tt x[0,0,n]}&Match x, allowing for n insertions where n $geq$ 0\\
+\hline
+{\tt length(x+y) $<$ n}&The combined length of patterns x and y must not exceed n where n $>$ 0\\
+\hline
+{\tt z=\{hl, lh\}}&\pbox{20cm}{Create a pattern rule where h is the complement of l, and l is the complement\\ of h,
+                               where $h\in\Sigma,~l\in\Sigma$, and call it z}\\
+\hline
+{\tt $<$x}&Match the reverse of pattern x\\
+\hline
+{\tt \textasciitilde x}&\pbox{20cm}{Match the reverse complement of pattern x using the G-C, \\C-G, A-T and T-A pairing rule}\\
+\hline
+{\tt z\textasciitilde x}&\pbox{20cm}{Match the reverse complement of pattern x using pattern rule z}\\
+\hline
+{\tt \textasciicircum ~x}&\pbox{20cm}{Match only pattern x if it is at the start of a string}\\
+\hline
+{\tt x \$}&Match only pattern x if it is at the end of a string\\
+\hline
+\end{tabular}
+\end{myex}
+
 Definition \ref{patc} states that a pattern may be any combination of the alphabet 
-defined in definition \ref{patd}.
+defined in example \ref{patex}.
 Using these patterns, it is possible to make very specific or very broad 
 searches in a text file. 
 
-\begin{example}
+\begin{myex}\label{stemex}
 Say we want to write a pattern that finds the sequence {\tt GUUC}, allowing 
 one mismatch, followed by a random sequence which has a length between 3 and 5, 
 followed by the reverse complement of the first sequence that we found. We can 
 then write this as \begin{center}
 {\tt p1=GUUC[1,0,0] 3...5 \textasciitilde p1}
 \end{center}
-\end{example}
+\end{myex}
+Example \ref{stemex} will match a stem loop as described in section 
+\ref{structs}. Note that if we wanted to find all stem loops in a file where 
+the bonded bases are of length 
+4, we would replace {\tt GUUC[1,0,0]} with an arbitrary sequence of characters 
+by writing {\tt p1=4..4 3..5 \textasciitilde p1}. 
 
 \end{document}

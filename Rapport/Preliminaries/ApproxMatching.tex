@@ -1,8 +1,7 @@
 \documentclass[11pt,twoside,a4paper]{article}
-\newtheorem{definition}{Definition}
-\newtheorem{example}{Example}
+\newtheorem{mydef}{Definition}
+\newtheorem{myex}{Example}
 \begin{document}
-\section{Method/Theory}
  \subsection{Matching}
   \subsubsection{Pattern Matching}
    Matching is when a part of a text is identified correctly as following some 
@@ -16,44 +15,32 @@
    For our implementation, we will need to implement 
    approximate matching. Approximate matching is similar to pattern matching, 
    however approximate matching allows errors in the searched text. 
-   \begin{definition}
+   \begin{mydef}
     An error is when an encountered character in a string is different from 
     what is expected. An error can manifest itself in three different ways:
     \begin{enumerate}
-    \item A mismatch, where a character is transformed into a different \\character
+    \item A mismatch, where a character is transformed into a different character
     \item A deletion, where a character is missing, and
     \item An insertion, where a random character has been inserted in the text
     \end{enumerate}
-   \end{definition}
+   \end{mydef}
    
-   While it is possible to perform approximate matching with regex, it is not 
+   While it is possible to perform approximate matching with regular expressions, it is not 
    a computationally efficient thing to do unless it is done on a regex-engine 
    that natively supports approximate matching. This is because the complexity 
    and size of a regular expression increases dramatically when mismatches and 
    insertions are hardcoded for regex, as shown by example \ref{exInsert}
-   \begin{example}\label{exInsert}
-   Let {\tt ABCD} be a text string that we wish to search a text for, where we 
+   \begin{myex}\label{exInsert}
+   Let {\tt ABCD} be a pattern that we wish to search a text for, where we 
    allow for one insertion. Then the resulting regular expression will be \\
    \begin{center}
    {\tt .ABCD$|$A.BCD$|$AB.CD$|$ABC.D$|$ABCD.$|$ABCD}
    \end{center}
-   \end{example}
+   \end{myex}
    Allowing one insertion in our 4-character text results in six possible 
    permutations that must be accounted for, and the blowup of the regular 
    expression's size only increases as we try to match longer strings with more 
    insertions.
-\section{State-of-the-Art}
- \subsection{TRE}
-  TRE is an open-source engine created by Ville Laurikari for his 
-  master's thesis in 2001, and is written in C. The engine is able to perform 
-  approximate matching, so we decided to modify the engine so that it could 
-  support the patterns that scan\_for\_matches supports. This is expanded 
-  upon later in our Implementation section.
-  
-  
-\section{Implementation}
- \subsection{TRE}
-  
   
   
 \end{document}
