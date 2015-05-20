@@ -1,0 +1,98 @@
+\begin{thebibliography}{10}
+
+\bibitem{crash}
+Niels Bjørn Bugge Grathwohl\& Ulrik Terp~Rasmussen Fritz~Henlein.
+\newblock A crash-course in regular expression parsing ans regular expressions
+  as types.
+
+\bibitem{dimsbog}
+Kolman, Busby, and Ross.
+\newblock {\em Discrete Mathematical Structures, sixth edition}.
+\newblock Pearson, 2009.
+
+\bibitem{disnote}
+Gunnar Forst.
+\newblock Noter til kombinatorik og grafteori.
+\newblock 2, 2006.
+
+\bibitem{web1}
+William Cherowitzo.
+\newblock Graph theory lecture notes 6.
+\newblock \url{http://www-math.ucdenver.edu/~wcherowi/courses/m4408/gtln6.htm},
+  January 2015.
+
+\bibitem{web2}
+Wikipedia.
+\newblock Chromatic polynomial.
+\newblock \url{http://en.wikipedia.org/wiki/Chromatic_polynomial}, January
+  2015.
+
+\bibitem{web3}
+Wikipedia.
+\newblock Ribonucleic acid.
+\newblock \url{http://en.wikipedia.org/wiki/RNA}, May 2015.
+
+\bibitem{web4}
+Wikipedia.
+\newblock Deoxyribonucleic acid.
+\newblock \url{http://en.wikipedia.org/wiki/DNA}, May 2015.
+
+\bibitem{web5}
+Wikipedia.
+\newblock Nucleic acid secondary structure.
+\newblock \url{http://en.wikipedia.org/wiki/Nucleic_acid_secondary_structure},
+  May 2015.
+
+\bibitem{LaurikariComplex}
+Ville Laurikari.
+\newblock Efficient submatch addressing for regular expressions.
+\newblock November 2001.
+
+\bibitem{compile}
+Torben Ægidius Mogensen.
+\newblock {\em An Introduction to Compiler Design}.
+\newblock Springer, 2001.
+
+\bibitem{Algorithmonstring}
+Dan Gusfield.
+\newblock {\em Algorithms on Strings, Trees and Sequences}.
+\newblock Cambridge University Press.
+
+\bibitem{Ville}
+Ville Laurikar.
+\newblock Nfas with tagged transitions, their conversion to deterministic
+  automata and application to regular expressions.
+\newblock 2000.
+
+\bibitem{FastText}
+R.~A. Baeza-Yates \& G.~H. Gonnet.
+\newblock Fast text searching for regular expressions or automaton searching on
+  tries.
+\newblock {\em ACM, vol. 43}, 1996.
+
+\bibitem{PangSrinivas}
+Pang Ko \&~Sromovas Aluru.
+\newblock Suffix tree applications in computational biology.
+
+\bibitem{WikiLevenshtein}
+Wikipedia.
+\newblock Levenshtein automaton.
+\newblock \url{http://en.wikipedia.org/wiki/Levenshtein_automaton}, April 2015.
+
+\bibitem{REMatching}
+Russ Cox.
+\newblock Regular expression matching can be simple and fast (but is slow in
+  java, perl, php, python, ruby, ...).
+\newblock January 2007.
+
+\bibitem{tredoc}
+Ville Laurikari.
+\newblock Tre documentation.
+\newblock \url{http://laurikari.net/tre/documentation}.
+
+\bibitem{suffix}
+Mohammadreza Ghodsi.
+\newblock Approximate string matching using backtracking over suffix arrays.
+\newblock 2009.
+
+\end{thebibliography}
