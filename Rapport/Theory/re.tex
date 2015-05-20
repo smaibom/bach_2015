@@ -1,49 +1,46 @@
 \section{Regular expressions} 
-  To explain what a regular expression is, we must first introduce languages and alphabets. All literals will be written using the typewriter font, to distinguish 
+  To explain what a regular expression is, we must first introduce languages and alphabets. All literals will be written using the typewriter font, to distinguish between literals and other text. 
 \begin{mydef}\label{alph}
 An alphabet $\Sigma$ is a finite set of letters.
 \end{mydef}
 
 \begin{mydef}\label{lang}
-A language is a infinite set of strings, composed by letters from an alphabet $\Sigma$
+A language is a subset of all strings, formed over $\Sigma:~ L\subseteq \Sigma^*$
 \end{mydef}
 
 \begin{myex}
 If we have a DNA sequence string, the alphabet $\Sigma$ consists of the literals ${\tt\{t,g,c,a\}}$. and the language contains strings formed by the literals from this alphabet. For example "gtcaaa" or "gtcaaat". 
 \end{myex}
 
-\begin{mydef}
-E is a regular expression(RE) if either:
-\begin{itemize} 
-\item E is a atomic expression, that consist of a letter from an alphabet $\Sigma$ or special character 1.
-\item Given two RE's $E_1$ and $E_2$. E is a compound expression formed by $E_1 + E_2$, $E_1 E_2$ or $E_1 ^*$ 
-\end{itemize}
-\end{mydef}
-
-
 
 \begin{mydef}
 A regular expression is described by the following grammar: \\
 \begin{center}
-$E::= a|1|E_1 + E_2 |E_1 E_2 | E^* | 0$
+$E::= a|0|1|E_1 + E_2 |E_1 E_2 | E^*$
 \end{center}
 where $E_1$ and $E_2$ are RE's and $a \in \Sigma$
 \end{mydef}
 
-\begin{mydef}\centering
-The language interpation of L(E) of a regular expression is: 
+\begin{mydef}\label{re}
+The language interpation L(E) of a regular expression is: 
+\begin{center}
 \begin{align*}
 L(0)           &= \emptyset\\
-L({\tt a})     &= \{{\tt a}\} \\
 L(1)         &= \{\epsilon\} \\
+L({\tt a})     &= \{{\tt a}\} \\
 L(E_0 + E_1) &= L(E_0) \cup L(E_1) \\
 L(E_1 E_2)   &= \{w_1w_2 | w_1 \in L(E_1),w_2 \in L(E_2)\}=L(E_1)L(E_2) \\
-L(E^*)       &= \bigcup\limits_{n=0}^\infty L(E)^n 
+L(E^*)       &= \bigcup\limits_{n=0}^\infty L(E)^n \\
+L(E)^0       &= \{\epsilon\}\\
+L(E)^N       &= \underbrace{L(E)L(E)...L(E).}_\text{n times}
 \end{align*}
-%\cite[p.5 def. 3]{crash}
+\end{center}
+\cite[p.5 def. 3]{crash}
 \end{mydef}
 
-With definition 2, we can now form regular languages. For example, natural numbers described as a regular expression. Natural numbers have the alphabet $\Sigma$ = \{{\tt 0,1,2,3,4,5,6,7,8,9}\}, the regular expression for natural numbers would look like:
+With definition \ref{re}, we can now form regular languages. 
+\begin{myex}Natural numbers can be described as a regular expression. Natural numbers have the alphabet $\Sigma$ = \{{\tt 0,1,2,3,4,5,6,7,8,9}\}, the regular expression for natural numbers would look like:
 \begin{center}
 $E_{nat} = $(1+2+3+4+5+6+7+8+9)(0+1+2+3+4+5+6+7+8+9)$^*$
 \end{center}
+\end{myex}
