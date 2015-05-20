@@ -1,0 +1,25 @@
+\section{Our Implementation}
+(( TODO ))
+We constructed  a simple program, which would take a regular expression and using the method description outlined in section~\ref{RA_TO_NFA} in order to match a file for a desired RNA section.
+
+\section{Experimental Results \& Tests} % HAUGAARD
+(( NOTE : Extensive testing will be included ))
+Using our implementation, TRE and scan\_for\_matches, we were able to do some benchmarking in order to compare performances.
+%We did time the running time of our own implementation versus that of scan\_for\_matches and TRE (TRE running through a file with all newlines trimmed, to bypass the problem with returning after each delimiter).
+(( TODO: BETTER BENCHMARKING INCOMING ))
+Searching for pattern $GGAGTGCAAGCGTT$ with 1 insertion, 11 times each on a 40MB, 80MB and a 194MB file, we got the following average running times (in seconds):\\
+\begin{tabular}{ c | c | c |  c }
+ &scan\_for\_matches & TRE & Our Implementation \\
+ \hline
+ 40MB & 2.2 & 13.6 & 22.0 \\
+ 80MB & 4.4 & 27.8 & 45.2 \\
+ 194MB & 12.2 &  71.3 &  114.6
+\end{tabular}
+
+%To verify the statement made in Section \ref{state:insertion1} about insertions, mutations and deletions increasing the runtime, running the same search, but without any insertions allowed, on the 194MB file we got the following running times, on an average over 11 runs.\\
+%\begin{tabular}{ c | c | c |  c }
+ %&scan\_for\_matches & TRE & Our Implementation \\
+ %\hline
+ %194MB & 4.6 &  10.6 &  65.1
+%\end{tabular}
+%Showing that, our implementation is by far the slowest, not yet being a viable alternative to scan\_for\_matches, the same could be said about TRE, although it has a much more acceptable running-time.

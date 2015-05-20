@@ -12,6 +12,7 @@ Each transition in $T$ is a has a starting state, and a destination state, and i
 \end{mydef}
 
 \subsection{Conversion from RE to NFA}
+\label{RA_TO_NFA}
 One of the main reasons for using NFAs when working with regular expressions is the direct correlation between regular expressions and NFAs. Each expression can be converted to an NFA, and vice versa.
 \\
 (( NOTE: We'll include a table with conversions ))
@@ -19,6 +20,7 @@ One of the main reasons for using NFAs when working with regular expressions is 
 %With little effort every regular expression can be translated into a graph, which can then be analysed.
 
 \begin{figure}[h!]
+  \centering
 \begin{minipage}[b]{0.40\linewidth}
   \centering
       \includegraphics[width=0.2\textwidth]{lib/A.png}
@@ -53,6 +55,7 @@ This is achieved by having a set of states, each state is looking at a node in t
 
 Any state that will fail to match the character will be removed from the set of states.
 \begin{figure}[h!]
+  \centering
 \begin{minipage}[b]{0.40\linewidth}
   \centering
       \includegraphics[width=0.2\textwidth]{lib/cgtt1.png}
