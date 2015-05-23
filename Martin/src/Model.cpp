@@ -13,7 +13,7 @@
 #include "Pretty.h"
 #include <fstream>
 #include <pthread.h>
-#include <memory.h>
+#include <memory>
 
 //a
 std::shared_ptr<Node> create_node(std::shared_ptr<World> world){
@@ -82,7 +82,10 @@ std::shared_ptr<World> connect(std::shared_ptr<World> first, std::shared_ptr<Wor
 	first->end->epsilons.merge(last->start->epsilons);
 
 	// Hacky måde at gøre det på, men first's end node bør være tom, så det ok.
-	first->end->nexts = last->start->nexts;
+
+	//first->end->nexts = last->start->nexts;
+	first->end->next = last->start->next;
+	first->end->chr = last->start->chr;
 
 	last->nodes.remove(last->start);
 	world->nodes.merge(first->nodes);
@@ -95,10 +98,22 @@ std::shared_ptr<World> new_world(char chr, std::shared_ptr<Counter> count){
 	world->count = count;
 	std::shared_ptr<Node> start = create_node(world);
 	std::shared_ptr<Node> end = create_node(world);
-	start->nexts[chr] = end;
+
+//	start->nexts[chr] = end;
+	start->next = end;
+	start->chr = chr;
+
 	world->start=start;
 	world->end=end;
 	return world;
+}
+
+std::string f( int val )
+{
+   if ( val >= 10 )
+      return f( val / 10 ) + ( char )( val % 10 + '0' ) ;
+   else
+      return std::string( 1, '0' + val ) ;
 }
 
 int main(){
@@ -161,57 +176,67 @@ int main(){
 
 	char * buffer;
 	int length;
+	int read_chunk;
+	int cnt;
 
-	std::ifstream is ("../data/fas4.fa", std::ifstream::binary);
-//	std::ifstream is ("C:/Users/Martin/Desktop/scan_for_matches/fasta/chr3.fa", std::ifstream::binary);
+	std::ifstream is ("../data/chr3.fa", std::ifstream::binary);
+//	std::ifstream is ("../data/_fas4.fa", std::ifstream::binary);
 	if (is) {
+		read_chunk = 1024*10000;
+
 		// get length of file:
 		is.seekg (0, is.end);
 		length = is.tellg();
 		is.seekg (0, is.beg);
 
-		buffer = new char [length];
-
-		std::cout << "Reading " << length << " characters... ";
-		// read data as a block:
-		is.read (buffer,length);
-
-		if (is)
-		  std::cout << "all characters read successfully.\n";
-		else
-		  std::cout << "error: only " << is.gcount() << " could be read\n";
-		is.close();
-
-		// ...buffer contains the entire file...
-	}
-
-	std::string output = "";
-
-	for(int i = 0; i < length; i++)
-	{
-		if(isspace(buffer[i])){
-			// DO NOTHING
+		if(length < read_chunk){
+			std::cout << "Reading entire file in buffer" << std::endl;
+			buffer = new char [length];
+			read_chunk = length;
 		}else{
-			std::string result = "";
-			states->add_state(world->start);
-
-			// Alt i over case
-			char chr = tolower(buffer[i]);
-			states->chr = &chr;
-			while(!states->states.empty()){
-				result = states->check_values();
-				if(result==""){
-					// Dont print
-				}else{
-					output += result + '\n';
-					result.clear();
-				}
-			}
-			states->states.merge(states->next_states);
+			std::cout << "Reading file in sections to buffer" << std::endl;		
+			buffer = new char [read_chunk];
 		}
-		// Printer efter hvert tegn
-		std::cout << output;
-		output.clear();
+
+		// read data as a block:
+		while( !is.eof() and (read_chunk > 0)) {
+			is.read (buffer,read_chunk);
+			std::string output = "";
+			int result = 0;
+			for(int i = 0; i < read_chunk; i++)
+			{
+				cnt += 1;
+				if(isspace(buffer[i])){
+					// DO NOTHING
+				}else{
+					char chr = tolower(buffer[i]);
+
+					if((states->insertions + states->mutations + states->deletions) > 0){
+						states->add_state(world->start);
+					}else{
+						if(chr == world->start->chr){
+							states->add_state(world->start);
+						}
+					}
+					if(states->states.size() > 0){
+						states->chr = &chr;
+//						std::cout << "YTEA" << chr << std::endl;
+						result = states->check_values();
+//						std::cout << "aety" << std::endl;
+
+						if(result!=0){
+							output += std::string(buffer).substr(i-result, result) + '\[' + f(cnt-result) + ":" + f(cnt) +  "]\n";
+						}
+					}
+				}
+				// Printer efter hvert tegn
+				std::cout << output;
+				output.clear();
+			}
+			length -= read_chunk;
+			if(length < read_chunk)
+				read_chunk = length;
+		}
+		is.close();
 	}
-	delete[] buffer;
 }
