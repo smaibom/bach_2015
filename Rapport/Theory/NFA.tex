@@ -1,14 +1,6 @@
 \section{Nondeterministic Finite Automaton}
-(( NOTE: SHARPEN UP SECTION TO A MORE PRECISE DEFINITION OF NFA))
-
 \begin{mydef}
-An nondeterministic finite automaton (NFA) consists of a finite set of states, $Q$, with a finite number of transitions, $T$, between them.
-
-%$T$ is a relation behavior \begin{math}\end{math}
-
-In $Q$ there's one starting state, and a subset of accepting (final) states.
-
-Each transition in $T$ is a has a starting state, and a destination state, and is labeled either by a character, or by $\epsilon$, which indicates an epsilon-transition (empty transition).
+An nondeterministic finite automaton (NFA) is a 5-tuple $(Q,\Sigma,\Delta,q^s ,q^f)$. Where $Q$ is a finite set of states,$\Sigma$ is the input alphabet, the initial state $q^s \in Q$,  the accepting state $q^f \in Q$ and $\Delta$ is the set that contains all the transitions. Transitions in $\Delta$ is shown $q^1\xrightarrow{a}q^2$ where $q^1\in Q,q^2\in Q$ and the label $a$ is either $a \in \Sigma$ or  the empty transition $\epsilon$
 \end{mydef}
 
 \subsection{Conversion from RE to NFA}

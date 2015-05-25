@@ -5,11 +5,11 @@
 \usepackage{eso-pic} % \AddToShipoutPicture
 \usepackage{graphicx} % \includegraphics
 \usepackage{array}
-\usepackage{blindtext}
 \usepackage{import}
 \linespread{1.2}
 \usepackage{pbox}
 \usepackage{amsthm}
+\usepackage{mathtools}
 \usepackage{amsmath}
 \usepackage{url}
 \usepackage{tikz}
@@ -62,7 +62,10 @@
 \thispagestyle{empty}
 
 \newpage
-
+\begin{abstract}
+%insert abstract
+\end{abstract}
+\newpage
 \tableofcontents
  
 \newpage
@@ -77,17 +80,30 @@
 \newpage
 \input{./Theory/re.tex}
 
+\input{./Theory/NFA.tex}
+
+%Simulation of NFA
+
+
+
+%implementation
+
+\input{./Method/Implementation.tex}
+
+
+%alternative soloutions
+\input{./Method/Alternative.tex}
+
 % READ ME!!!!!!!
 % Det der står i scan-for-matches omtaler et alfabet og et sprog, dette er først beskrevet i Theory/re.tex, derfor skal det ind bagefter
 % HVIS vi skal beskrive scan-for-matches først, kan vi nævne at det findes et værktøj, og hvad det bruges til, men den måde det står beskrevet pt, funker ikke.
+%related works, SFM TRE
 \input{./Preliminaries/Scan-For-Matches.tex}
-% \READ ME
-
-\input{./Theory/NFA.tex}
-
-%\section{Method}
 \input{./Method/TRE.tex}
-\input{./Method/Implementation.tex}
+% \READ ME
+%\section{Method}
+%
+%experimental results
 %\section{Conclusion}
 \newpage
 \nocite{*}

@@ -1,0 +1,27 @@
+\section{Alternative soloutions}
+\subsection{Forming patterns using Regular expressions}
+The initial goal of this project was to use regular expressions to match the sequences. The problem of only using regular expressions, is the amount of patterns explode in size, when adding missmatching. Below is a description of how many patterns are formed from a pattern of length n. When a new pattern is formed, it constructs them into 1 regular expression using the alternation operator seperating each of the new expressions. 
+
+Mutations are done by having a character is replaced by a wildcard, this is done for every character in the pattern. When adding multiple mutations, characters which is already wildcards are not changed. The formula for the amount of patterns formed from mutations, is the number of combinations that can be formed from the amount of mutations in t, this is the binomial coefficient\footnote{\url{http://en.wikipedia.org/wiki/Binomial_coefficient}}. 
+
+A insertion is a wildcard added between the characters in the pattern, so for each pattern n-1 new patterns occur.
+
+A deletion is removing a character from the pattern, it is not allowed to remove a character next to an insertion, as this cannot occur in RNA and DNA strings. Given multiple insertion, they will be spread out thoughtout the pattern in most cases, so an appoximation of how many patterns formed would be (n - insertions * 2).
+
+So the final formula would look something like ${n \choose m}*(n-1)*(n-i*2)$, where n is the length of the string, m is amount of mutations and i is amount of insertions.
+
+
+\begin{myex}\label{altreg}
+Given a pattern of size 30, with 2 mutations, 1 deletion, 1 insertion. It would produce the following amount of patterns: \\
+\begin{center}
+\text{After mutation:} $~{30 \choose 2} = 435$\\
+\text{After insertion:} $435 * (30-1) = 12615$\\
+After~Deletion:~$12615*(30-2) = 353220$
+\end{center}
+\end{myex}
+
+As shown in example \ref{altreg}, the amount of patterns formed from using regular expressions only, would be to large for a regular expression matcher to find in a resonable time. 
+
+\subsection{Preprocessing data}
+Preproccesing data gives certain advantages, it allows for faster lookups into the string that is being searched on. With a structure like suffix tree's\footnote{\url{http://en.wikipedia.org/wiki/Suffix_tree}}, to store the location of all the substrings. It would be posible to do lookups in constant time given the correct choice of data structures. This would allow using the large regular expressions with missmatches to be run in a reasonable time.
+The disadvantage of preprocessing data, is the time it takes to construct a indexed structure of the string, and it may produce a tree larger than the original string, which could be an issue in some of the larger data files which are several GB in size. If the file have to be reused many times, it may be justified to create one. 
