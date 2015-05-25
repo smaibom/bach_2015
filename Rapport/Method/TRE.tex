@@ -1,28 +1,26 @@
-\newpage
 \section{TRE}
-(( TODO - UNCHANGED FROM LAST TIME))
   
- For our implementation of scan\_for\_matches patterns in TRE, we needed to 
-  first make a brief analysis of the program to see what it could and couldn't 
-  do. What we discovered after our initial tests was that TRE defined each 
-  new line as a delimiter (a delimiter defines at which points the text will be 
-  separated, so each chunk can be evaluated individually). 
-  This caused a small, but surmountable, problem; chromosome data 
-  should be read as one continous line that spans over many lines. Since TRE 
-  split the data up per line, if a match spanned over more than one line, it 
-  wouldn't find it. To this problem there was an easy fix; we would make a small 
-  wrapper which would feed the text file to TRE, removing any newlines as they 
-  occurred.\\
-  With this problem solved, we did a trial test to check the accuracy and 
-  running time of TRE. Here we encountered a second, greater problem; TRE 
-  would find only one match per delimiter (the first longest match with fewest 
-  errors, prioritizing exact matches). This was a harder problem to fix, because this feature was 
-  deeply entrenched in the code, and everything had seemingly been designed 
-  around this feature. The searching tool that TRE uses, agrep, only receives 
-  the best match that the other tools of TRE has found, but throughout TRE's 
-  code, it won't save the matches it has found, but instead repeatedly discard old 
-  matches. The problem is compounded by the fact that TRE will immediately stop searching the 
-  text if it finds an exact match, leaving behind potential matches. In light of 
-  these problems, we decided that attempting to fully understand TRE's design and 
-  subsequently heavily modding it in order for it to return all matches would 
-  take too long, and that we would instead create our own solution.
+For our implementation of scan\_for\_matches patterns in TRE, we needed to 
+first make a brief analysis of the program to see what it could and couldn't 
+do. What we discovered after our initial tests was that TRE defined each 
+new line as a delimiter (a delimiter defines at which points the text will be 
+separated, so each chunk can be evaluated individually). 
+This caused a small, but surmountable, problem; chromosome data 
+should be read as one continous line that spans over many lines. Since TRE 
+split the data up per line, if a match spanned over more than one line, it 
+wouldn't find it. To this problem there was an easy fix; we would make a small 
+wrapper which would feed the text file to TRE, removing any newlines as they 
+occurred.\\
+With this problem solved, we did a trial test to check the accuracy and 
+running time of TRE. Here we encountered a second, greater problem; TRE 
+would find only one match per delimiter (the first longest match with fewest 
+errors, prioritizing exact matches). This was a harder problem to fix, because this feature was 
+deeply entrenched in the code, and everything had seemingly been designed 
+around this feature. The searching tool that TRE uses, agrep, only receives 
+the best match that the other tools of TRE has found, but throughout TRE's 
+code, it won't save the matches it has found, but instead repeatedly discard old 
+matches. The problem is compounded by the fact that TRE will immediately stop searching the 
+text if it finds an exact match, leaving behind potential matches. In light of 
+these problems, we decided that attempting to fully understand TRE's design and 
+subsequently heavily modding it in order for it to return all matches would 
+take too long, and that we would instead create our own solution.

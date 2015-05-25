@@ -1,0 +1,15 @@
+\section{State-of-the-Art}
+ \subsection{KMC}
+ %Mangler noget her
+ \subsection{RE2} %Google's RE engine
+ RE2 is Google's regular expression engine written in C++. It supports 
+ backtracking, but not backreferencing since backreferencing can't be implemented 
+ efficiently according to~\cite{web6}. Since RE2 doesn't support matching with 
+ errors or backreferencing, it would be unable to properly reproduce 
+ scan\_for\_matches' functionality.
+ 
+ \subsection{TRE} %Got both backtracking and backreferencing
+ TRE was created by Ville Laurikari for his master's thesis in 2001, and 
+ is a regular expression engine supporting backtracking, backreferencing and 
+ matching with errors. Because of this, TRE is the best candidate for modification 
+ in order to make it work with patterns. We expand on this in section~\ref{tre}.

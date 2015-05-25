@@ -1,0 +1,23 @@
+\section{Problem Analysis}
+%INTRODUCTION TO PROBLEM ANALYSIS
+
+The functionality of scan\_for\_matches dictates what our solution to the 
+problem must be able to do. While a more indepth analysis of the functionality 
+of scan\_for\_matches can be found in section~\ref{scanformatches}, 
+the requirements for our solution are as follows:
+\begin{enumerate}
+\item Read a text file,
+\item Match
+\begin{enumarate}
+\item with errors allowed,
+\item a previously found match (backreferencing),
+\item a modified pattern (reverse, complementary), and
+\end{enumarate}
+\item Return matches with their position
+\end{enumerate}
+While some of the functionality (items 1 and 3) will be trivial to implement 
+since they are standard methods of most programming languages, there are 
+some challenges to be found in regards of what we must match. Matching with 
+errors allowed are not supported natively in regular expressions, and 
+matching a modified text, which may first be determined at runtime, will be 
+challenging to implement with automata.
