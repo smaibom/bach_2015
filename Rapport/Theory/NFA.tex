@@ -1,3 +1,4 @@
+\newpage
 \section{Nondeterministic Finite Automaton}
 \begin{mydef}
 An nondeterministic finite automaton (NFA) is a 5-tuple $(Q,\Sigma,\Delta,q^s ,q^a)$. Where $Q$ is a finite set of states,$\Sigma$ is the input alphabet, the initial state $q^s \in Q$,  the accepting state $q^a \in Q$ and $\Delta$ is the set that contains all the transitions. Transitions in $\Delta$ is shown $q^1\xrightarrow{a}q^2$ where $q^1\in Q,q^2\in Q$ and the label $a$ is either $a \in \Sigma$ or  the empty transition $\epsilon$
@@ -11,7 +12,7 @@ One of the main reasons for using NFAs when working with regular expressions is 
 %\\
 %With little effort every regular expression can be translated into a graph, which can then be analysed.
 
-\begin{table}[h!]
+\begin{table}[h]
 \caption{Translation table from regular expressions to NFA}
 \centering
 \begin{tabular}{*{2}{m{0.4\textwidth}}}
@@ -105,6 +106,10 @@ One of the main reasons for using NFAs when working with regular expressions is 
 \label{tab:NFA_TAB}
 \end{table}
 
+\begin{myex}
+Given the expression 
+\end{myex}
+
 %
 %\begin{figure}[h!]
  % \centering
@@ -133,13 +138,16 @@ One of the main reasons for using NFAs when working with regular expressions is 
  % \caption{NFA of the expression $a | b$}
 %\label{fig:A_OR_B}
 %\end{figure}
-
+\subsection{Matching using NFA}
 Once a NFA-structure has been build, we can start matching a text against the NFA.
 
-This is achieved by having a set of states, each state is looking at a node in the structure, while keeping track of previous nodes traversed by the state. Whenever a new character is being checked to match, each state will look at its node, and determine if it's possible to accept the character in the NFA, either by taking a transition labeled with the character, or alternatively via an epsilon-transition. When two possible transitions are viable, new states will be created in the set of states, so that each possible transition will be explored.
+This is done by having a active state set S. Before reading from the input string, the initial state of S = \{$q^s$\}. For every symbol read, each state in S checks for all valid transitions in $\Delta$ matching the current input symbol, and is reachable from that state. If one of more states are found, they are placed into a new state set, otherwise the state is discarded. Once each state have been checked, the new state set is set as S and the simulation reads the next input symbol and repeats. When the last symbol is read, if $q^a \in S$ the input string is accepted.
 
-Any state that will fail to match the character will be removed from the set of states.
-%\begin{figure}[h!]
+
+
+%each state is looking at a node in the structure, while keeping track of previous nodes traversed by the state. Whenever a new character is being checked to match, each state will look at its node, and determine if it's possible to accept the character in the NFA, either by taking a transition labeled with the character, or alternatively via an epsilon-transition. When two possible transitions are viable, new states will be created in the set of states, so that each possible transition will be explored.
+
+%\begin{figure}[h!]W
  % \centering
 %\begin{minipage}[b]{0.40\linewidth}
  % \centering
@@ -154,8 +162,6 @@ Any state that will fail to match the character will be removed from the set of 
   %  \end{minipage}
 %\label{fig::cgtt}
 %\end{figure}
-
-Only if a state reaches the ending node of the NFA, there's a match.
 
 \newpage
 
