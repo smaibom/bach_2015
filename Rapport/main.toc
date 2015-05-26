@@ -1,6 +1,17 @@
-\contentsline {section}{\numberline {1}Nucleic Acids}{3}
-\contentsline {subsection}{\numberline {1.1}Ribonucleic acid}{3}
-\contentsline {subsection}{\numberline {1.2}Deoxyribonucleic acid}{3}
-\contentsline {subsection}{\numberline {1.3}Secondary Structures of Nucleic Acids}{3}
-\contentsline {section}{\numberline {2}Scan\_For\_Matches}{5}
-\contentsline {section}{\numberline {3}Regular expressions}{6}
+\contentsline {section}{\numberline {1}Motivation}{4}
+\contentsline {section}{\numberline {2}Problem Analysis}{4}
+\contentsline {section}{\numberline {3}Nucleic Acids}{5}
+\contentsline {subsection}{\numberline {3.1}Ribonucleic acid}{5}
+\contentsline {subsection}{\numberline {3.2}Deoxyribonucleic acid}{5}
+\contentsline {subsection}{\numberline {3.3}Secondary Structures of Nucleic Acids}{5}
+\contentsline {section}{\numberline {4}Regular expressions}{8}
+\contentsline {section}{\numberline {5}Nondeterministic Finite Automaton}{8}
+\contentsline {subsection}{\numberline {5.1}Conversion from RE to NFA}{9}
+\contentsline {subsection}{\numberline {5.2}Insertions, Deletions and Mutations}{10}
+\contentsline {section}{\numberline {6}Our Implementation}{10}
+\contentsline {section}{\numberline {7}Experimental Results \& Tests}{10}
+\contentsline {section}{\numberline {8}Alternative soloutions}{10}
+\contentsline {subsection}{\numberline {8.1}Forming patterns using Regular expressions}{10}
+\contentsline {subsection}{\numberline {8.2}Preprocessing data}{11}
+\contentsline {section}{\numberline {9}Scan\_For\_Matches}{11}
+\contentsline {section}{\numberline {10}TRE}{12}

@@ -1,20 +1,20 @@
-\documentclass[11pt,twoside,a4paper]{article}
-\newtheorem{mydef}{Definition}
-\newtheorem{myex}{Example}
- \subsection{Matching}
   \subsubsection{Pattern Matching}
-   Matching is when a part of a text is identified correctly as following some 
-   rule, defined by the user, and is returned to the user. 
-   There are different kinds of matching, for example literal matching where the 
-   user wants to find an exact word or sentence. Pattern matching is when we define 
-   a pattern as the rule that we want to match with. Since regular expressions %<========== Must check to see if defined previously
-   (regex) defines possible patterns, we can use regular expressions as our pattern rule.
-
+   A pattern is a rule that a potential match must adhere to for it to be a 
+   correct match. When matching is done using a pattern, then a pattern match 
+   is being performed. Matching with regular expressions is pattern matching, 
+   since regular expressions are patterns.\\
+   Pattern matching performs its matches in different ways depending on the 
+   pattern used; regular expressions uses automata to match, whereas 
+   mathematica organizes its patterns as a tree structure which is then searched 
+   through. The two examples fits different needs, as the tree structure 
+   form of mathematica allows a guaranteed worst case running time of 
+   $O(n)$, where n is the depth of the tree, while automata allows transitions 
+   to previously-traversed states.
   \subsubsection{Approximate Matching}
-   For our implementation, we will need to implement 
-   approximate matching. Approximate matching is similar to pattern matching, 
-   however approximate matching allows errors in the searched text. 
-   \begin{mydef}
+   Approximate matching is an extension to other types of matching, where errors 
+   are allowed in the text that's being searched through. An error is defined as 
+   follows;
+   \begin{mydef}\centering
     An error is when an encountered character in a string is different from 
     what is expected. An error can manifest itself in three different ways:
     \begin{enumerate}
@@ -23,7 +23,18 @@
     \item An insertion, where a random character has been inserted in the text
     \end{enumerate}
    \end{mydef}
-   
+   \begin{myex}\centering
+    Say we want to match the text {\tt ABC}, and we want to allow for a 
+    maximum of three errors. Then the following four text strings will match 
+    {\tt ABC}
+    \begin{align*}
+    {\tt ABXC}&~\text{One insertion}\\
+    {\tt BC}&~\text{One deletion}\\
+    {\tt ABX}&~\text{One mismatch}\\
+    {\tt BXA}&~\text{One insertion, one deletion and one mismatch}
+    \end{align*}
+   \end{myex}
+   \begin{comment}
    While it is possible to perform approximate matching with regular expressions, it is not 
    a computationally efficient thing to do unless it is done on a regex-engine 
    that natively supports approximate matching. This is because the complexity 
@@ -40,6 +51,4 @@
    permutations that must be accounted for, and the blowup of the regular 
    expression's size only increases as we try to match longer strings with more 
    insertions.
-  
-  
-\end{document}
+   \end{comment}
