@@ -12,8 +12,8 @@
 \usepackage{amsthm}
 \usepackage{mathtools}
 \usepackage{amsmath}
-\usepackage{listings}
 \usepackage{url}
+\usepackage{listings}
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata}
 \usepackage{amsfonts}
@@ -76,6 +76,7 @@
 %\section{Introduction}
 \input{./Introduction/Motivation.tex}
 \input{./Introduction/Problem-Analysis.tex}
+\input{./Preliminaries/State-of-the-Art.tex}
 \newpage
 
 %\section{Preliminaries}
@@ -85,13 +86,17 @@
 \input{./Theory/re.tex}
 
 \input{./Theory/NFA.tex}
-
 %Simulation of NFA
+
+\input{./Preliminaries/Scan-For-Matches.tex}
+
 
 
 
 %implementation
-
+%\section{Method}
+\newpage
+\input{./Method/TRE.tex}
 \input{./Method/Implementation.tex}
 
 
@@ -102,8 +107,6 @@
 % Det der står i scan-for-matches omtaler et alfabet og et sprog, dette er først beskrevet i Theory/re.tex, derfor skal det ind bagefter
 % HVIS vi skal beskrive scan-for-matches først, kan vi nævne at det findes et værktøj, og hvad det bruges til, men den måde det står beskrevet pt, funker ikke.
 %related works, SFM TRE
-\input{./Preliminaries/Scan-For-Matches.tex}
-\input{./Method/TRE.tex}
 % \READ ME
 %\section{Method}
 %
