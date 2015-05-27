@@ -4,7 +4,7 @@
 echo "Starting" > dmp/time.c.txt;
 echo "Starting" > dmp/time.sfm.txt;
 echo "Starting" > dmp/time.tre.txt;
-cd Martin/src
+cd Implementation/src
 i="1";
 while [ $i -lt 23 ];
 do
