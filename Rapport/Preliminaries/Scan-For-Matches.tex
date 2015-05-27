@@ -5,13 +5,13 @@ Joerg and Morgan Price in C which searches through text files. Users specify
 what they wish to search for by defining a pattern, and scan\_for\_matches 
 returns all matches that corresponds to the specified pattern. 
 \begin{mydef}\label{patc}
-Let {\tt E} be any pattern that's in the alphabet $\Sigma$ as defined in Example \ref{patex}. 
+Let {\tt E} be any pattern that's in the alphabet $\Sigma$ as defined in definition \ref{patex}. 
 Let 0 be the empty string.
 Let {\tt A} be a string that we are processing to see if the pattern is valid.
 A pattern may then be constructed as such: 
 \end{mydef}
 
-\begin{myex}\label{patex}
+\begin{mydef}\label{patex}
 Let $\Sigma$ denote an alphabet. Then we can define a pattern as follows:\\
 \begin{tabular}{|r|l|}
 \hline
@@ -41,10 +41,10 @@ Let $\Sigma$ denote an alphabet. Then we can define a pattern as follows:\\
 {\tt x \$}&Match only pattern x if it is at the end of a string\\
 \hline
 \end{tabular}
-\end{myex}
+\end{mydef}
 
 Definition \ref{patc} states that a pattern may be any combination of the alphabet 
-defined in example \ref{patex}.
+defined in definition \ref{patex}.
 Using these patterns, it is possible to make very specific or very broad 
 searches in a text file. 
 

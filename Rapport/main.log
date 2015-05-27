@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2014.6.3)  27 MAY 2015 14:06
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2014.6.3)  27 MAY 2015 14:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1061,8 +1061,8 @@ File: ./lib/stem-loop.png Graphic file (type png)
 <use ./lib/stem-loop.png>
 Package pdftex.def Info: ./lib/stem-loop.png used on input line 83.
 (pdftex.def)             Requested size: 323.70857pt x 170.63707pt.
- [7 <./lib/bulge.png> <./lib/interior-loop.png> <./lib/stem-loop.png>]) [8] (./
-Theory/re.tex
+ [7 <./lib/bulge.png> <./lib/interior-loop.png>])
+[8 <./lib/stem-loop.png>] (./Theory/re.tex
 Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
@@ -1103,7 +1103,34 @@ Overfull \hbox (21.78041pt too wide) in paragraph at lines 15--44
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
 )
-(./Method/Implementation.tex [14]) (./Method/Alternative.tex
+(./Method/Implementation.tex [14]) (./Benchmarking/bench.tex
+Overfull \hbox (62.02284pt too wide) in paragraph at lines 3--13
+[][]
+ []
+
+
+Overfull \hbox (77.02303pt too wide) in paragraph at lines 3--13
+[] 
+ []
+
+<Benchmarking/1ins.png, id=106, 589.0005pt x 444.4605pt>
+File: Benchmarking/1ins.png Graphic file (type png)
+
+<use Benchmarking/1ins.png>
+Package pdftex.def Info: Benchmarking/1ins.png used on input line 20.
+(pdftex.def)             Requested size: 262.90604pt x 198.39806pt.
+
+<Benchmarking/2ins.png, id=107, 589.0005pt x 444.4605pt>
+File: Benchmarking/2ins.png Graphic file (type png)
+
+<use Benchmarking/2ins.png>
+Package pdftex.def Info: Benchmarking/2ins.png used on input line 26.
+(pdftex.def)             Requested size: 262.90604pt x 198.39806pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) (./Method/Alternative.tex [15 <./Benchmarking/1ins.png>]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
@@ -1114,7 +1141,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--16
 
  []
 
-) [15] [16] (./main.bbl
+) [16 <./Benchmarking/2ins.png>] [17] (./main.bbl
 Underfull \hbox (badness 4429) in paragraph at lines 78--81
 []\OT1/cmr/m/n/10 Wikipedia.  Lev-en-shtein au-toma-ton.  $\OT1/cmtt/m/n/10 htt
 p : / / en . wikipedia . org / wiki / Levenshtein _
@@ -1124,16 +1151,16 @@ p : / / en . wikipedia . org / wiki / Levenshtein _
 
 Package natbib Warning: There were undefined citations.
 
-[17] (./main.aux)
+[18] (./main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 19164 strings out of 493308
- 362878 string characters out of 6143617
- 431543 words of memory out of 5000000
- 22166 multiletter control sequences out of 15000+600000
+ 19180 strings out of 493308
+ 363192 string characters out of 6143617
+ 431552 words of memory out of 5000000
+ 22175 multiletter control sequences out of 15000+600000
  16001 words of font info for 62 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  57i,19n,96p,613b,1579s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1151,10 +1178,10 @@ sr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf
 e1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmti7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.
 pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on main.pdf (17 pages, 319565 bytes).
+Output written on main.pdf (18 pages, 386738 bytes).
 PDF statistics:
- 172 PDF objects out of 1000 (max. 8388607)
- 115 compressed objects within 2 object streams
+ 179 PDF objects out of 1000 (max. 8388607)
+ 117 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 71 words of extra memory for PDF output out of 10000 (max. 10000000)
 
