@@ -139,9 +139,31 @@ Given the expression
 %\label{fig:A_OR_B}
 %\end{figure}
 \subsection{Matching using NFA}
-Once a NFA-structure has been build, we can start matching a text against the NFA.
+Given a NFA and a input string, to see if the input string is accepted in the NFA the following algorithm is used.
+\begin{lstlisting}[mathescape]
+//n is a NFA
+//m is the input string
+Simulate(n($Q,\Sigma,\Delta,q^s,q^a$),m)
+    stateSet := $(q^s)$
+    inputLen := strlen(m)
+    $\mathbf{for}$ i $\mathbf{from}$ 0 $\mathbf{to}$ inputLen-1
+      //No valid transitions from previous input symbol
+        $\mathbf{if}$ size(stateSet) == 0
+            $\mathbf{return}$ false 
+        symbol := m[i]
+        nextStateSet := ()
+        $\mathbf{for~each}$ state $\mathbf{in}$ stateSet
+            states := StateTransitions($Q,\Delta$,symbol)
+            nextStateSet := union(nextStateSet,states)
+        stateSet = nextStateSet
+    $\mathbf{if}$ $q^a$ $\mathbf{in}$ stateSet
+        $\mathbf{return}$ true
+    $\mathbf{return}$ false
+\end{lstlisting}
 
-This is done by having a active state set S. Before reading from the input string, the initial state of S = \{$q^s$\}. For every symbol read, each state in S checks for all valid transitions in $\Delta$ matching the current input symbol, and is reachable from that state. If one of more states are found, they are placed into a new state set, otherwise the state is discarded. Once each state have been checked, the new state set is set as S and the simulation reads the next input symbol and repeats. When the last symbol is read, if $q^a \in S$ the input string is accepted.
+
+
+%This is done by having a active state set S. Before reading from the input string, the initial state of S = \{$q^s$\}. For every symbol read, each state in S checks for all valid transitions in $\Delta$ matching the current input symbol, and is reachable from that state. If one of more states are found, they are placed into a new state set, otherwise the state is discarded. Once each state have been checked, the new state set is set as S and the simulation reads the next input symbol and repeats. When the last symbol is read, if $q^a \in S$ the input string is accepted.
 
 
 
