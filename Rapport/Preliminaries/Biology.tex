@@ -1,4 +1,8 @@
 \section{Nucleic Acids}
+Nucleic acids are one of the building blocks of life, and are composed of a 
+backbone made of a type of sugar, with bases that can bond with one another. 
+A series of these bases on a backbone is called a sequence. The 
+type of sugar as well as the bases depends on the nucleic acid. 
 \subsection{Ribonucleic acid} %NEEDS FIGURES
 %RNA is massproduced
 Ribonucleic acid (RNA) is a large molecule composed of nitrogenous 
@@ -50,44 +54,23 @@ inserted then it will have no base to bond with, and if a base has been deleted
 then the previously-bonded base will have no base to bond with. 
 Below is an example of a bulge:
 \begin{myex}\centering
-\begin{figure}[h!]
 \centering
 \includegraphics[scale=0.4]{./lib/bulge.png}
-\caption{Example of a bulging $A$}%RNA sequence\\ AGCAGGCUAGCCGCU \\ AGC GGCUAGCCGCU}
-\end{figure}
 The RNA sequence {\tt AGCAGGCUAGCCGCU}. Note the bulging {\tt A}.
 \end{myex}
-Since we know that a bulge occurs when a base is inserted or deleted, we can 
-define a bulge as follows:
-\begin{mydef}\centering
-Let S be a bulge. Let $E$ be a sequence of characters. Let $\Sigma$ be an alphabet. 
-Let $a \in \Sigma$. Let $0$ be the empty string. Let $\Lambda$ be a map that holds the complement to each 
-base described in the alphabet. Let $E^{-1}$ denote the reverse of the sequence. 
-Then we can define a stem loop as follows;
-\begin{align*}
-S    &= E'~f(E^{-1})~|~E~f(E^{-1\prime})\\
-E    &= \{a\}~E~|~0\\
-E'   &= E~E'~|~E\\
-f(E) &= \Lambda(E)
-\end{align*}
-\end{mydef}
 \textbf{Interior Loop}\\
 An interior loop is when two or more opposing bases aren't complementary and 
 can't bond, causing them both to bulge. This occurs when one or more 
 consecutive bases mutate to another base. Below is an example of an interior 
 loop:
 \begin{myex}\centering
-\begin{figure}[h!]
 \centering
 \includegraphics[scale=0.5]{./lib/interior-loop.png}
-\caption{Example of an Interior Loop A-G}
-\end{figure}
 The RNA sequence {\tt AGCAGGCUAGCCGGCU}. Note the bulging {\tt A} and {\tt G} 
 creating a loop inside the bonded strand.
 \end{myex}
 These interior loops vary in size, and can have differing amount of bases on 
 either side of the strands, making them hard to generalize.\\
-((TODO: ADD A BETTER EXPLANATION AND A DEFINITION OF AN INTERIOR LOOP))
 \\\\
 \textbf{Stem Loop}\\
 A stem loop, also known as a hairpin loop, occurs when a strand bonds with 
@@ -96,11 +79,8 @@ This kind of loop occurs typically in RNA as they are single-stranded, but may
 happen in DNA if the two strands of the DNA has been separated. Below is an 
 example of a stem loop:
 \begin{myex}\centering
-\begin{figure}[h!]
 \centering
 \includegraphics[scale=0.5]{./lib/stem-loop.png}
-\caption{Example of a Stem Loop, UUGGUC}
-\end{figure}
 A stem loop of the RNA sequence {\tt AAAAUUGGUCUUUU}.
 \end{myex}
 An important thing to take note of is how the sequence can be seen as one 
@@ -108,21 +88,6 @@ long strand that starts from the adenine bases that binds with the uracil bases,
 loops around without binding to anything and finally become the uracil bases 
 that the adenine bases from the start binds with. This means that the 
 stem loop can be written as one continuous sequence of bases; {\tt AAAAUUGGUCUUUU}. 
-This specific kind of loop adheres to a specific pattern that reflects from 
-the example, that can be defined as follows:
-\begin{mydef}
-\centering
-Let S be a stem loop. Let $E_n$ be a sequence of characters, where if in $E_n$ 
-and $E_m$ $m = n$, then $E_n =E_m$. Let $\Sigma$ be an alphabet. Let 
-$a \in \Sigma$. Let $\Lambda$ be a map that holds the complement to each base 
-described in the alphabet. Let $E_n^{-1}$
-denote the reverse of the sequence. Then we can define a stem loop as follows;
-\begin{align*}
-S      &= E_0 E_1 f(E_0^{-1}) \\
-E_n    &= \{a\}\\
-f(E_n) &= \Lambda(E_n)
-\end{align*}
-\end{mydef}
 Since we can define a stem loop we can, with the right tools, search through 
 a file documenting the bases of a nucleic acid and find all stem loops 
 the nucleic acid has.
