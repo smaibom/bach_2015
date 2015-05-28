@@ -1,0 +1,76 @@
+Problem analysis:
+Få slutningen til at give mening
+
+State of the art:
+-forklar hvad vi vil gøre
+-Reference/fodnote til RE2
+-Det supporter ikke backtracking
+-Nævn hvorfor det skal være TRE/RE2
+
+Biologi:
+BRUG CAPTION TEXT
+Indentering forkert i en af titler
+
+RE teori:
+Language interpertation eksempel
+
+NFA:
+Skriv hvad Delta er
+Standard tekst nede under
+Forklar notation
+
+Simulation:
+Algoritme envoirement
+Matematisk notation
+Flere algoritmer
+Epsilon closure
+
+Fuzzy matching:
+definer automaten
+Algoritme
+eksempler
+
+SFM:
+Sigma* i sequence
+Concatenering operator
+Sprogfortolkning af SFM grammatik
+
+TRE:
+Grammatik er dumt
+
+Implementation:
+Hvad har vi lavet
+
+Experimental results:
+Fjern gammle ting
+Test setup, hvilken maskine er den kørt på, SDD/Ikke sdd ram CPU
+Hvor mange gange er den kørt
+Mere overblik
+Diskuter resultater omkring observationer, forklar hvorfor.
+
+
+Alternative soloutions:
+Bare lad vær med at gøre noget ved det
+Flyt det tidligt
+
+Future work:
+Suffix trees her
+
+Conclusion:
+Discussion/Future work/Conclusion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Submatch i stedet for backreference
