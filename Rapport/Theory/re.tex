@@ -8,8 +8,8 @@ An alphabet $\Sigma$ is a finite non-empty set of letters.
 A language L is a subset of all strings formed over $\Sigma:~ L\subseteq \Sigma^*$
 \end{mydef}
 
-\begin{myex}
-If we have a DNA sequence string, the alphabet $\Sigma$ consists of the literals ${\tt\{t,g,c,a\}}$. and the language contains strings formed by the literals from this alphabet. For example "gtcaaa" or "gtcaaat". 
+\begin{myex}\label{reex}
+If we have a DNA sequence string, the alphabet $\Sigma$ consists of the literals {\tt\{t,g,c,a\}}. and the language contains strings formed by the literals from this alphabet. For example "gtcaaa" or "gtcaaat". 
 \end{myex}
 
 
@@ -42,5 +42,20 @@ With definition \ref{re}, we can now form regular languages.
 \begin{myex}Natural numbers can be described as a regular expression. Natural numbers have the alphabet $\Sigma$ = \{{\tt 0,1,2,3,4,5,6,7,8,9}\}, the regular expression for natural numbers would look like:
 \begin{center}
 $E_{nat} = $(1+2+3+4+5+6+7+8+9)(0+1+2+3+4+5+6+7+8+9)$^*$
+\end{center}
+\end{myex}
+
+\begin{myex}
+Given the alphabet $\Sigma =$ {\tt\{a,b,c\}}. With this alphabet, one could form a regular expression that could look like $E =$ {\tt c}({\tt a}+{\tt b})*. The language $L$ that is produced from this expression, would consist of strings that is a c followed by 0 or more a or bs for example {\tt "caaaa"},{\tt "cbb"},{\tt "cababba"} and so forth. The language interpertation of E is 
+\begin{center}
+\begin{align*}
+L(E) &= L(c(a+b)^*)\\
+	 &= \{w_1 ~w_2|w_1 \in L(c),w_2 \in L((a+b)*)\}\\
+	 &= \{w_1~ w_2|w_1 \in c, w_2 \in \bigcup\limits_{n=0}^\infty L(a+b)^n \}\\
+	 &= \{w_1~ w_2|w_1 \in c, w_2 \in \bigcup\limits_{n=0}^\infty (L(a) \cup L(b))^n \}\\
+	 &= \{w_1~ w_2|w_1 \in c, w_2 \in \bigcup\limits_{n=0}^\infty (a \cup L(b))^n \}\\
+	 &= \{w_1~ w_2|w_1 \in c, w_2 \in \bigcup\limits_{n=0}^\infty (a \cup b)^n \}\\
+	 &= c \bigcup\limits_{n=0}^\infty (a \cup b)^n 
+\end{align*}
 \end{center}
 \end{myex}
