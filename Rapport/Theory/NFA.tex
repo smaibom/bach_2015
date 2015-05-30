@@ -1,12 +1,13 @@
 \newpage
 \section{Nondeterministic Finite Automaton}
 \begin{mydef}
-An nondeterministic finite automaton (NFA) is a 5-tuple $(Q,\Sigma,\Delta,q^s ,q^a)$. Where $Q$ is a finite set of states,$\Sigma$ is the input alphabet, the initial state $q^s \in Q$,  the accepting state $q^a \in Q$ and $\Delta$ is the set that contains all the transitions. Transitions in $\Delta$ is shown $q^1\xrightarrow{a}q^2$ where $q^1\in Q,q^2\in Q$ and the label $a$ is either $a \in \Sigma$ or  the empty transition $\epsilon$
+An nondeterministic finite automaton (NFA) is a 5-tuple $(Q,\Sigma,\Delta,q^s ,q^a)$. Where $Q$ is a finite set of states,$\Sigma$ is the input alphabet, the initial state $q^s \in Q$,  the accepting state $q^a \in Q$ and $\Delta$ that is a set of 3 tuples containing all the transitions in Q, with the type of $\Delta \subseteq Q $ x $ (\Sigma \cup \{\epsilon\}) $ x $ Q$. 
 \end{mydef}
+
 
 \subsection{Conversion from RE to NFA}
 \label{RA_TO_NFA}
-One of the main reasons for using NFAs when working with regular expressions is the direct correlation between regular expressions and NFAs. Each expression can be converted to an NFA, and vice versa. Table~\ref{tab:NFA_TAB} shows the correlation between regular expressions and NFA for the most common expressions.
+Each expression can be converted to an NFA, and vice versa. Table~\ref{tab:NFA_TAB} shows how each RE can be converted into a NFA. The states in $Q$ is represented as circles. The initial state $q^s$ is shown by adding a small arrow pointing to it, and the accepting state $q^a$ is shown as a double circle. Transitions in $\Delta$ is represented as  $(q,a,q')\in \Delta$ or $(q,\epsilon ,q')\in\Delta$, we write these transitions as $q \xrightarrow{a} q'$ or $q \xrightarrow{\epsilon} q'$. For subexpressions we use boxes and split the transition arrow, marking it with an $E$, to denote the NFA resulted from converting the expression. 
 %\\
 %(( NOTE: We'll include a table with conversions ))
 %\\
@@ -56,6 +57,9 @@ One of the main reasons for using NFAs when working with regular expressions is 
 
   \path[->] (1) edge node {} (2);
   \path[->] (3) edge node {} (4);
+
+\node [draw=red, fit= (0) (2),dashed] {};
+\node [draw=blue, fit= (2) (4),dashed,inner sep=0.25cm] {};
   
 \end{tikzpicture}\end{center} \\
 \hline
@@ -81,6 +85,9 @@ One of the main reasons for using NFAs when working with regular expressions is 
   \path[->] (6) edge node[below] {$\epsilon$} (7);
 
 
+\node [draw=red, fit= (1) (5),dashed] {};
+\node [draw=blue, fit= (2) (6),dashed] {};
+
 \end{tikzpicture} \end{center} \\
 \hline
 \begin{center}$E^*$\end{center} &\begin{center} 
@@ -98,7 +105,7 @@ One of the main reasons for using NFAs when working with regular expressions is 
 
   \path[-] (2) edge node {} (4);
 
-
+\node [draw=red, fit= (2) (3),dashed] {};
 \end{tikzpicture}
 \end{center} \\
 \hline
@@ -106,107 +113,80 @@ One of the main reasons for using NFAs when working with regular expressions is 
 \label{tab:NFA_TAB}
 \end{table}
 
+
 \begin{myex}
-Given the expression 
+In example \ref{reinter}, the expression $c(a+b)^*$ is used. The NFA buildup is done like the language interpetation in the example. We first construct the $E_1E_2$ expression, where $E_1 = c$ and $E_2 = (a+b)^*$.
+
+\begin{center} 
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial, state] (0) {};
+  \node [right of= 0] (1) {$E^1$};
+  \node [state,right of= 1] (2) {};
+  \node [right of= 2] (3) {$E^2$ };
+  \node [accepting, state,right of= 3] (4) {};
+
+  \path[-] (0) edge node {} (1);
+  \path[-] (2) edge node {} (3);
+
+  \path[->] (1) edge node {} (2);
+  \path[->] (3) edge node {} (4);
+  
+\node [draw=red, fit= (0) (2),dashed] {};
+\node [draw=blue, fit= (2) (4),dashed,inner sep=0.25cm] {};
+\end{tikzpicture}\\
+\end{center} 
+Now we construct the subexpressions, $E_1$ and $E_2$. $E_2$ results in a new subexpression $E_3 = a+b$.
+\begin{center}
+
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial,state] (99) {};
+  \node [state,right of= 99,xshift=2cm] (0) {};
+  \node [accepting,state,right of=0,xshift=2cm] (1) {};
+  \node [state,above left of=0,xshift=-1cm,yshift=1cm] (2) {};
+  \node [state,above right of=0,xshift=1cm,yshift=1cm] (3) {};
+  \node [right of=2,xshift=0.60cm] (4) {$E_3$};
+
+  \path[->] (0) edge node {$\epsilon$} (1);
+  \path[->] (3) edge node {$\epsilon$} (0);
+  \path[->] (0) edge node {$\epsilon$} (2);
+  \path[->] (4) edge node {} (3);
+  \path[->] (99) edge node {{\tt c}} (0);
+  \path[-] (2) edge node {} (4);
+\node [draw=red, fit= (2) (3),dashed] {};
+\end{tikzpicture}\\
+\end{center}
+The last part is constructing $E_3$, we skip ahead and construct the literals {\tt a} and {\tt b} as well. 
+
+\begin{center}
+
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial,state] (99) {};
+  \node [state,right of= 99,xshift=2cm] (0) {};
+  \node [accepting,state,right of=0,xshift=2cm] (1) {};
+  \node [state,above left of=0,xshift=-2.5cm,yshift=2cm] (2) {};
+  \node [state,above right of=0,xshift=2.5cm,yshift=2cm] (3) {};
+  \node [state,below right of=2,xshift=1.25cm] (5) {};
+  \node [state,above right of=2,xshift=1.25cm] (6) {};
+  \node [state,right of=5,xshift=1.25cm] (7) {};
+  \node [state,right of=6,xshift=1.25cm] (8) {};
+
+  \path[->] (2) edge node {$\epsilon$} (5)
+          edge node {$\epsilon$} (6)
+        (5) edge node {{\tt b}} (7)
+        (6) edge node {{\tt a}} (8)
+        (7) edge node {$\epsilon$} (3)
+        (8) edge node {$\epsilon$} (3);
+
+
+  \path[->] (0) edge node {$\epsilon$} (1);
+  \path[->] (3) edge [bend left] node {$\epsilon$} (0);
+  \path[->] (0) edge [bend left] node {$\epsilon$} (2);
+  \path[->] (99) edge node {{\tt c}} (0);
+\end{tikzpicture}\\
+\end{center}
+
+
 \end{myex}
-
-%
-%\begin{figure}[h!]
- % \centering
-%\begin{minipage}[b]{0.40\linewidth}
- % \centering
-   %   \includegraphics[width=0.2\textwidth]{lib/A.png}
-  %\caption{NFA of the expression $a$}
-%\label{fig:A}
-%  \end{minipage}
-%\begin{minipage}[b]{0.40\linewidth}
-
-%  \centering
-   %   \includegraphics[width=0.2\textwidth]{lib/B.png}
-  %\caption{NFA of the expression $b$}
-  %\label{fig:B}
-%    \end{minipage}
-%\end{figure}
-
-%For example two NFAs of regular expression $a$ and $b$ will appear as shown in Figure~\ref{fig:A} \& \ref{fig:B}, each of them starts in node $0$ and ends in node $1$, and these nodes are connected by a one-way transition with a value $a$ or $b$. %, it may be worth noting that our implementation always converts to lower case when constructing and matching.
-
-%To construct the NFA for $A | B$ , one will first have to construct an NFA for both $A$ and $B$, which will then be combined, making the full NFA. The $|$ operator this is achieved by constructing two new nodes, the first having epsilon-transition pointing to the start node of each of the two NFAs $A$ and $B$, then for each NFA $A$ and $B$ the ending node will instead of ending the NFA, have a new epsilon-transition to the second new node, in the figure below, Figure~\ref{fig:A_OR_B}, the two new nodes are labeled $0$ and $5$:
-
-%\begin{figure}[h!]
- % \centering
-   %   \includegraphics[width=0.1\textwidth]{lib/A_OR_B.png}
- % \caption{NFA of the expression $a | b$}
-%\label{fig:A_OR_B}
-%\end{figure}
-\subsection{Matching using NFA}
-Given a NFA and a input string, to see if the input string is accepted in the NFA the following algorithm is used.
-\begin{lstlisting}[mathescape]
-//n is a NFA
-//m is the input string
-Simulate(n($Q,\Sigma,\Delta,q^s,q^a$),m)
-    stateSet := $(q^s)$
-    inputLen := strlen(m)
-    $\mathbf{for}$ i $\mathbf{from}$ 0 $\mathbf{to}$ inputLen-1
-      //No valid transitions from previous input symbol
-        $\mathbf{if}$ size(stateSet) == 0
-            $\mathbf{return}$ false 
-        symbol := m[i]
-        nextStateSet := ()
-        $\mathbf{for~each}$ state $\mathbf{in}$ stateSet
-            states := StateTransitions($Q,\Delta$,symbol)
-            nextStateSet := union(nextStateSet,states)
-        stateSet = nextStateSet
-    $\mathbf{if}$ $q^a$ $\mathbf{in}$ stateSet
-        $\mathbf{return}$ true
-    $\mathbf{return}$ false
-\end{lstlisting}
-
-
-
-%This is done by having a active state set S. Before reading from the input string, the initial state of S = \{$q^s$\}. For every symbol read, each state in S checks for all valid transitions in $\Delta$ matching the current input symbol, and is reachable from that state. If one of more states are found, they are placed into a new state set, otherwise the state is discarded. Once each state have been checked, the new state set is set as S and the simulation reads the next input symbol and repeats. When the last symbol is read, if $q^a \in S$ the input string is accepted.
-
-
-
-%each state is looking at a node in the structure, while keeping track of previous nodes traversed by the state. Whenever a new character is being checked to match, each state will look at its node, and determine if it's possible to accept the character in the NFA, either by taking a transition labeled with the character, or alternatively via an epsilon-transition. When two possible transitions are viable, new states will be created in the set of states, so that each possible transition will be explored.
-
-%\begin{figure}[h!]W
- % \centering
-%\begin{minipage}[b]{0.40\linewidth}
- % \centering
-   %   \includegraphics[width=0.2\textwidth]{lib/cgtt1.png}
-   % \caption{NFA of $CGTT$, with a state looking at node23.\\}
-    %\label{fig:CGTT_1}
- % \end{minipage}
-%\begin{minipage}[b]{0.40\linewidth}
-%\centering
-%\includegraphics[width=0.2\textwidth]{lib/cgtt2.png}
-% \caption{Next iteration of the state on Figure~\ref{fig:CGTT_1}, the state is now in node21.}
-  %  \end{minipage}
-%\label{fig::cgtt}
-%\end{figure}
 
 \newpage
 
-\subsection{Insertions, Deletions and Mutations}
-NFAs do not support mismatching by default, although a regular expression can be built to handle mismatches. While doing handling mismatching while constructing the regular expression, we are interested in having an NFA, and allowing matching while with support for insertions, deletions and mutations, hence we need to define a way to handle this.
-
-We can do this by adding a counter for insertions, deletions and mutations, and when a transition is not possible in the NFA, we decrease these counters and preform alternative transitions to emulate these conditions.
-%Currently our implementation supports a simple solution to the insertion, deletion and mutation problem, which is achieved by having a counter for insertions, deletions and mutation in each state, these counters symbolise the number of allowed occurrences of each mutation, insertion and deletion.
-\begin{description}
-\item[] For insertions, the state will remember the unmatched character, but the state won't move from its current node.
-\item[]For deletions, the state wont remember the unmatched character, but it will take every transition going on from the node.
-\item[] For mutations, the same happens as in a deletion, but now the state also remembers the unmatched character.
-\end{description}
-Figure~\ref{fig:ins_mut_del} illustrates how states move through a NFA when mismatches occur. 
-
-\begin{figure}[h!]
-  \centering
-      \includegraphics[width=0.6\textwidth]{lib/gcc_ins_mut_del.png}
-  \caption{Simple NFA of $GCC$, showing behaviour of insertion, mutation and deletion}
-\label{fig:ins_mut_del}
-\end{figure}
-%Depending on the number of insertions, deletions and mutations allowed, this approach will grant each state a much longer lifespan, and for each non-matching character parsed, one state may turn into three, which all needs to be processed for each new character parsed, resulting in an increasingly slower running time as the allowed number of insertions, deletions and mutations increase, but it does give us the utility that we require.
-%\label{state:insertion1}
-
-
-%In the next iteration of our implementation, we aim to implement levenstein automations\cite{WikiLevenshtein}, which hopefully will help speed up the runtime, and also, currently our solution will work on any given regular expression, thus a logical step which also may deliver some increase in performance would be to enforce a constriction such that it only allows for a RNA language similar to that defined in Section~\ref{section:RE}.
