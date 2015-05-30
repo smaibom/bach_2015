@@ -51,24 +51,26 @@ bases are surrounded by bases that have bonded. This causes the bases to get
 pushed out slightly, resembling a bulging growth. This type of structure occurs 
 when one or more bases has been inserted or deleted, since if a base has been 
 inserted then it will have no base to bond with, and if a base has been deleted 
-then the previously-bonded base will have no base to bond with. 
-Below is an example of a bulge:
-\begin{myex}\centering
+then the previously-bonded base will have no base to bond with. Figure~\ref{fig:bulge} shows a bulge.
+
+\begin{figure}[H]
 \centering
-\includegraphics[scale=0.4]{./lib/bulge.png}\\
-The RNA sequence {\tt AGCAGGCUAGCCGCU}. Note the bulging {\tt A}.
-\end{myex}
+\includegraphics[scale=0.4]{./lib/bulge.png}
+\caption{The RNA sequence {\tt AGCAGGCUAGCCGCU}. Note the bulging {\tt A}.}
+\label{fig:bulge}
+\end{figure}
 \textbf{Interior Loop}\\
 An interior loop is when two or more opposing bases aren't complementary and 
 can't bond, causing them both to bulge. This occurs when one or more 
-consecutive bases mutate to another base. Below is an example of an interior 
-loop:
-\begin{myex}\centering
+consecutive bases mutate to another base. Figure~\ref{fig:int-loop} shows an interior 
+loop.
+\begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{./lib/interior-loop.png}\\
-The RNA sequence {\tt AGCAGGCUAGCCGGCU}. Note the bulging {\tt A} and {\tt G} 
-creating a loop inside the bonded strand.
-\end{myex}
+\includegraphics[scale=0.4]{./lib/interior-loop.png}
+\caption{The RNA sequence {\tt AGCAGGCUAGCCGGCU}. Note the bulging {\tt A} and {\tt G} 
+creating a loop inside the bonded strand.}
+\label{fig:int-loop}
+\end{figure}
 These interior loops vary in size, and can have differing amount of bases on 
 either side of the strands, making them hard to generalize.\\
 \\\\
@@ -76,13 +78,14 @@ either side of the strands, making them hard to generalize.\\
 A stem loop, also known as a hairpin loop, occurs when a strand bonds with 
 itself, but leaves a sequence of bases sticking out that doesn't bond with anything. 
 This kind of loop occurs typically in RNA as they are single-stranded, but may 
-happen in DNA if the two strands of the DNA has been separated. Below is an 
-example of a stem loop:
-\begin{myex}\centering
-\centering
-\includegraphics[scale=0.5]{./lib/stem-loop.png}\\
-A stem loop of the RNA sequence {\tt AAAAUUGGUCUUUU}.
-\end{myex}
+happen in DNA if the two strands of the DNA has been separated. Figure~\ref{fig:stem-loop} 
+shows a stem loop.
+\begin{figure}[H]\centering
+\includegraphics[scale=0.3]{./lib/stem-loop.png}
+\caption{A stem loop of the RNA sequence {\tt AAAAUUGGUCUUUU}.}
+\label{fig:stem-loop}
+\end{figure}
+
 An important thing to take note of is how the sequence can be seen as one 
 long strand that starts from the adenine bases that binds with the uracil bases, 
 loops around without binding to anything and finally become the uracil bases 
