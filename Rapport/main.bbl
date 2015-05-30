@@ -1,5 +1,10 @@
 \begin{thebibliography}{10}
 
+\bibitem{web6}
+Wikipedia.
+\newblock Re2 (software.
+\newblock \url{http://en.wikipedia.org/wiki/RE2_(software)}, May 2015.
+
 \bibitem{crash}
 Niels Bjørn Bugge Grathwohl\& Ulrik Terp~Rasmussen Fritz~Henlein.
 \newblock A crash-course in regular expression parsing ans regular expressions
@@ -41,6 +46,13 @@ Wikipedia.
 Wikipedia.
 \newblock Nucleic acid secondary structure.
 \newblock \url{http://en.wikipedia.org/wiki/Nucleic_acid_secondary_structure},
+  May 2015.
+
+\bibitem{mathTree}
+Wolfram.
+\newblock Mathematica pattern searching and refactoring.
+\newblock
+  \url{http://reference.wolfram.com/workbench/index.jsp?topic=/com.wolfram.eclipse.help/html/tasks/patterns/patterns.html},
   May 2015.
 
 \bibitem{LaurikariComplex}
