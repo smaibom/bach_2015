@@ -8,15 +8,14 @@
 \contentsline {subsection}{\numberline {4.2}Deoxyribonucleic acid}{6}
 \contentsline {subsection}{\numberline {4.3}Secondary Structures of Nucleic Acids}{6}
 \contentsline {section}{\numberline {5}Regular expressions}{9}
-\contentsline {section}{\numberline {6}Nondeterministic Finite Automaton}{10}
-\contentsline {subsection}{\numberline {6.1}Conversion from RE to NFA}{10}
-\contentsline {subsection}{\numberline {6.2}Matching using NFA}{10}
-\contentsline {subsection}{\numberline {6.3}Insertions, Deletions and Mutations}{12}
-\contentsline {section}{\numberline {7}Scan\_For\_Matches}{12}
-\contentsline {section}{\numberline {8}TRE}{14}
-\contentsline {section}{\numberline {9}Our Implementation}{14}
-\contentsline {section}{\numberline {10}Experimental Results \& Tests}{14}
-\contentsline {section}{\numberline {11}Results}{15}
-\contentsline {section}{\numberline {12}Alternative soloutions}{15}
-\contentsline {subsection}{\numberline {12.1}Forming patterns using Regular expressions}{15}
-\contentsline {subsection}{\numberline {12.2}Preprocessing data}{16}
+\contentsline {section}{\numberline {6}Nondeterministic Finite Automaton}{11}
+\contentsline {subsection}{\numberline {6.1}Conversion from RE to NFA}{11}
+\contentsline {subsection}{\numberline {6.2}Matching using NFA}{11}
+\contentsline {subsection}{\numberline {6.3}Insertions, Deletions and Mutations}{13}
+\contentsline {section}{\numberline {7}Scan\_For\_Matches}{13}
+\contentsline {section}{\numberline {8}TRE}{15}
+\contentsline {section}{\numberline {9}Our Implementation}{15}
+\contentsline {section}{\numberline {10}Experimental Results \& Tests}{15}
+\contentsline {section}{\numberline {11}Alternative soloutions}{17}
+\contentsline {subsection}{\numberline {11.1}Forming patterns using Regular expressions}{17}
+\contentsline {subsection}{\numberline {11.2}Preprocessing data}{18}
