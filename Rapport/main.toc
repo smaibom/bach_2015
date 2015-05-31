@@ -14,6 +14,6 @@
 \contentsline {section}{\numberline {8}TRE}{14}
 \contentsline {section}{\numberline {9}Our Implementation}{15}
 \contentsline {section}{\numberline {10}Experimental Results \& Tests}{15}
-\contentsline {section}{\numberline {11}Alternative soloutions}{17}
-\contentsline {subsection}{\numberline {11.1}Forming patterns using Regular expressions}{17}
+\contentsline {section}{\numberline {11}Alternative soloutions}{18}
+\contentsline {subsection}{\numberline {11.1}Forming patterns using Regular expressions}{18}
 \contentsline {subsection}{\numberline {11.2}Preprocessing data}{18}

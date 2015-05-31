@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.2.19)  31 MAY 2015 04:00
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.2.19)  31 MAY 2015 13:46
 entering extended mode
 **C:/Users/Martin/workspace/bach_2015/Rapport/main.tex
 (C:/Users/Martin/workspace/bach_2015/Rapport/main.tex
@@ -1181,28 +1181,35 @@ File: Benchmarking/size.png Graphic file (type png)
 <use Benchmarking/size.png>
 Package pdftex.def Info: Benchmarking/size.png used on input line 9.
 (pdftex.def)             Requested size: 219.08614pt x 165.32268pt.
- [15 <C:/Users/Martin/workspace/bach_2015/Rapport/lib/gat.png> <C:/Users/Martin
-/workspace/bach_2015/Rapport/Benchmarking/size.png>]
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
 Overfull \hbox (14.87589pt too wide) in paragraph at lines 17--18
 \OT1/cmr/m/n/10 sup-port-ing in-ser-tion, dele-tion and mu-ta-tion on a se-quen
 ce, a sim-ple RNA se-quence $\OML/cmm/m/it/10 TGCAAGCGTTAAT$
  []
 
-<Benchmarking/1ins.png, id=112, 589.0005pt x 444.4605pt>
+[15 <C:/Users/Martin/workspace/bach_2015/Rapport/lib/gat.png>]
+<Benchmarking/1ins.png, id=111, 589.0005pt x 444.4605pt>
 File: Benchmarking/1ins.png Graphic file (type png)
 
 <use Benchmarking/1ins.png>
 Package pdftex.def Info: Benchmarking/1ins.png used on input line 24.
 (pdftex.def)             Requested size: 219.08614pt x 165.32268pt.
 
-<Benchmarking/2ins.png, id=113, 589.0005pt x 444.4605pt>
+<Benchmarking/2ins.png, id=112, 589.0005pt x 444.4605pt>
 File: Benchmarking/2ins.png Graphic file (type png)
 
 <use Benchmarking/2ins.png>
 Package pdftex.def Info: Benchmarking/2ins.png used on input line 34.
 (pdftex.def)             Requested size: 219.08614pt x 165.32268pt.
 
-<Benchmarking/3ins.png, id=114, 589.0005pt x 444.4605pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<Benchmarking/3ins.png, id=113, 589.0005pt x 444.4605pt>
 File: Benchmarking/3ins.png Graphic file (type png)
 
 <use Benchmarking/3ins.png>
@@ -1212,20 +1219,21 @@ Package pdftex.def Info: Benchmarking/3ins.png used on input line 44.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[16 <C:/Users/Martin/workspace/bach_2015/Rapport/Benchmarking/1ins.png> <C:/Use
-rs/Martin/workspace/bach_2015/Rapport/Benchmarking/2ins.png>]
+
 Underfull \hbox (badness 10000) in paragraph at lines 52--55
 
  []
 
-
+[16 <C:/Users/Martin/workspace/bach_2015/Rapport/Benchmarking/size.png> <C:/Use
+rs/Martin/workspace/bach_2015/Rapport/Benchmarking/1ins.png>]
 Overfull \hbox (17.33412pt too wide) in paragraph at lines 71--72
 \OT1/cmr/m/n/10 im-ple-men-ta-tion finds ev-ery sin-gle match in the file, in-c
 lud-ing over-lap-ping matches, while scan[]for[]matches,
  []
 
 ) (C:\Users\Martin\workspace\bach_2015\Rapport\Method\Alternative.tex [17 <C:/U
-sers/Martin/workspace/bach_2015/Rapport/Benchmarking/3ins.png>]
+sers/Martin/workspace/bach_2015/Rapport/Benchmarking/2ins.png> <C:/Users/Martin
+/workspace/bach_2015/Rapport/Benchmarking/3ins.png>]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
@@ -1259,7 +1267,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  17034 strings out of 493921
  314143 string characters out of 3144873
- 390704 words of memory out of 3000000
+ 390705 words of memory out of 3000000
  19883 multiletter control sequences out of 15000+200000
  14761 words of font info for 58 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -1282,7 +1290,7 @@ ts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
 /type1/public/amsfonts/cm/cmti7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
 pe1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmtt8.pfb>
-Output written on main.pdf (19 pages, 485013 bytes).
+Output written on main.pdf (19 pages, 485596 bytes).
 PDF statistics:
  188 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
