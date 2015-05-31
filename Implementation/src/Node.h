@@ -9,8 +9,8 @@ struct Node{
 	int value;
 	char chr;
 	std::shared_ptr<Node> next;
-//	std::map<char, std::shared_ptr<Node>> nexts;
-	std::list<std::shared_ptr<Node>> epsilons;
+    std::shared_ptr<Node> epsilon_left;
+    std::shared_ptr<Node> epsilon_right;
 };
 
 #endif
