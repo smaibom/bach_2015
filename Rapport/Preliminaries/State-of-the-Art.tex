@@ -1,13 +1,20 @@
 \section{State-of-the-Art}
- \subsection{RE2} %Google's RE engine
- RE2 is Google's regular expression engine written in C++. It supports 
- backtracking, but not backreferencing since backreferencing can't be implemented 
- efficiently according to~\cite{web6}. Since RE2 doesn't support matching with 
+This section details the current tools readily available that closest match 
+what our project aims to do, as well as to see if there are any existing tools 
+we can use for our project. For this we will talk about RE2/J, Google's regular 
+expression library because of how it handles alternations as well as its 
+linear running time, and TRE, which allows errors in its results, can 
+simulate backtracking, and supports backreferencing.
+ \subsection{RE2/J} %Google's RE engine
+ RE2/J is Google's regular expression library written for java. It does not support 
+ backtracking or backreferencing since neither can be implemented 
+ efficiently. Since RE2/J doesn't support matching with 
  errors or backreferencing, it would be unable to properly reproduce 
- scan\_for\_matches' functionality.
- 
+ scan\_for\_matches' functionality. The project can be found on its github 
+ page\footnote{\url{https://github.com/google/re2j}}.
  \subsection{TRE} %Got both backtracking and backreferencing
  TRE was created by Ville Laurikari for his master's thesis in 2001, and 
- is a regular expression engine supporting backtracking, backreferencing and 
- matching with errors. Because of this, TRE is the best candidate for modification 
- in order to make it work with patterns. We expand on this in section~\ref{tre}.
+ is a regular expression engine which can simulate backtracking and supports 
+ backreferencing and matching with errors. Because of this, TRE is the best 
+ candidate for modification in order to make it work with patterns. 
+ We expand on this in section~\ref{tre}.
