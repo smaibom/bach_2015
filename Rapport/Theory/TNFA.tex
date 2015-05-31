@@ -1,0 +1,34 @@
+\subsection{Tagged NFA}
+Before introducing tagged NFA, we must define what a missmatch is. 
+\begin{mydef}
+A missmatch $M$ in a string $n$ with a alphabet $\Sigma$ is one of 3 types, insertion, deletion and alteration. An insertion is where a symbol in $\Sigma$ is added to $n$. A deletion is where a symbol in $n$ is removed. A alteration is where a symbol in $n$ is changed with a symbol in $\Sigma$. 
+\end{mydef}
+NFA's do not handle missmatching in strings per default, to introduce this, a new set of transitions is added to the NFA. This type of NFA is called a Tagged NFA. 
+\begin{mydef}
+A tagged NFA is a 6 tuple $(Q,\Sigma,\Delta,q^s,q^a,\Delta')$ where the first 5 elements is a standard NFA and $\Delta'$ is a set of 4 tuples containing $\epsilon$ transitions for missmatches. The type of $\Delta'$ is $\Delta' \subseteq Q ~x~ \{\epsilon\} ~x~ Q ~x~ M$.  
+\end{mydef}
+
+\subsection{Constructing TNFA}
+TNFAs are constructed the same way as shown in tabel \ref{tab:NFA_TAB}, with the exception when constructing literals. A new set of $\epsilon$-transitions is added as shown in tabel \ref{tab:TNFA} as the new literal construction rule. The new transitions added in $\Delta'$ is shown as a red arrow which denotes a deletion transition, a green arrow for the insertion transition and a blue arrow for the alteration transition.
+\begin{table}[h]\label{nfac}
+\caption{Translating table for literal construction of TNFA}
+\centering
+\begin{tabular}{*{2}{m{0.4\textwidth}}}
+\hline
+\begin{center}$a$\end{center} &\begin{center}
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=2 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial, state] (0) {};
+  \node [accepting,state, right of=0] (1) {};
+
+  \path[->] (0) edge node [above] {$a$} (1);
+  \path[->] (0) edge [color=green, in=100,out=80,loop] node [color=black, above] {$\epsilon$} (0);
+  \path[->] (0) edge [color=red,bend left] node [color=black, above] {$\epsilon$} (1);
+
+  \path[->] (0) edge [color=blue,bend right] node [color=black, below] {$\epsilon$} (1);
+\end{tikzpicture}\end{center}\\
+\hline
+\end{tabular}
+\label{tab:TNFA}
+\end{table}
+
+
