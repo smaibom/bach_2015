@@ -7,6 +7,7 @@
 \usepackage{array}
 \usepackage{import}
 \usepackage{verbatim}
+\usepackage{algorithm}
 \usepackage{float}
 \linespread{1.2}
 \usepackage{pbox}
@@ -22,6 +23,11 @@
 \newtheorem{theorem}{Teorem}
 \newtheorem{lemma}{Lemma}
 \newtheorem{korollar}{Korollar}
+
+\newcommand*\Let[2]{\State #1 $\gets$ #2}
+\usepackage[noend]{algpseudocode}
+
+\usepackage{algorithmicx}
 
 \newtheorem{mydef}{Definition}
 \newtheorem{myex}{Example}[section]
@@ -87,6 +93,7 @@
 \input{./Theory/re.tex}
 
 \input{./Theory/NFA.tex}
+\input{./Theory/Simulation.tex}
 \input{./Theory/TNFA.tex}
 %Simulation of NFA
 

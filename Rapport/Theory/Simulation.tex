@@ -1,23 +1,26 @@
 
 \subsection{Matching using NFA}
-Given a NFA and a input string, to see if the input string is accepted in the NFA the following algorithm is used.
-\begin{lstlisting}[mathescape]
-//n is a NFA
-//m is the input string
-Simulate(n($Q,\Sigma,\Delta,q^s,q^a$),m)
-    stateSet := $(q^s)$
-    inputLen := strlen(m)
-    $\mathbf{for}$ i $\mathbf{from}$ 0 $\mathbf{to}$ inputLen-1
-      //No valid transitions from previous input symbol
-        $\mathbf{if}$ size(stateSet) == 0
-            $\mathbf{return}$ false 
-        symbol := m[i]
-        nextStateSet := ()
-        $\mathbf{for~each}$ state $\mathbf{in}$ stateSet
-            states := StateTransitions($Q,\Delta$,symbol)
-            nextStateSet := union(nextStateSet,states)
-        stateSet = nextStateSet
-    $\mathbf{if}$ $q^a$ $\mathbf{in}$ stateSet
-        $\mathbf{return}$ true
-    $\mathbf{return}$ false
-\end{lstlisting}
+
+\begin{algorithm}
+  \caption{NFA simulation
+    \label{nfasim}}
+  \begin{algorithmic}[1]
+    \Require{$N$ is a NFA and $x$ is a string}
+    \State
+    \Function{Simulation}{$N(Q,\Sigma,\Delta,q^s,q^a), x$}
+      \Let{$stateset$}{$\{q^s\}$} 
+      \For{{\bf each} symbol {\bf in} $x$}
+        \If{$stateset = \emptyset$} 
+            \State \Return{False}
+        \EndIf
+        \Let{$next$}{$\emptyset$}
+        \Let{$states$}{$\epsilon$-closure($stateset$)}
+        \Let{$stateset$}{$next$}
+      \EndFor
+      \If{$q^a \in stateset$}
+        \State \Return{True}
+      \EndIf
+      \State \Return{False}
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
