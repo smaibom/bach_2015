@@ -1,6 +1,10 @@
-
 \subsection{Matching using NFA}
-
+\begin{mydef}
+Given a set of NFA states M. The $\epsilon - closure$ of M, is a set of states that are reachable by following the $\epsilon$-transitions from 
+\begin{center}
+$\epsilon$-$closure(M)$ = M \cup \{q'|q\in \epsilon-closure(M) ~and ~(q,\epsilon,q') ~ \in ~ \Delta\}$
+\end{center}
+\end{mydef}
 \begin{algorithm}
   \caption{NFA simulation
     \label{nfasim}}
