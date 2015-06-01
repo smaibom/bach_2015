@@ -3,53 +3,59 @@ Using our implementation, TRE and scan\_for\_matches, we were able to do some be
 
 For this a virtual machine is created, using Oracle VirtualBox\footnote{virtualbox.org}. The machine running the virtualbox is running Windows 8.1 Pro x64 of an SSD, with 8,00 GB RAM, an AMD FX 4300 Quad-Core Processor 3.80 GHz, of which 1 core and 4096MB RAM was given to the virtual machine, which would run Ubuntu 14.04.2 LTS 64 bit.
 
-For the benchmarking some data was required:
-\begin{figure}[h!]
+\begin{wrapfigure}{r}{0.5\linewidth}
 \centering
-\includegraphics[width=0.5\textwidth]{Benchmarking/size.png}
+\includegraphics[width=0.3\textwidth]{Benchmarking/size.png}
 \caption{Plot of sample files used for benchmarking, these files range from 246.3 Megabytes to 46.8 Megabytes in size}
 \label{fig:size}
-\end{figure}
+\end{wrapfigure}
 
-
-Figure~\ref{fig:size} shows a series of fasta files, these files include nucleotide sequences, which all differ in size, decreasing from chr1 to chr22. These fasta files are the  kind of data which scan\_for\_matches are expected to run, and thus excellent for benchmark testing, it's worth noting however, that each of these files are 50 characters long, as TRE matches searches through lines separately, and longer or shorter line sizes might affect the performance of TRE, this was not tested.
+For the benchmarking some data was required, figure~\ref{fig:size} shows a series of fasta files, these files include nucleotide sequences, which all differ in size, decreasing from chr1 to chr22. These fasta files are the  kind of data which scan\_for\_matches are expected to run, and thus excellent for benchmark testing, it's worth noting however, that each of these files are 50 characters long, as TRE matches searches through lines separately, and longer or shorter line sizes might affect the performance of TRE, this was not tested.
 
 For testing, a suitable pattern is required. As our implementation has primarily been focused on supporting insertion, deletion and mutation on a sequence, a simple RNA sequence $TGCAAGCGTTAAT$ with variable insertions is chosen as the search pattern.
 
 Each test would be executed on each of the mentioned fasta files a total of 10 times, given an average runtime which was used in the following results.
 
-First test using said sequence with 1 insertions:
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.5\textwidth]{Benchmarking/1ins.png}
+\includegraphics[width=0.5\textwidth]{Benchmarking/0miss.png}
+\caption{Running time of search through fasta files mentioned in figure~\ref{fig:size} looking for pattern TGCAAGCGTTAAT with no missmatches}
+\label{fig:0miss}
+\end{figure}
+
+First test was to see the runtime of each program, having no missmatches in the mentioned sequence RNA $TGCAAGCGTTAAT$, figure~\ref{fig:0miss} displays the results, and its clear to see that scan\_for\_matches is faster than both our implementation and TRE, and that all three programs have a decreased runtime as the data sizes lowers.
+
+\begin{figure}[h!]
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=0.8\textwidth]{Benchmarking/1ins.png}
 \caption{Running time of search through fasta files mentioned in figure~\ref{fig:size},  allowing one insertions on pattern TGCAAGCGTTAAT}
 \label{fig:ins1}
-\end{figure}
-
-From Figure~\ref{fig:ins1}, it's clear that given the 22 files, scan\_for\_matches runs faster than both our implementation, at roughly at half the time, and TRE which is about 5 times slower than scan\_for\_matches on this simple pattern.
-
-Next test uses the same sequence but with two insertions instead of one.
-\begin{figure}[h!]
+\end{minipage}
+\hspace{0.25cm}
+\begin{minipage}[b]{0.5\linewidth}
 \centering
-\includegraphics[width=0.5\textwidth]{Benchmarking/2ins.png}
+\includegraphics[width=0.8\textwidth]{Benchmarking/2ins.png}
 \caption{Running time of search through fasta files mentioned in figure~\ref{fig:size},  allowing two insertions on pattern TGCAAGCGTTAAT}
 \label{fig:ins2}
+\end{minipage}
 \end{figure}
 
-While scan\_for\_matches did increase its runtime slightly, the second insertion really affected our implementation, resulting in it running at about the same speed as TRE.  And while TRE also had its runtime slightly increased, it's almost unchanged from one insertion.
 
-Lastly there's three insertions:
+From figure~\ref{fig:ins1} its visible that there's an increase in the runtime for scan\_for\_matches when adding an insertion to its pattern, and while both our implementation and TRE also has an increased runtime, it's not to the same scale as scan\_for\_matches.
+
+Next test was to see the runtime of two insertions instead of one. Looking at figure~\ref{fig:ins2} scan\_for\_matches did increase its runtime slightly compared to figure~\ref{fig:ins1}, but the second insertion really affected our implementation, resulting in it running at about half the same speed of TRE.  And while TRE also had its runtime slightly increased, it's almost unchanged from one insertion.
+
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.5\textwidth]{Benchmarking/3ins.png}
 \caption{Running time of search through fasta files mentioned in figure~\ref{fig:size},  allowing three insertions on pattern TGCAAGCGTTAAT}
 \label{fig:ins3}
 \end{figure}
+Testing with three insertions, figure~\ref{fig:ins3} shows that once again our implementation had the worst increase in time compared to the two other options, almost reaching the same runtime as TRE.
 
-In Figure~\ref{fig:ins3} our implementation really pulls away from scan\_for\_matches and TRE, which remains almost unchanged, relative to our implementation, which more than doubles its runtime.
 
-
-From these three tests its clear to see that our implementation has a problem with increasing number of insertions, and as deletions and mutations are handled in a similar fashion we can conclude that our current implementation has a major flaw, should it be used with more advanced patterns. 
+From these three tests its clear to see that our implementation has a problem with increasing number of insertions. Increasing its runtime at a much higher rate than both scan\_for\_matches and TRE, from this we can conclude that our current implementation has a major flaw somewhere, should it be used with more advanced patterns. 
 \\
 ~
 
