@@ -4,7 +4,7 @@ Joerg and Morgan Price in C which searches through text files. Users specify
 what they want to search for by defining a pattern, and scan\_for\_matches 
 returns all matches that corresponds to the specified pattern. 
 \begin{mydef}\label{patex}
-Let $\Sigma$ denote an alphabet. Then we can define a pattern as follows:\\
+Let $\Sigma$ denote an alphabet. Then we can define a pattern unit as follows:\\
 \begin{tabular}{|r|l|}
 \hline
 {\tt h}&Match the sequence h, where $h\in\Sigma*$\\
@@ -13,20 +13,20 @@ Let $\Sigma$ denote an alphabet. Then we can define a pattern as follows:\\
 \hline
 {\tt x=n...m}&Match n to m characters, and call the sequence x\\
 \hline
-{\tt x $|$ y}&Match either x or y\\
+{\tt x $|$ y}&Match either pattern x or pattern y\\
 \hline
-{\tt x[n,m,l]}&Match x, allowing for n mismatches, m deletions and insertions where n,m,l $\geq$ 0\\
+{\tt x[n,m,l]}&\pbox{20cm}{Match pattern x, allowing for n mismatches, m deletions and insertions\\ where n,m,l $\geq$ 0}\\
 \hline
 {\tt length(x+y) $<$ n}&The length of patterns x+y$<$n where n $>$ 0\\
 \hline
-{\tt z=\{hl, lh\}}&\pbox{20cm}{Create a pattern rule where h is the complement of l, and l is the complement\\ of h,
-                               where $h\in\Sigma,~l\in\Sigma$, and call it z}\\
+{\tt z=\{uv, vu\}}&\pbox{20cm}{Create a pattern rule where u is the complement of v, and v is the\\ complement of u,
+                               where $u,~v\in\Sigma$, and call the rule z}\\
 \hline
 {\tt $<$x}&Match the reverse of pattern x\\
 \hline
-{\tt \textasciitilde x}&\pbox{20cm}{Match the reverse complement of pattern x using the G-C, \\C-G, A-T and T-A pairing rule}\\
+{\tt $\sim$x}&\pbox{20cm}{Match the reverse complement of pattern x using the G-C, \\C-G, A-T and T-A pairing rule}\\
 \hline
-{\tt z\textasciitilde x}&\pbox{20cm}{Match the reverse complement of pattern x using pattern rule z}\\
+{\tt z$\sim$x}&\pbox{20cm}{Match the reverse complement of pattern x using pattern rule z}\\
 \hline
 {\tt \textasciicircum ~x}&\pbox{20cm}{Match only pattern x if it is at the start of a string}\\
 \hline
@@ -36,19 +36,32 @@ Let $\Sigma$ denote an alphabet. Then we can define a pattern as follows:\\
 \end{mydef}
 
 \begin{mydef}\label{patc}
-Let {\tt E} be any pattern that's in the alphabet $\Sigma$ as defined in definition \ref{patex}. 
-Let 0 be the empty string.
-Let {\tt A} be a string that we are processing to see if the pattern is valid.
+Let $\Lambda$ be any pattern unit in definition~\ref{patex}. Let ${\tt E}\in\Lambda$.
+Let {\tt 0} be the empty string. Let A be a pattern that we are processing.
 A pattern may then be constructed as such: 
 \begin{align*}
-{\tt A} &{\tt = A'~A~|~0}\\
-{\tt A'} &{\tt= E}
+{\tt A~} &{\tt =~A'~A~|~0}\\
+{\tt A'~} &{\tt=~E}
 \end{align*}
 \end{mydef}
-Definition \ref{patc} states that a pattern may be any combination of the alphabet 
-defined in definition \ref{patex}.
-Using these patterns, it is possible to make very specific or very broad 
+Definition \ref{patc} states that a pattern may be any combination of the pattern 
+units defined in definition \ref{patex}.
+Using these pattern units, it is possible to make very specific or very broad 
 searches in a text file. 
+\begin{mydef}\label{patlint}
+The language interpretation of definition~\ref{patex} is defined as follows:
+\begin{align*}
+L(0)~&=~\{\epsilon\}\\
+L({\tt a})~&=~\{{\tt a}\}\\
+L({\tt n...n})~&=~\underbrace{L({\tt a})L({\tt a})...L({\tt a})}_\text{n}\\
+L({\tt n...m})~&=~L({\tt n...n})\cup L({\tt n+1...n+1})\cup...\cup L({\tt m-1...m-1})\cup L({\tt m...m})~=~\bigcup\limits_{n={\tt n}}^{\tt m} L(n...n)\\
+L({\tt E_1~E_2})~&=L({\tt E_1})~L({\tt E_2})\\
+L({\tt E_1~|~E_2})~&=~L({\tt E}_{\tt 1})~\cup~L({\tt E}_{\tt 2})\\
+L({\tt {\sim}E})~&=~{\sim}L({\tt E})\\
+L({\tt <E})~&=~<L({\tt E})\\
+L({\tt length(E}_{\tt 1}{\tt )+ E}_{\tt 2}{\tt })~&=~{\tt length(}L({\tt E}_{\tt 1}{\tt )+} L({\tt E}_{\tt 2}{\tt )})
+\end{align*}
+\end{mydef}
 
 \begin{myex}\label{stemex}
 Say we want to write a pattern that finds the sequence {\tt GUUC}, allowing 
