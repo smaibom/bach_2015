@@ -1,8 +1,17 @@
 \subsection{Matching using NFA}
+To match if a given string is accepted in an NFA, two functions $\epsilon-closure$ and $reachable$ of the simulation algorithm \ref{nfasim} is introduced.
 \begin{mydef}
-Given a set of NFA states M. The $\epsilon - closure$ of M, is a set of states that are reachable by following the $\epsilon$-transitions from 
+Given a set of NFA states M. The $\epsilon - closure$ of M, is a set of states that are reachable from states in M by following any number of $\epsilon$-transitions in $\Delta$.
 \begin{center}
-$\epsilon$-$closure(M)$ = M \cup \{q'|q\in \epsilon-closure(M) ~and ~(q,\epsilon,q') ~ \in ~ \Delta\}$
+$\epsilon$-$closure(M)$ =$ M \cup \{q'|q\in \epsilon-closure(M) ~and ~(q,\epsilon,q') ~ \in ~ \Delta\}$
+\end{center}
+\cite[p. 34, def 2.2]{compile}
+\end{mydef}
+
+\begin{mydef}
+Given a set of NFA states and a input symbol a. The $reachable$ of $M$, is a set of states that reachable from states in M by follwing transitions in $\Delta$ which matches the input symbol a 
+\begin{center}
+$reachable(M,a)$ = $ $
 \end{center}
 \end{mydef}
 \begin{algorithm}
@@ -19,6 +28,7 @@ $\epsilon$-$closure(M)$ = M \cup \{q'|q\in \epsilon-closure(M) ~and ~(q,\epsilon
         \EndIf
         \Let{$next$}{$\emptyset$}
         \Let{$states$}{$\epsilon$-closure($stateset$)}
+        \Let{$next$}{$reachable(states,symbol)$}
         \Let{$stateset$}{$next$}
       \EndFor
       \If{$q^a \in stateset$}
@@ -28,3 +38,11 @@ $\epsilon$-$closure(M)$ = M \cup \{q'|q\in \epsilon-closure(M) ~and ~(q,\epsilon
     \EndFunction
   \end{algorithmic}
 \end{algorithm}
+
+\begin{myex}
+Given the NFA $c(ab+a)^*b$ and a input string cabab. The simulation of the NFA is
+\begin{center}
+
+\end{center}
+
+\end{myex}
