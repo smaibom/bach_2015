@@ -1,19 +1,38 @@
 \subsection{Tagged NFA}
-Before introducing tagged NFA, we must define what a missmatch is. 
+The tagged NFA(TNFA) is introduced in \cite{Ville}. It introduces the concept of tagging NFA transitions, a TNFA adds a new transition table which contains $\epsilon$ transitions for the 3 different missmatch types.
 \begin{mydef}
-A missmatch $M$ in a string $n$ with a alphabet $\Sigma$ is one of 3 types, insertion, deletion and alteration. An insertion is where a symbol in $\Sigma$ is added to $n$. A deletion is where a symbol in $n$ is removed. A alteration is where a symbol in $n$ is changed with a symbol in $\Sigma$. 
+A missmatch $M$ is one of 3 types, insertion, deletion and alteration. Given a transition $(q,a,q') \in \Delta$ missmatches adds new $\epsilon$ transitions in the TNFA, where insertion is  defined as $(q,\epsilon,q)$, deletion and alterations is defined as $(q,\epsilon,q')$
 \end{mydef}
-NFA's do not handle missmatching in strings per default, to introduce this, a new set of transitions is added to the NFA. This type of NFA is called a Tagged NFA. 
 \begin{mydef}
 A tagged NFA is a 6 tuple $(Q,\Sigma,\Delta,q^s,q^a,\Delta')$ where the first 5 elements is a standard NFA and $\Delta'$ is a set of 4 tuples containing $\epsilon$ transitions for missmatches. The type of $\Delta'$ is $\Delta' \subseteq Q ~x~ \{\epsilon\} ~x~ Q ~x~ M$.  
 \end{mydef}
 
 \subsection{Constructing TNFA}
-TNFAs are constructed the same way as shown in tabel \ref{tab:NFA_TAB}, with the exception when constructing literals. A new set of $\epsilon$-transitions is added as shown in tabel \ref{tab:TNFA} as the new literal construction rule. The new transitions added in $\Delta'$ is shown as a red arrow which denotes a deletion transition, a green arrow for the insertion transition and a blue arrow for the alteration transition.
+TNFA adds a new literal construction literal rule. A new set of $\epsilon$-transitions is added as shown in tabel \ref{tab:TNFA} on the new literal construction rule. The new transitions added in $\Delta'$ is shown as a red arrow which denotes a deletion transition, a green arrow for the insertion transition and a blue arrow for the alteration transition.
+
+
+
 \begin{table}[h]\label{nfac}
 \caption{Translating table for literal construction of TNFA}
 \centering
 \begin{tabular}{*{2}{m{0.4\textwidth}}}
+\hline
+\begin{center}$0$\end{center} &\begin{center}
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=2 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial, state] (0) {};
+  \node [accepting,state, right of=0] (1) {};
+
+\end{tikzpicture}\end{center} \\
+\hline
+\begin{center}$1$\end{center} &\begin{center} 
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=2 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial, state] (0) {};
+  \node [accepting,state, right of=0] (1) {};
+
+  \path[->] (0) edge node [above] {$\epsilon$} (1);
+
+\end{tikzpicture} \\
+\end{center} \\
 \hline
 \begin{center}$a$\end{center} &\begin{center}
 \begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=2 cm, scale = 0.75, transform shape,initial text={}]
@@ -27,8 +46,75 @@ TNFAs are constructed the same way as shown in tabel \ref{tab:NFA_TAB}, with the
   \path[->] (0) edge [color=blue,bend right] node [color=black, below] {$\epsilon$} (1);
 \end{tikzpicture}\end{center}\\
 \hline
+\begin{center}$E^1E^2$\end{center} &\begin{center} 
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial, state] (0) {};
+  \node [right of= 0] (1) {$E^1$};
+  \node [state,right of= 1] (2) {};
+  \node [right of= 2] (3) {$E^2$};
+  \node [accepting, state,right of= 3] (4) {};
+
+  \path[-] (0) edge node {} (1);
+  \path[-] (2) edge node {} (3);
+
+  \path[->] (1) edge node {} (2);
+  \path[->] (3) edge node {} (4);
+
+\node [draw=red, fit= (0) (2),dashed] {};
+\node [draw=blue, fit= (2) (4),dashed,inner sep=0.25cm] {};
+  
+\end{tikzpicture}\end{center} \\
+\hline
+\begin{center}$E^1 + E^2$\end{center} &\begin{center} 
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial, state] (0) {};
+  \node [state,above right of=0,xshift=1cm] (1) {};
+  \node [state,below right of=0,xshift=1cm] (2) {};
+  \node [right of =1] (3) {$E^1$};
+  \node [right of=2] (4) {$E^2$};
+  \node [state, right of=3] (5) {};
+  \node [state, right of=4] (6) {};
+  \node [accepting,state,below right of=5,xshift=1cm] (7) {};
+
+  \path[-] (1)edge node {} (3);
+  \path[-] (2)edge node {} (4);
+
+  \path[->] (0) edge node {$\epsilon$} (1);
+  \path[->] (0) edge node[below] {$\epsilon$} (2);
+  \path[->] (3) edge node {} (5);
+  \path[->] (4) edge node {} (6);
+  \path[->] (5) edge node {$\epsilon$} (7);
+  \path[->] (6) edge node[below] {$\epsilon$} (7);
+
+
+\node [draw=red, fit= (1) (5),dashed] {};
+\node [draw=blue, fit= (2) (6),dashed] {};
+
+\end{tikzpicture} \end{center} \\
+\hline
+\begin{center}$E^*$\end{center} &\begin{center} 
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial, state] (0) {};
+  \node [accepting,state,right of=0,xshift=2cm] (1) {};
+  \node [state,above left of=0,xshift=-1cm,yshift=1cm] (2) {};
+  \node [state,above right of=0,xshift=1cm,yshift=1cm] (3) {};
+  \node [right of=2,xshift=0.60cm] (4) {$E$};
+
+  \path[->] (0) edge node {$\epsilon$} (1);
+  \path[->] (3) edge node {$\epsilon$} (0);
+  \path[->] (0) edge node {$\epsilon$} (2);
+  \path[->] (4) edge node {} (3);
+
+  \path[-] (2) edge node {} (4);
+
+\node [draw=red, fit= (2) (3),dashed] {};
+\end{tikzpicture}
+\end{center} \\
+\hline
 \end{tabular}
 \label{tab:TNFA}
 \end{table}
+
+
 
 
