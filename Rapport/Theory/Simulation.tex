@@ -11,7 +11,7 @@ $\epsilon$-$closure(M)$ =$ M \cup \{q'|q\in \epsilon-closure(M) ~and ~(q,\epsilo
 \begin{mydef}
 Given a set of NFA states and a input symbol a. The $reachable$ of $M$, is a set of states that reachable from states in M by follwing transitions in $\Delta$ which matches the input symbol a 
 \begin{center}
-$reachable(M,a)$ = $ $
+$reachable(M,a)$ = $\{q'|q \in M,(q,a,q')\in \Delta \}$
 \end{center}
 \end{mydef}
 \begin{algorithm}
@@ -19,7 +19,6 @@ $reachable(M,a)$ = $ $
     \label{nfasim}}
   \begin{algorithmic}[1]
     \Require{$N$ is a NFA and $x$ is a string}
-    \State
     \Function{Simulation}{$N(Q,\Sigma,\Delta,q^s,q^a), x$}
       \Let{$stateset$}{$\{q^s\}$} 
       \For{{\bf each} symbol {\bf in} $x$}
@@ -39,10 +38,72 @@ $reachable(M,a)$ = $ $
   \end{algorithmic}
 \end{algorithm}
 
-\begin{myex}
-Given the NFA $c(ab+a)^*b$ and a input string cabab. The simulation of the NFA is
+\begin{myex}\label{simsuc}
+Given the the RE  $E=c(ab+a)^*b$, the resulting NFA $N$ is seen in figure \ref{nfasimsucc}
+
+\begin{figure}[h!]
 \begin{center}
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial,state] (99) {0};
+  \node [state,right of= 99,xshift=2cm] (0) {1};
+  \node [accepting,state,right of=0,xshift=2cm] (1) {9};
+  \node [state,above left of=0,xshift=-2.5cm,yshift=2cm] (2) {2};
+  \node [state,above right of=0,xshift=5.5cm,yshift=2cm] (3) {8};
+  \node [state,below right of=2,xshift=1.25cm] (5) {6};
+  \node [state,above right of=2,xshift=1.25cm] (6) {3};
+  \node [state,right of=5,xshift=1.25cm] (7) {7};
+  \node [state,right of=6,xshift=1.25cm] (8) {4};
 
-\end{center}
+  \node [state,right of=8,xshift=1.25cm] (97) {5};
+  \path[->] (2) edge node {$\epsilon$} (5)
+          edge node {$\epsilon$} (6)
+        (5) edge node {{\tt a}} (7)
+        (6) edge node {{\tt a}} (8)
+        (7) edge node {$\epsilon$} (3)
+        (8) edge node {{\tt b}} (97)
+        (97) edge node {$\epsilon$} (3);
 
+  \path[->] (0) edge node {{\tt b}} (1);
+  \path[->] (3) edge node {$\epsilon$} (0);
+  \path[->] (0) edge node {$\epsilon$} (2);
+  \path[->] (99) edge node {{\tt c}} (0);
+  \end{tikzpicture}
+  \end{center}
+  \caption{Figure of the N.FA from the $E$ = {\tt c}({\tt ab}+{\tt a})$^*${\tt b}}
+  \label{nfasimsucc}
+\end{figure}
+We now want to see if the input string {\tt caaabb} is accepted into N. The initial stateset \{$q^s\}=\{0\}$ \\
+\begin{tabular}{l l l}
+Simulate(N,caaabb) & & \\
+symbol c: & $\epsilon-closure(\{0\})$ &$ = \{0\}$\\
+&$reachable(\{0\},c)$& = $\{1\}$\\
+symbol a: & $\epsilon-closure(\{1\})$& = $\{1,2,3,6\}$\\
+&$reachable(\{1,2,3,6\},a)$ & = $\{4,7\}$\\
+symbol a: & $\epsilon-closure(\{4,7\})$& = $\{1,2,3,4,6,7,8\}$\\
+&$reachable(\{1,2,3,4,6,7,8\},a)$ &= $\{4,7\}$\\
+symbol a: & $\epsilon-closure(\{4,7\})$& = $\{1,2,3,4,6,7,8\}$\\
+&$reachable(\{1,2,3,4,6,7,8\},a)$ &= $\{4,7\}$\\
+symbol b: & $\epsilon-closure(\{4,7\})$& = $\{1,2,3,4,6,7,8\}$\\
+&$reachable(\{1,2,3,4,6,7,8\},b)$ &= $\{5,9\}$\\
+symbol b: & $\epsilon-closure(\{5,9\})$& = $\{1,2,3,5,6,8,9\}$\\
+&$reachable(\{1,2,3,6,5,8,9\},b)$ &= $\{9\}$\\
+\end{tabular}\\
+After the final input symbol, it can be seen that the accepting state $q^a$ is in the final stateset. So the string caaabb is accepted in N.
+\end{myex}
+\begin{myex}
+Using the NFA N from example \ref{simsuc} where $q^s=\{0\}$. The simulation attempts to check if string {\tt cabbbb} is accepted in N.\\
+\begin{tabular}{l l l}
+Simulate(N,cabbbb) & & \\
+symbol c: & $\epsilon-closure(\{0\})$ &$ = \{0\}$\\
+&$reachable(\{0\},c)$& = $\{1\}$\\
+symbol a: & $\epsilon-closure(\{1\})$& = $\{1,2,3,6\}$\\
+&$reachable(\{1,2,3,6\},a)$ & = $\{4,7\}$\\
+symbol b: & $\epsilon-closure(\{4,7\})$& = $\{1,2,3,4,6,7,8\}$\\
+&$reachable(\{1,2,3,4,6,7,8\},b)$ &= $\{5,9\}$\\
+symbol b: & $\epsilon-closure(\{5,9\})$& = $\{1,2,3,5,6,8,9\}$\\
+&$reachable(\{1,2,3,6,5,8,9\},b)$ &= $\{9\}$\\
+symbol b: & $\epsilon-closure(\{9\})$& = $\{9\}$\\
+&$reachable(\{9\},b)$ &= $\emptyset$\\
+\end{tabular}\\
+The $\emptyset$ is reached at the 5'th input symbol of {\tt cabbbb}, resulting in the simulation to fail. 
 \end{myex}
