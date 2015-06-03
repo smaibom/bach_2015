@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2014.6.3)  2 JUN 2015 16:26
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2014.6.3)  3 JUN 2015 12:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1276,26 +1276,26 @@ l.5 $\epsilon$-$closure(M)$ = M \cup
 ? 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 10.
-) (./Theory/TNFA.tex) (./Preliminaries/Scan-For-Matches.tex [13]) [14] [15]
+) (./Theory/TNFA.tex) (./Preliminaries/Scan-For-Matches.tex [13] [14]) [15]
 (./Method/TRE.tex
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
 ) [16] (./Method/Implementation.tex
-<lib/gat.png, id=300, 907.39pt x 169.63374pt>
+<lib/gat.png, id=301, 907.39pt x 169.63374pt>
 File: lib/gat.png Graphic file (type png)
  <use lib/gat.png>
 Package pdftex.def Info: lib/gat.png used on input line 8.
 (pdftex.def)             Requested size: 219.08614pt x 40.95622pt.
 )
 (./Benchmarking/bench.tex
-<Benchmarking/size.png, id=305, 589.0005pt x 444.4605pt>
+<Benchmarking/size.png, id=306, 589.0005pt x 444.4605pt>
 File: Benchmarking/size.png Graphic file (type png)
 
 <use Benchmarking/size.png>
 Package pdftex.def Info: Benchmarking/size.png used on input line 8.
 (pdftex.def)             Requested size: 131.45302pt x 99.19225pt.
  [17 <./lib/gat.png> <./Benchmarking/size.png>]
-<Benchmarking/0miss.png, id=316, 589.0005pt x 444.4605pt>
+<Benchmarking/0miss.png, id=317, 589.0005pt x 444.4605pt>
 File: Benchmarking/0miss.png Graphic file (type png)
 
 <use Benchmarking/0miss.png>
@@ -1308,14 +1308,14 @@ g-ure []6[] dis-plays the re-sults, and its clear to see that scan[]for[]matche
 s
  []
 
-<Benchmarking/1ins.png, id=320, 589.0005pt x 444.4605pt>
+<Benchmarking/1ins.png, id=321, 589.0005pt x 444.4605pt>
 File: Benchmarking/1ins.png Graphic file (type png)
 
 <use Benchmarking/1ins.png>
 Package pdftex.def Info: Benchmarking/1ins.png used on input line 31.
 (pdftex.def)             Requested size: 175.26958pt x 132.26085pt.
 
-<Benchmarking/2ins.png, id=323, 589.0005pt x 444.4605pt>
+<Benchmarking/2ins.png, id=324, 589.0005pt x 444.4605pt>
 File: Benchmarking/2ins.png Graphic file (type png)
 
 <use Benchmarking/2ins.png>
@@ -1332,7 +1332,7 @@ Overfull \hbox (8.79694pt too wide) in paragraph at lines 47--48
 d of one. Look-ing at fig-ure []8[] scan[]for[]matches
  []
 
-<Benchmarking/3ins.png, id=329, 589.0005pt x 444.4605pt>
+<Benchmarking/3ins.png, id=330, 589.0005pt x 444.4605pt>
 File: Benchmarking/3ins.png Graphic file (type png)
 
 <use Benchmarking/3ins.png>
@@ -1410,10 +1410,10 @@ onts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
 pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on main.pdf (20 pages, 523033 bytes).
+Output written on main.pdf (20 pages, 524103 bytes).
 PDF statistics:
- 445 PDF objects out of 1000 (max. 8388607)
- 367 compressed objects within 4 object streams
+ 446 PDF objects out of 1000 (max. 8388607)
+ 368 compressed objects within 4 object streams
  86 named destinations out of 1000 (max. 500000)
  262 words of extra memory for PDF output out of 10000 (max. 10000000)
 

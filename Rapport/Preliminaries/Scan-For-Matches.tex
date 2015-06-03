@@ -44,14 +44,14 @@ A pattern may then be constructed as such:
 {\tt A'~} &{\tt=~E}
 \end{align*}
 \end{mydef}
-Definition \ref{patc} states that a pattern may be any combination of the pattern 
-units defined in definition \ref{patex}.
-Using these pattern units, it is possible to make very specific or very broad 
-searches in a text file. 
+Definition~\ref{patc} states that a pattern may be any combination of the pattern 
+units defined in definition~\ref{patex}.
 \begin{mydef}\label{patlint}
-The language interpretation of definition~\ref{patex} is defined as follows:
+Let $\Sigma$ be an alphabet. Let {\tt a$\in\Sigma$}. Let {\tt 0} be the empty 
+string.
+Then the language interpretation of definition~\ref{patex} is defined as follows:
 \begin{align*}
-L(0)~&=~\{\epsilon\}\\
+L({\tt 0})~&=~\emptyset\\
 L({\tt a})~&=~\{{\tt a}\}\\
 L({\tt n...n})~&=~\underbrace{L({\tt a})L({\tt a})...L({\tt a})}_\text{n}\\
 L({\tt n...m})~&=~L({\tt n...n})\cup L({\tt n+1...n+1})\cup...\cup L({\tt m-1...m-1})\cup L({\tt m...m})~=~\bigcup\limits_{n={\tt n}}^{\tt m} L(n...n)\\
@@ -59,10 +59,17 @@ L({\tt E_1~E_2})~&=L({\tt E_1})~L({\tt E_2})\\
 L({\tt E_1~|~E_2})~&=~L({\tt E}_{\tt 1})~\cup~L({\tt E}_{\tt 2})\\
 L({\tt {\sim}E})~&=~{\sim}L({\tt E})\\
 L({\tt <E})~&=~<L({\tt E})\\
-L({\tt length(E}_{\tt 1}{\tt )+ E}_{\tt 2}{\tt })~&=~{\tt length(}L({\tt E}_{\tt 1}{\tt )+} L({\tt E}_{\tt 2}{\tt )})
+L({\tt length(E_ 1 )+ E_2} )~&=~{\tt length(}L({\tt E_1}){\tt+} L({\tt E_2 )})\\
+L({\tt E_1{\sim}E_2}~&=~L({\tt E_1}){\sim}L({\tt E_2})\\
+L({\tt~\hat{}~E})~&=~\hat{} L({\tt E})\\
+L({\tt E~\$})~&=~L({\tt E})~\$
 \end{align*}
 \end{mydef}
-
+Definition~\ref{patlint} depicts the language interpretation of scan\_for\_matches.
+The language interpretation have some functionality that can't properly be 
+shown in a language interpretation, like the modifier $<$. This is because 
+a regular language does not support the reverse of a match. 
+\\Below are examples of scan\_for\_matches patterns.
 \begin{myex}\label{stemex}
 Say we want to write a pattern that finds the sequence {\tt GUUC}, allowing 
 one mismatch, followed by a random sequence which has a length between 3 and 5, 
