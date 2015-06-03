@@ -11,14 +11,14 @@ solution would lie in matching
 An implementation based on TRE would address two of the three previously mentioned 
 problems. Item~\ref{err} would require approximate matching support, and 
 TRE fully supports approximate matching. Item~\ref{backr} could be resolved 
-with backreferences (even if backreferences are computationally inefficient) 
+with backreferences (even if backreferences are computationally inefficient and not regular) 
 and TRE also supports this. Item~\ref{rev} means that sometimes we want to 
 match a modification of a pattern found previously - like the reverse 
 complement of a pattern. This would have to be implemented in TRE's parser 
 (to denote a symbol for the modified patterns, e.g. the reverse or the 
 complement of a pattern) as 
 well as in TRE's basic functionality.\\
-When analysing TRE to see how it worked so we could start modifying the 
+When analyzing TRE so we could start modifying the 
 program, we discovered that TRE would define every newline as a delimiter. The 
 delimiter specifies how the data should be broken up, so for every new line 
 the current line would be loaded into the buffer and be processed. This in 
@@ -34,17 +34,17 @@ another feature of TRE which would not work for our project; TRE would only
 match one match per delimiter - the earliest, best-matching match (where a 
 best-matching match is a match with the least amount of errors). Since we had 
 to trim the text files for TRE so there were no newlines, TRE would only 
-return one match. TRE was built around this feature, which has lead to the following 
+return one match. TRE was built around this feature, which led to the following 
 design choices;
 \begin{itemize}
-\item the program runs through the data once to deetermine how many errors the 
+\item the program runs through the data once to determine how many errors the 
 best-matching match has, and then runs through the text file again, stopping 
 when the best-matching match has been found, 
-\item TRE ignores any matches that are not best-matching, meaning there's 
+\item TRE ignores any matches that are not best-matching, meaning there is 
 no way for TRE to identify and output acceptable matches.
 \end{itemize}
-This coupled with little documentation of how the code works meant that it would 
-take a long time to properly analyse TRE in order to find out how we could 
+This coupled with little documentation of how the code worked meant that it would 
+take a long time to properly analyze TRE in order to find out how we could 
 modify it to suit our project. At this point we decided that creating our 
 own solution would be less time-consuming, while also allowing us to design our 
 solution ourselves.

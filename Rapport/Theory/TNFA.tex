@@ -1,4 +1,5 @@
 \subsection{Tagged NFA}
+\label{sec:tnfa}
 The tagged NFA(TNFA) is introduced in \cite{Ville}. It introduces the concept of tagging NFA transitions, a TNFA adds a new transition table which contains $\epsilon$ transitions for the 3 different missmatch types.
 \begin{mydef}
 A missmatch $M$ is one of 3 types, insertion, deletion and alteration. Given a transition $(q,a,q') \in \Delta$ missmatches adds new $\epsilon$ transitions in the TNFA, where insertion is  defined as $(q,\epsilon,q)$, deletion and alterations is defined as $(q,\epsilon,q')$

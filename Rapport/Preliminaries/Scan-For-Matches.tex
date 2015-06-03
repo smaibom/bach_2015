@@ -1,6 +1,6 @@
 \section{Scan\_For\_Matches}\label{scanformatches}
-Scan\_for\_matches is a string-searching tool created by Ross Overbeek, David 
-Joerg and Morgan Price in C which searches through text files. Users specify 
+Scan\_for\_matches is a pattern-matching tool created by Ross Overbeek, David 
+Joerg and Morgan Price in C which searches through data files. Users specify 
 what they want to search for by defining a pattern, and scan\_for\_matches 
 returns all matches that corresponds to the specified pattern. 
 \begin{mydef}\label{patex}
@@ -15,7 +15,7 @@ Let $\Sigma$ denote an alphabet. Then we can define a pattern unit as follows:\\
 \hline
 {\tt x $|$ y}&Match either pattern x or pattern y\\
 \hline
-{\tt x[n,m,l]}&\pbox{20cm}{Match pattern x, allowing for n mismatches, m deletions and insertions\\ where n,m,l $\geq$ 0}\\
+{\tt x[n,m,l]}&\pbox{20cm}{Match pattern x, allowing for n mismatches, m deletions and l insertions\\ where n,m,l $\geq$ 0}\\
 \hline
 {\tt length(x+y) $<$ n}&The length of patterns x+y$<$n where n $>$ 0\\
 \hline
@@ -37,11 +37,11 @@ Let $\Sigma$ denote an alphabet. Then we can define a pattern unit as follows:\\
 
 \begin{mydef}\label{patc}
 Let $\Lambda$ be any pattern unit in definition~\ref{patex}. Let ${\tt E}\in\Lambda$.
-Let {\tt 0} be the empty string. Let A be a pattern that we are processing.
+Let {\tt 0} be the empty string. Let $P$ be a pattern that we are processing.
 A pattern may then be constructed as such: 
 \begin{align*}
-{\tt A~} &{\tt =~A'~A~|~0}\\
-{\tt A'~} &{\tt=~E}
+{\tt P~} &{\tt =~P'~P~|~0}\\
+{\tt P'~} &{\tt=~E}
 \end{align*}
 \end{mydef}
 Definition~\ref{patc} states that a pattern may be any combination of the pattern 
@@ -66,10 +66,10 @@ L({\tt E~\$})~&=~L({\tt E})~\$
 \end{align*}
 \end{mydef}
 Definition~\ref{patlint} depicts the language interpretation of scan\_for\_matches.
-The language interpretation have some functionality that can't properly be 
+The definition have some functionality that can not properly be 
 shown in a language interpretation, like the modifier $<$. This is because 
 a regular language does not support the reverse of a match. 
-\\Below are examples of scan\_for\_matches patterns.
+\\Below is an example of a scan\_for\_matches pattern.
 \begin{myex}\label{stemex}
 Say we want to write a pattern that finds the sequence {\tt GUUC}, allowing 
 one mismatch, followed by a random sequence which has a length between 3 and 5, 
@@ -78,8 +78,8 @@ then write this as \begin{center}
 {\tt p1=GUUC[1,0,0] 3...5 \textasciitilde p1}
 \end{center}
 \end{myex}
-Example \ref{stemex} will match a stem loop as described in section 
+Example \ref{stemex} matches a stem loop as described in section 
 \ref{structs}. Note that if we wanted to find all stem loops in a file where 
 the bonded bases are of length 
-4, we would replace {\tt GUUC[1,0,0]} with an arbitrary sequence of characters 
-by writing {\tt p1=4..4 3..5 \textasciitilde p1}. 
+4, we would replace {\tt GUUC[1,0,0]} with an arbitrary sequence of characters of length $4$ 
+by writing {\tt p1=4..4 3..5 \textasciitilde p1}.

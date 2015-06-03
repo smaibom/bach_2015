@@ -1,13 +1,11 @@
-\newpage
 \section{Nondeterministic Finite Automaton}
 \begin{mydef}
-An nondeterministic finite automaton (NFA) is a 5-tuple $(Q,\Sigma,\Delta,q^s ,q^a)$. Where $Q$ is a finite set of states,$\Sigma$ is the input alphabet, the initial state $q^s \in Q$,  the accepting state $q^a \in Q$ and $\Delta$ that is a set of 3 tuples containing all the transitions in Q, with the type of $\Delta \subseteq Q $ x $ (\Sigma \cup \{\epsilon\}) $ x $ Q$. 
+An nondeterministic finite automaton (NFA) is a 5-tuple $(Q,\Sigma,\Delta,q^s ,q^a)$, where $Q$ is a finite set of states, $\Sigma$ is the input alphabet, the initial state $q^s \in Q$,  the accepting state $q^a \in Q$ and $\Delta$ that is a set of 3 tuples containing all the transitions in Q, with the type of\\ $\Delta \subseteq Q $ x $ (\Sigma \cup \{\epsilon\}) $ x $ Q$. 
 \end{mydef}
-
 
 \subsection{Conversion from RE to NFA}
 \label{RA_TO_NFA}
-Each expression can be converted to an NFA, and vice versa. Table~\ref{tab:NFA_TAB} shows how each RE can be converted into a NFA. The states in $Q$ is represented as circles. The initial state $q^s$ is shown by adding a small arrow pointing to it, and the accepting state $q^a$ is shown as a double circle. Transitions in $\Delta$ is represented as  $(q,a,q')\in \Delta$ or $(q,\epsilon ,q')\in\Delta$, we write these transitions as $q \xrightarrow{a} q'$ or $q \xrightarrow{\epsilon} q'$. For subexpressions we use boxes and split the transition arrow, marking it with an $E$, to denote the NFA resulted from converting the expression. 
+Each expression can be converted to an NFA, and vice versa. Table~\ref{tab:NFA_TAB} shows how each RE can be converted into an NFA. The states in $Q$ are represented as circles. The initial state $q^s$ is shown by adding a small arrow pointing to it, and the accepting state $q^a$ is shown as a double circle. Transitions in $\Delta$ are represented as  $(q,a,q')\in \Delta$ or $(q,\epsilon ,q')\in\Delta$, we write these transitions as $q \xrightarrow{a} q'$ or $q \xrightarrow{\epsilon} q'$. For subexpressions we use boxes and split the transition arrow, marking it with an $E$, to denote the NFA resulted from converting the expression. 
 %\\
 %(( NOTE: We'll include a table with conversions ))
 %\\
@@ -113,9 +111,8 @@ Each expression can be converted to an NFA, and vice versa. Table~\ref{tab:NFA_T
 \label{tab:NFA_TAB}
 \end{table}
 
-
 \begin{myex}
-In example \ref{reinter}, the expression $c(a+b)^*$ is used. The NFA buildup is done like the language interpetation in the example. We first construct the $E_1E_2$ expression, where $E_1 = c$ and $E_2 = (a+b)^*$.
+In example \ref{reinter}, the expression $c(a+b)^*$ was used. The NFA buildup is done like the language interpretation in the example. We first construct the $E_1E_2$ expression, where $E_1 = c$ and $E_2 = (a+b)^*$.
 
 \begin{center} 
 \begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
@@ -187,6 +184,3 @@ The last part is constructing $E_3$, we skip ahead and construct the literals {\
 
 
 \end{myex}
-
-\newpage
-
