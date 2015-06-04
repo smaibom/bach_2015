@@ -126,9 +126,9 @@ The States is given insertions, mutations and deletions allowed when searching t
 int main(int argc, char* argv[]){
     std::shared_ptr<States> states = std::make_shared<States>();
 
-    states->insertions = 3;
-    states->deletions = 0;
-    states->mutations = 0;
+    states->insertions = 1;
+    states->deletions = 1;
+    states->mutations = 1;
     
     bool showgraph = false;
     bool showhits = false;
@@ -235,7 +235,7 @@ int main(int argc, char* argv[]){
     /* Reads file from last argument in argv */
     std::ifstream is (argv[argc-1], std::ifstream::binary);
     if (is) {
-        read_chunk = 1024*10000;
+        read_chunk = 1024*250000;
 
         // get length of file:
         is.seekg (0, is.end);
