@@ -1,11 +1,12 @@
 \section{Nondeterministic Finite Automaton}
+A nondeterministic finite automaton(NFA) can be used to determine if a input string is matches a particular set of strings.
 \begin{mydef}
 An nondeterministic finite automaton (NFA) is a 5-tuple $(Q,\Sigma,\Delta,q^s ,q^a)$, where $Q$ is a finite set of states, $\Sigma$ is the input alphabet, the initial state $q^s \in Q$,  the accepting state $q^a \in Q$ and $\Delta$ that is a set of 3 tuples containing all the transitions in Q, with the type of\\ $\Delta \subseteq Q $ x $ (\Sigma \cup \{\epsilon\}) $ x $ Q$. 
 \end{mydef}
 
 \subsection{Conversion from RE to NFA}
 \label{RA_TO_NFA}
-Each expression can be converted to an NFA, and vice versa. Table~\ref{tab:NFA_TAB} shows how each RE can be converted into an NFA. The states in $Q$ are represented as circles. The initial state $q^s$ is shown by adding a small arrow pointing to it, and the accepting state $q^a$ is shown as a double circle. Transitions in $\Delta$ are represented as  $(q,a,q')\in \Delta$ or $(q,\epsilon ,q')\in\Delta$, we write these transitions as $q \xrightarrow{a} q'$ or $q \xrightarrow{\epsilon} q'$. For subexpressions we use boxes and split the transition arrow, marking it with an $E$, to denote the NFA resulted from converting the expression. 
+Eeach RE can be converted to an NFA, and vice versa. Table~\ref{tab:NFA_TAB} shows how each RE can be converted into an NFA. The states in $Q$ are represented as circles. The initial state $q^s$ is shown by adding a small arrow pointing to it, and the accepting state $q^a$ is shown as a double circle. Transitions in $\Delta$ are represented as  $(q,a,q')\in \Delta$ or $(q,\epsilon ,q')\in\Delta$, we write these transitions as $q \xrightarrow{a} q'$ or $q \xrightarrow{\epsilon} q'$. For subexpressions we use boxes and split the transition arrow, marking it with an $E$, to denote the NFA resulted from converting the expression. 
 %\\
 %(( NOTE: We'll include a table with conversions ))
 %\\

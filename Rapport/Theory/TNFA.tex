@@ -1,8 +1,8 @@
 \subsection{Tagged NFA}
 \label{sec:tnfa}
-The tagged NFA(TNFA) is introduced in \cite{Ville}. It introduces the concept of tagging NFA transitions, a TNFA adds a new transition table which contains $\epsilon$ transitions for the 3 different missmatch types.
+The tagged NFA(TNFA) is introduced in \cite{Ville}. It introduces the concept of tagging NFA transitions. A TNFA adds a new transition table which contains $\epsilon$ transitions for the 3 different missmatch types.
 \begin{mydef}
-A missmatch $M$ is one of 3 types, insertion, deletion and alteration. Given a transition $(q,a,q') \in \Delta$ missmatches adds new $\epsilon$ transitions in the TNFA, where insertion is  defined as $(q,\epsilon,q)$, deletion and alterations is defined as $(q,\epsilon,q')$
+A mismatch $M$ is one of 3 types, insertion, deletion and alteration. Given a transition $(q,a,q') \in \Delta$ missmatches adds new $\epsilon$ transitions in the TNFA, where insertion is  defined as $(q,\epsilon,q)$, deletion and alterations is defined as $(q,\epsilon,q')$
 \end{mydef}
 \begin{mydef}
 A tagged NFA is a 6 tuple $(Q,\Sigma,\Delta,q^s,q^a,\Delta')$ where the first 5 elements is a standard NFA and $\Delta'$ is a set of 4 tuples containing $\epsilon$ transitions for missmatches. The type of $\Delta'$ is $\Delta' \subseteq Q ~x~ \{\epsilon\} ~x~ Q ~x~ M$.  

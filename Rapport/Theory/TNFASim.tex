@@ -1,11 +1,11 @@
 
 \subsection{Simulating TNFA}
-TNFA simulation adds an additional argument for amount of missmatches allowed. The stateset is a 4 tuple of $(Q,i,d,a)$ where i,d and a is a count of how many of each transition has been used. $\epsilon-closure$ and $reachable$ transfers this count over to each of the states reached in these functions.
+TNFA simulation adds an additional argument for amount of mismatches allowed. The stateset is a 4 tuple of $(Q,i,d,a)$ where i,d and a is a count of how many of each transition has been used. $\epsilon-closure$ and $reachable$ transfers this count over to each of the states reached in these functions.
 \begin{algorithm}[h!]
   \caption{TNFA simulation
     \label{nfasim}}
   \begin{algorithmic}[1]
-    \Require{$N$ is a TNFA and $x$ is a string,M is a 3-tuple of missmatches allowed}
+    \Require{$N$ is a TNFA and $x$ is a string,M is a 3-tuple of mismatches allowed}
     \Function{Simulation}{$N(Q,\Sigma,\Delta,q^s,q^a,\Delta'), x,M$}
       \Let{$stateset$}{$\{q^s\}$} 
       \For{{\bf each} symbol {\bf in} $x$}
@@ -15,7 +15,7 @@ TNFA simulation adds an additional argument for amount of missmatches allowed. T
         \Let{$next$}{$\emptyset$}
         \Let{$states$}{$\epsilon$-closure($stateset$)}
         \Let{$next$}{$reachable(states,symbol)$}
-        \If{$next = \emptyset$} \Comment{Missmatch}
+        \If{$next = \emptyset$} \Comment{Mismatch}
         	\Let{$next$}{$TNFA-trans(\Delta',states,M)$}
         \EndIf
         \Let{$stateset$}{$next$}
@@ -32,7 +32,7 @@ TNFA simulation adds an additional argument for amount of missmatches allowed. T
   \caption{
     \label{nfasim}}
   \begin{algorithmic}[1]
-    \Require{$\Delta'$ is a tagged transition table, states is a set of 4 tuples with a state q and missmatches occured, M is a 3-tuple of missmatches allowed}
+    \Require{$\Delta'$ is a tagged transition table, states is a set of 4 tuples with a state q and mismatches occured, M is a 3-tuple of mismatches allowed}
     \Function{TNFA-trans}{$\Delta',states,M(ins,del,alt)$}
       \Let{$stateset$}{$\emptyset$} 
       \For{{\bf each} state(s,i,d,a) {\bf in} $states$}

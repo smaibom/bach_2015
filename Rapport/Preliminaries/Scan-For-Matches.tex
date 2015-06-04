@@ -1,6 +1,6 @@
 \section{Scan\_For\_Matches}\label{scanformatches}
 Scan\_for\_matches is a pattern-matching tool created by Ross Overbeek, David 
-Joerg and Morgan Price in C which searches through data files. Users specify 
+Joerg and Morgan Price in C which searches through data files\footnote{http://blog.theseed.org/servers/2010/07/scan-for-matches.html}. Users specify 
 what they want to search for by defining a pattern, and scan\_for\_matches 
 returns all matches that corresponds to the specified pattern. 
 \begin{mydef}\label{patex}
@@ -9,9 +9,9 @@ Let $\Sigma$ denote an alphabet. Then we can define a pattern unit as follows:\\
 \hline
 {\tt h}&Match the sequence h, where $h\in\Sigma*$\\
 \hline
-{\tt n...m}&Match n to m characters where n $\leq$ m\\
+{\tt n...m}&Match n to m characters where 0 $\leq$ n $\leq$ m\\
 \hline
-{\tt x=n...m}&Match n to m characters, and call the sequence x\\
+{\tt x=n...m}&Match n to m characters, and label the sequence x\\
 \hline
 {\tt x $|$ y}&Match either pattern x or pattern y\\
 \hline
@@ -26,7 +26,7 @@ Let $\Sigma$ denote an alphabet. Then we can define a pattern unit as follows:\\
 \hline
 {\tt $\sim$x}&\pbox{20cm}{Match the reverse complement of pattern x using the G-C, \\C-G, A-T and T-A pairing rule}\\
 \hline
-{\tt z$\sim$x}&\pbox{20cm}{Match the reverse complement of pattern x using pattern rule z}\\
+{\tt z$\sim$x}&\pbox{20cm}{Match the reverse complement of pattern x using pattern rule z=\{uv,vu\}}\\
 \hline
 {\tt \textasciicircum ~x}&\pbox{20cm}{Match only pattern x if it is at the start of a string}\\
 \hline

@@ -1,20 +1,17 @@
 \section{State-of-the-Art}
-This section details the current tools readily available that closest match 
-what our project aims to do, as well as to see if there are any existing tools 
-we can use for our project. For this we will talk about RE2/J, Google's regular 
+The current tools readily available that provides scan\_for\_matches like functionality are RE2/J, Google's regular 
 expression library because of how it handles alternations as well as its 
 linear running time, and TRE, which allows errors in its results, can 
 simulate backtracking, and supports backreferencing.
  \subsection{RE2/J} %Google's RE engine
- RE2/J is Google's regular expression library written for java. It does not support 
+ RE2/J is Google's regular expression library written for Java. It does not support 
  backtracking or backreferencing since neither can be implemented 
- efficiently. Since RE2/J doesn't support matching with 
- errors or backreferencing, it would be unable to properly reproduce 
+ efficient. Due to RE2/J's restrictions and the lack of support for matching with errors, it would be unable to properly reproduce 
  scan\_for\_matches' functionality. The project can be found on its github 
  page\footnote{\url{https://github.com/google/re2j}}.
  \subsection{TRE} %Got both backtracking and backreferencing
- TRE was created by Ville Laurikari for his master's thesis in 2001, and 
+ TRE was created by Ville Laurikari for his master's thesis in 2001\cite{LaurikariComplex}, and 
  is a regular expression engine which can simulate backtracking and supports 
  backreferencing and matching with errors. Because of this, TRE is the best 
  candidate for modification in order to simulate scan\_for\_matches functionality. 
- We expand on this in section~\ref{tre}.
+ We expand on this in Section~\ref{tre}.

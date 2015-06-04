@@ -10,9 +10,9 @@ For this a virtual machine is created, using Oracle VirtualBox\footnote{virtualb
 \label{fig:size}
 \end{wrapfigure}
 
-For the benchmarking some data was required. Figure~\ref{fig:size} shows a series of fasta files, and these files include nucleotide sequences, which all differ in size, decreasing from chr1 to chr22. These fasta files are the  kind of data which scan\_for\_matches is expected to run, and thus excellent for benchmark testing. It is worth noting however, that each of these files' lines are 50 characters long, and as TRE matches through lines separately, and longer or shorter line sizes might affect the performance of TRE. This was not tested however.
+For the testing data the human genome chromosome sequences is used. Figure~\ref{fig:size} shows a series of fasta files, and these files include nucleotide sequences, which all differ in size, decreasing from chr1 to chr22\footnote{http://hgdownload.cse.ucsc.edu/goldenPath/hg18/chromosomes/ JUNE 2015}. These fasta files are the kind of data which scan\_for\_matches is expected to run, and thus excellent for benchmark testing. It is worth noting however, that each of these files' lines are 50 characters long, and as TRE matches through lines separately, and longer or shorter line sizes might affect the performance of TRE in running time and hits.% This was not tested however.
 
-For testing, a suitable pattern is required. As our implementation has primarily been focused on supporting insertion, deletion and mutation on a sequence, a simple RNA sequence $TGCAAGCGTTAAT$ with variable insertions is chosen as the search pattern.
+As our implementation has primarily been focused on supporting insertion, deletion and mutation on a sequence, a simple DNA sequence $TGCAAGCGTTAAT$ with variable insertions is chosen as the search pattern.
 
 Each test would be executed on each of the mentioned fasta files a total of 10 times, given an average runtime which was used in the following results.
 
@@ -23,7 +23,7 @@ Each test would be executed on each of the mentioned fasta files a total of 10 t
 \label{fig:0miss}
 \end{figure}
 
-First test was to see the runtime of each program, having no mismatches in the mentioned sequence $TGCAAGCGTTAAT$. Figure~\ref{fig:0miss} displays the results, and it is clear to see that scan\_for\_matches is faster than both our implementation and TRE, and that all three programs have a decreased runtime as the data sizes lowers.
+First test was to see the runtime of each program, having no mismatches in the mentioned pattern $TGCAAGCGTTAAT$. Figure~\ref{fig:0miss} displays the results, and it is clear to see that scan\_for\_matches is faster than both our implementation and TRE, and that the running time of all three programs decrease as the data size decline.
 
 \begin{figure}[h!]
 \begin{minipage}[b]{0.5\linewidth}
@@ -42,9 +42,9 @@ First test was to see the runtime of each program, having no mismatches in the m
 \end{figure}
 
 
-From figure~\ref{fig:ins1} it is clear that there is an increase in the runtime for our implementation when adding an insertion to its pattern, and while both our scan\_for\_matches and TRE also has an increased runtime, it is not to the same scale as our implementation.
+From Figure~\ref{fig:ins1} it is evident that there is an increase in the runtime for our implementation when adding an insertion to its pattern, and while both our scan\_for\_matches and TRE also has an increased runtime, it is not to the same scale as our implementation.
 
-Next test was to see the runtime of two insertions instead of one. Looking at figure~\ref{fig:ins2}, scan\_for\_matches did increase its runtime slightly compared to figure~\ref{fig:ins1}, but the second insertion greatly affected our implementation, resulting in it running at about half the speed of TRE.  And while TRE also had its runtime slightly increased, it's almost unchanged from one insertion.
+The next test was to see the runtime of two insertions instead of one. Looking at figure~\ref{fig:ins2}, scan\_for\_matches did increase its runtime slightly compared to figure~\ref{fig:ins1}, but the second insertion greatly affected our implementation, resulting in it running at about half the speed of TRE.  And while TRE also had its runtime slightly increased, it's almost unchanged from one insertion.
 
 \begin{figure}[h!]
 \centering
@@ -52,7 +52,7 @@ Next test was to see the runtime of two insertions instead of one. Looking at fi
 \caption{Running time of search through fasta files mentioned in figure~\ref{fig:size},  allowing three insertions on pattern TGCAAGCGTTAAT}
 \label{fig:ins3}
 \end{figure}
-Testing with three insertions, figure~\ref{fig:ins3} shows that once again our implementation had the worst increase in time compared to the two other options, almost reaching the same runtime as TRE.
+Testing with three insertions, Figure~\ref{fig:ins3} shows that once again our implementation had the worst increase in time compared to the two other options, almost reaching the same runtime as TRE.
 
 
 From these three tests its clear to see that our implementation has a problem with increasing number of insertions, increasing its runtime at a much higher rate than both scan\_for\_matches and TRE. From this we can conclude that our current implementation has a major flaw somewhere, should it be used with more advanced patterns. 
@@ -74,5 +74,5 @@ scan\_for\_matches & 5 & 43  & 192 \\
 \label{tab:hits}
 \end{table}
 
-The primary reason that our implementation gets more results than scan\_for\_matches is that our implementation finds every single match in the file, including overlapping matches, while scan\_for\_matches, by default, only finds matches which does not overlap. TRE has the major disadvantage here that it doesn't match across newlines, causing it to miss a lot of matches.
+The primary reason that our implementation gets more results than scan\_for\_matches is that our implementation finds every single match in the file, including overlapping matches, while scan\_for\_matches, by default, only finds matches which do not overlap. TRE has the major disadvantage here that it doesn't match across newlines, causing it to miss a lot of matches.
 
