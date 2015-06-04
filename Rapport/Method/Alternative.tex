@@ -21,6 +21,11 @@ After~Deletion:~$12615*(30-2) = 353220$
 
 As shown in example \ref{altreg}, the amount of patterns formed from using regular expressions could be too large for a regular expression matcher to find in a reasonable time. 
 
-\subsection{Preprocessing data}
-Preprocessing data gives certain advantages, as it allows for faster lookups into the string that is being searched on. With a structure like suffix trees\footnote{\url{http://en.wikipedia.org/wiki/Suffix_tree}}, to store the location of all the substrings. It would be possible to do lookups in constant time given the correct choice of data structures. This would allow using the large regular expressions with mismatches to be run in a reasonable time.
-The disadvantage of preprocessing data, is the time it takes to construct an indexed structure of the string, and it may produce a tree larger than the original string, which could be an issue in some of the larger data files which are several GB in size. If the file have to be reused many times, it may be justified to create one. 
+\section{Summary \& Future Work}
+We presented an alternative type of NFA in Section \ref{section_TNFA}.
+The alternation allowed for insertions, deletions and mutations when matching a pattern.
+A runtime analysis showed that the new NFA type caused an increase in states which would grow as the errors were increased.
+Future work would consist of preventing said growth, by making sure states which does repeated work are handled as a single state. 
+Further work would extent on the TNFA to support more SFM features, and backreferenceing. 
+
+Further more a research into preproccesing using suffix trees\footnote{\url{http://en.wikipedia.org/wiki/Suffix_tree}} could allow posible decrease in runtime.
