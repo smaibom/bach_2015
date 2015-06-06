@@ -14,7 +14,6 @@
 #include "States.h"
 #include "Pretty.h"
 #include <fstream>
-#include <pthread.h>
 #include <memory>
 
 /**** Helper functions for creating NFA *****/
@@ -126,8 +125,8 @@ The States is given insertions, mutations and deletions allowed when searching t
 int main(int argc, char* argv[]){
     std::shared_ptr<States> states = std::make_shared<States>();
 
-    states->insertions = 1;
-    states->deletions = 1;
+    states->insertions = 2;
+    states->deletions = 2;
     states->mutations = 1;
     
     bool showgraph = false;

@@ -1,0 +1,26 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Problem Analysis}{}% 2
+\BOOKMARK [1][-]{section.3}{State-of-the-Art}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{RE2}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{TRE}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Python's Regex Library}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{NR-grep}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{Deoxyribonucleic and Ribonucleic Acids}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{DNA}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{RNA}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.3}{Secondary Structure}{section.4}% 11
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Interior Loop}{subsection.4.3}% 12
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Stem Loop}{subsection.4.3}% 13
+\BOOKMARK [1][-]{section.5}{Regular expressions}{}% 14
+\BOOKMARK [1][-]{section.6}{Nondeterministic Finite Automaton}{}% 15
+\BOOKMARK [2][-]{subsection.6.1}{Matching using NFA}{section.6}% 16
+\BOOKMARK [2][-]{subsection.6.2}{Tagged NFA}{section.6}% 17
+\BOOKMARK [2][-]{subsection.6.3}{Constructing TNFA}{section.6}% 18
+\BOOKMARK [2][-]{subsection.6.4}{Simulating TNFA}{section.6}% 19
+\BOOKMARK [1][-]{section.7}{Scan\137For\137Matches}{}% 20
+\BOOKMARK [1][-]{section.8}{TRE}{}% 21
+\BOOKMARK [1][-]{section.9}{Our Implementation}{}% 22
+\BOOKMARK [1][-]{section.10}{Experimental Results \046 Tests}{}% 23
+\BOOKMARK [1][-]{section.11}{Alternative soloutions}{}% 24
+\BOOKMARK [2][-]{subsection.11.1}{Forming patterns using Regular expressions}{section.11}% 25
+\BOOKMARK [1][-]{section.12}{Summary \046 Future Work}{}% 26
