@@ -83,7 +83,7 @@ Another interesting thing to test for was the number of hits when searching the 
 \begin{tabular}{ l | c c r }
 & 1 insertion & 2 insertions & 3 insertions\\
 \hline
-Our implementation& 5 &  47 & 235 \\
+Our implementation& 5 &  48 & 235 \\
 TRE& 1 & 19 & 76 \\
 scan\_for\_matches & 5 & 43  & 192 \\
 Python & 5 & 48 & 235
@@ -92,4 +92,4 @@ Python & 5 & 48 & 235
 \label{tab:hits}
 \end{table}
 
-The primary reason that our implementation gets more results than scan\_for\_matches is that our implementation finds every single match in the file, including overlapping matches, while scan\_for\_matches, by default, only finds matches which do not overlap. TRE has the major disadvantage here that it does not match across newlines, causing it to miss a lot of matches. Finally Python has the same amount of matches as our implementation, but somehow managed to find one more with 2 insertions.
+The primary reason that our implementation gets more results than scan\_for\_matches is that our implementation finds every single match in the file, including overlapping matches, while scan\_for\_matches, by default, only finds matches which do not overlap. TRE has the major disadvantage here that it does not match across newlines, causing it to miss a lot of matches. Finally Python has the same amount of matches as our implementation.
