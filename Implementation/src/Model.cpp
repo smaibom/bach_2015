@@ -155,9 +155,9 @@ int main(int argc, char* argv[]){
         optind++;
     }
 
-    states->insertions = atoi(argv[argc-2];
-    states->deletions = atoi(argv[argc-3];
-    states->mutations = atoi(argv[argc-4];
+    states->insertions = atoi(argv[argc-2]);
+    states->deletions = atoi(argv[argc-3]);
+    states->mutations = atoi(argv[argc-4]);
 
 	if(states->insertions > 9 or states->deletions > 9 or states->mutations > 9)
 	{
