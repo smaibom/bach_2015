@@ -1,12 +1,9 @@
-\section{Nondeterministic Finite Automaton}
+\section{Nondeterministic Finite Automaton}\label{RA_TO_NFA}
 A nondeterministic finite automaton(NFA) can be used to determine if a input string is matches a particular set of strings.
 \begin{mydef}
-An nondeterministic finite automaton (NFA) is a 5-tuple $(Q,\Sigma,\Delta,q^s ,q^a)$, where $Q$ is a finite set of states, $\Sigma$ is the input alphabet, the initial state $q^s \in Q$,  the accepting state $q^a \in Q$ and $\Delta$ that is a set of 3 tuples containing all the transitions in Q, with the type of\\ $\Delta \subseteq Q $ x $ (\Sigma \cup \{\epsilon\}) $ x $ Q$. 
+An nondeterministic finite automaton (NFA) is a 5-tuple $(Q,\Sigma,\Delta,q^s ,q^a)$, where $Q$ is a finite set of states, $\Sigma$ is the input alphabet, the initial state $q^s \in Q$,  the accepting state $q^a \in Q$ and $\Delta \subseteq Q \cdot (\Sigma \cup \{\epsilon\}) \cdot Q$. 
 \end{mydef}
-
-\subsection{Conversion from RE to NFA}
-\label{RA_TO_NFA}
-Eeach RE can be converted to an NFA, and vice versa. Table~\ref{tab:NFA_TAB} shows how each RE can be converted into an NFA. The states in $Q$ are represented as circles. The initial state $q^s$ is shown by adding a small arrow pointing to it, and the accepting state $q^a$ is shown as a double circle. Transitions in $\Delta$ are represented as  $(q,a,q')\in \Delta$ or $(q,\epsilon ,q')\in\Delta$, we write these transitions as $q \xrightarrow{a} q'$ or $q \xrightarrow{\epsilon} q'$. For subexpressions we use boxes and split the transition arrow, marking it with an $E$, to denote the NFA resulted from converting the expression. 
+Each RE can be converted to an NFA, and vice versa. Table~\ref{tab:NFA_TAB} shows how each RE can be converted into an NFA. The states in $Q$ are represented as circles. The initial state $q^s$ is shown by adding a small arrow pointing to it, and the accepting state $q^a$ is shown as a double circle. Transitions in $\Delta$ are represented as  $(q,a,q')\in \Delta$ or $(q,\epsilon ,q')\in\Delta$, we write these transitions as $q \xrightarrow{a} q'$ or $q \xrightarrow{\epsilon} q'$. For subexpressions we use boxes and split the transition arrow, marking it with an $E$, to denote the NFA resulted from converting the expression. 
 %\\
 %(( NOTE: We'll include a table with conversions ))
 %\\
@@ -101,10 +98,10 @@ Eeach RE can be converted to an NFA, and vice versa. Table~\ref{tab:NFA_TAB} sho
   \path[->] (3) edge node {$\epsilon$} (0);
   \path[->] (0) edge node {$\epsilon$} (2);
   \path[->] (4) edge node {} (3);
-
   \path[-] (2) edge node {} (4);
 
 \node [draw=red, fit= (2) (3),dashed] {};
+
 \end{tikzpicture}
 \end{center} \\
 \hline
@@ -113,7 +110,7 @@ Eeach RE can be converted to an NFA, and vice versa. Table~\ref{tab:NFA_TAB} sho
 \end{table}
 
 \begin{myex}
-In example \ref{reinter}, the expression $c(a+b)^*$ was used. The NFA buildup is done like the language interpretation in the example. We first construct the $E_1E_2$ expression, where $E_1 = c$ and $E_2 = (a+b)^*$.
+In example \ref{reinter}, the expression ${\tt c}({\tt a}+{\tt b})^*$ was used. The NFA buildup is done like the language interpretation in the example. We first construct the $E_1E_2$ expression, where $E_1 = {\tt c}$ and $E_2 = ({\tt a}+{\tt b})^*$.
 
 \begin{center} 
 \begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
@@ -133,9 +130,24 @@ In example \ref{reinter}, the expression $c(a+b)^*$ was used. The NFA buildup is
 \node [draw=blue, fit= (2) (4),dashed,inner sep=0.25cm] {};
 \end{tikzpicture}\\
 \end{center} 
-Now we construct the subexpressions, $E_1$ and $E_2$. $E_2$ results in a new subexpression $E_3 = a+b$.
+We first construct $E_1$
 \begin{center}
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial, state] (0) {};
+  \node [state,right of= 0,xshift=1.5cm] (2) {};
+  \node [right of= 2] (3) {$E^2$ };
+  \node [accepting, state,right of= 3] (4) {};
 
+  \path[-] (2) edge node {} (3);
+
+  \path[->] (0) edge node {{\tt c}} (2);
+  \path[->] (3) edge node {} (4);
+  
+\node [draw=blue, fit= (2) (4),dashed,inner sep=0.25cm] {};
+\end{tikzpicture}\\
+\end{center} 
+Constructing $E_2$ results in a new subexpression $E_3 = {\tt a}+{\tt b}$.
+\begin{center}
 \begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
   \node [initial,state] (99) {};
   \node [state,right of= 99,xshift=2cm] (0) {};
@@ -153,35 +165,105 @@ Now we construct the subexpressions, $E_1$ and $E_2$. $E_2$ results in a new sub
 \node [draw=red, fit= (2) (3),dashed] {};
 \end{tikzpicture}\\
 \end{center}
-The last part is constructing $E_3$, we skip ahead and construct the literals {\tt a} and {\tt b} as well. 
+$E_3$ produces the two new expressions $E_4 ={\tt a}$ and $E_5 ={\tt b}$. 
 
 \begin{center}
-
 \begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
   \node [initial,state] (99) {};
-  \node [state,right of= 99,xshift=2cm] (0) {};
-  \node [accepting,state,right of=0,xshift=2cm] (1) {};
+  \node [state,right of= 99,xshift=1.5cm] (0) {};
+  \node [accepting,state,right of=0,xshift=2.5cm] (1) {};
+  
   \node [state,above left of=0,xshift=-2.5cm,yshift=2cm] (2) {};
-  \node [state,above right of=0,xshift=2.5cm,yshift=2cm] (3) {};
-  \node [state,below right of=2,xshift=1.25cm] (5) {};
   \node [state,above right of=2,xshift=1.25cm] (6) {};
-  \node [state,right of=5,xshift=1.25cm] (7) {};
-  \node [state,right of=6,xshift=1.25cm] (8) {};
+  \node [right of=6] (61) {$E_4$};
+  \node [state,right of=61] (8) {};
+  
+  \node [state,above right of=0,xshift=3cm,yshift=2cm] (3) {};
+  \node [state,below right of=2,xshift=1.25cm] (5) {};
+  \node [right of=5] (51) {$E_5$};
+  \node [state,right of=51] (7) {};
 
   \path[->] (2) edge node {$\epsilon$} (5)
           edge node {$\epsilon$} (6)
-        (5) edge node {{\tt b}} (7)
-        (6) edge node {{\tt a}} (8)
         (7) edge node {$\epsilon$} (3)
         (8) edge node {$\epsilon$} (3);
 
+  \path[-] (6) edge node {} (61)
+         (5) edge node {} (51);
 
-  \path[->] (0) edge node {$\epsilon$} (1);
-  \path[->] (3) edge [bend left] node {$\epsilon$} (0);
-  \path[->] (0) edge [bend left] node {$\epsilon$} (2);
+  \path[->] (0) edge node {$\epsilon$} (1)
+        (61) edge node {} (8)
+        (51) edge node {} (7);
+  \path[->] (3) edge [bend left,above] node {$\epsilon$} (0);
+  \path[->] (0) edge [bend left,above] node {$\epsilon$} (2);
   \path[->] (99) edge node {{\tt c}} (0);
-\end{tikzpicture}\\
+
+
+\node [draw=red, fit= (6) (8),dashed] {};
+\node [draw=blue, fit= (5) (7),dashed] {};
+\end{tikzpicture}
 \end{center}
+After constructing $E_4$ 
+\begin{center}
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial,state] (99) {};
+  \node [state,right of= 99,xshift=1.5cm] (0) {};
+  \node [accepting,state,right of=0,xshift=2.5cm] (1) {};
+  
+  \node [state,above left of=0,xshift=-2.5cm,yshift=2cm] (2) {};
+  \node [state,above right of=2,xshift=1.25cm] (6) {};
+  \node [state,right of=6,xshift=1.5cm] (8) {};
+  
+  \node [state,above right of=0,xshift=3cm,yshift=2cm] (3) {};
+  \node [state,below right of=2,xshift=1.25cm] (5) {};
+  \node [right of=5] (51) {$E_5$};
+  \node [state,right of=51] (7) {};
+
+  \path[->] (2) edge node {$\epsilon$} (5)
+          edge node {$\epsilon$} (6)
+        (7) edge node {$\epsilon$} (3)
+        (8) edge node {$\epsilon$} (3);
+
+  \path[-] (5) edge node {} (51);
+
+  \path[->] (0) edge node {$\epsilon$} (1)
+        (6) edge node {{\tt a}} (8)
+        (51) edge node {} (7);
+  \path[->] (3) edge [bend left,above] node {$\epsilon$} (0);
+  \path[->] (0) edge [bend left,above] node {$\epsilon$} (2);
+  \path[->] (99) edge node {{\tt c}} (0);
 
 
+\node [draw=blue, fit= (5) (7),dashed] {};
+\end{tikzpicture}
+\end{center}
+After constructing $E_5$ we end up with the NFA of the expression $E$
+\begin{center}
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial,state] (99) {};
+  \node [state,right of= 99,xshift=1.5cm] (0) {};
+  \node [accepting,state,right of=0,xshift=2.5cm] (1) {};
+  
+  \node [state,above left of=0,xshift=-2.5cm,yshift=2cm] (2) {};
+  \node [state,above right of=2,xshift=1.25cm] (6) {};
+  \node [state,right of=6,xshift=1.5cm] (8) {};
+  
+  \node [state,above right of=0,xshift=3cm,yshift=2cm] (3) {};
+  \node [state,below right of=2,xshift=1.25cm] (5) {};
+  \node [state,right of=5,xshift=1.5cm] (7) {};
+
+  \path[->] (2) edge node {$\epsilon$} (5)
+          edge node {$\epsilon$} (6)
+        (7) edge node {$\epsilon$} (3)
+        (8) edge node {$\epsilon$} (3);
+
+  \path[->] (0) edge node {$\epsilon$} (1)
+        (6) edge node {{\tt a}} (8)
+        (5) edge node {{\tt b}} (7);
+  \path[->] (3) edge [bend left,above] node {$\epsilon$} (0);
+  \path[->] (0) edge [bend left,above] node {$\epsilon$} (2);
+  \path[->] (99) edge node {{\tt c}} (0);
+
+\end{tikzpicture}
+\end{center}
 \end{myex}
