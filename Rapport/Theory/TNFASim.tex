@@ -1,6 +1,9 @@
 
-\subsection{Simulating TNFA}
+\subsection{Simulating TNFA}\label{section_TNFA}
 TNFA simulation adds an additional argument for amount of mismatches allowed. The stateset is a 4 tuple of $(Q,i,d,a)$ where i,d and a is a count of how many of each transition has been used. $\epsilon-closure$ and $reachable$ transfers this count over to each of the states reached in these functions.
+\begin{mydef}
+$tagreach/s$ 
+\end{mydef}
 \begin{algorithm}[h!]
   \caption{TNFA simulation
     \label{nfasim}}
@@ -14,11 +17,9 @@ TNFA simulation adds an additional argument for amount of mismatches allowed. Th
         \EndIf
         \Let{$next$}{$\emptyset$}
         \Let{$states$}{$\epsilon$-closure($stateset$)}
-        \Let{$next$}{$reachable(states,symbol)$}
-        \If{$next = \emptyset$} \Comment{Mismatch}
-        	\Let{$next$}{$TNFA-trans(\Delta',states,M)$}
-        \EndIf
-        \Let{$stateset$}{$next$}
+        \Let{$states$}{$reachable(symbol,states)$}
+        	\Let{$next$}{$TNFA-trans(states,M)$}
+          \Let{$stateset$}{$next$}
       \EndFor
       \If{$q^a \in stateset$}
         \State \Return{True}
@@ -33,9 +34,10 @@ TNFA simulation adds an additional argument for amount of mismatches allowed. Th
     \label{nfasim}}
   \begin{algorithmic}[1]
     \Require{$\Delta'$ is a tagged transition table, states is a set of 4 tuples with a state q and mismatches occured, M is a 3-tuple of mismatches allowed}
-    \Function{TNFA-trans}{$\Delta',states,M(ins,del,alt)$}
+    \Function{TNFA-trans}{$states,M(ins,del,alt)$}
       \Let{$stateset$}{$\emptyset$} 
       \For{{\bf each} state(s,i,d,a) {\bf in} $states$}
+        \Let{$stateset$}{$stateset \cup reachable(state)$}
         \If{$i < ins$}
         	\Let{$stateset$}{$stateset ~ \cup ~ (tagreach(state,I)$}
         \EndIf
@@ -52,3 +54,60 @@ TNFA simulation adds an additional argument for amount of mismatches allowed. Th
 \end{algorithm}
 
 \newpage
+
+
+\begin{myex}
+Given the RE $E= {\tt abc}^*{\tt d}$ the resulting TNFA N can be seen in Figure \ref{tnfa:simsuc}
+\begin{figure}[h!]
+\begin{center}
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=3 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial, state] (0) {0};
+  \node [state,right of=0] (1) {1};
+  \node      [state,right of=1] (2) {2};
+   \node     [accepting,state,right of=2] (3) {3};
+    \node    [state,above left of=2,yshift=1cm] (4) {4};
+    \node    [state,above right of=2,yshift=1cm] (5) {5};
+
+
+   \path[->] (0) edge node {{\tt a}} (1)
+         (1) edge node {{\tt b}} (2)
+         (2) edge node {{\tt d}} (3)
+           edge node [near end] {$\epsilon$} (4)
+         (4) edge node {{\tt c}} (5)
+         (5) edge node [near start] {$\epsilon$} (2);
+
+
+  \path[->] (0) edge [color=green, in=100,out=80,loop] node [color=black, above] {$\epsilon/i$} (0);
+  \path[->] (0) edge [color=red,bend left] node [color=black, above] {$\epsilon/d$} (1);
+  \path[->] (0) edge [color=blue,bend right] node [color=black, below] {$\epsilon/a$} (1);
+
+
+  \path[->] (1) edge [color=green, in=100,out=80,loop] node [color=black, above] {$\epsilon/i$} (1);
+  \path[->] (1) edge [color=red,bend left] node [color=black, above] {$\epsilon/d$} (2);
+  \path[->] (1) edge [color=blue,bend right] node [color=black, below] {$\epsilon/a$} (2);
+
+  \path[->] (2) edge [color=green, in=100,out=80,loop] node [color=black, above] {$\epsilon/i$} (2);
+  \path[->] (2) edge [color=red,bend left] node [color=black, above] {$\epsilon/d$} (3);
+  \path[->] (2) edge [color=blue,bend right] node [color=black, below] {$\epsilon/a$} (3);
+
+  \path[->] (4) edge [color=green, in=100,out=80,loop] node [color=black, above] {$\epsilon/i$} (4);
+  \path[->] (4) edge [color=red,bend left] node [color=black, above] {$\epsilon/d$} (5);
+  \path[->] (4) edge [color=blue,bend right] node [color=black, below] {$\epsilon/a$} (5);
+\end{tikzpicture}
+\end{center}
+\caption{TNFA of expression $E = {\tt abc}^*{\tt d}$}
+\label{tnfa:simsuc}
+\end{figure}
+We now want to see if the input string {\tt "abbcdd"} is accepted in N allowing 1 insertion and 1 deletion.
+\begin{tabular}{l l l}
+TNFASimulate(N,{\tt abbcdd},\{1,1,0\}) & & \\
+symbol {\tt a}:& $\epsilon$-$closure$(\{(0,0,0,0)\}) & = \{(0,0,0,0)\}\\
+& tagreach(\{(0,0,0,0)\},a) & = \{(0,1,0,0),(1,0,0,0),(1,0,1,0)\}\\
+symbol {\tt b}:& $\epsilon$-$closure$(\{(0,1,0,0),(1,0,0,0),(1,0,1,0)\}) & = \{(0,1,0,0),(1,0,0,0),(1,0,1,0)\}\\
+& tagreach(\{(0,1,0,0),(1,0,0,0),(1,0,1,0)\},b) & = \{(1,1,1,0),(1,1,0,0),(2,0,0,0)\}\\
+symbol {\tt b}:& $\epsilon$-$closure$(\{(1,1,1,0),(1,1,0,0),(2,0,0,0)\}) &= \{(1,1,1,0),(1,1,0,0),(2,0,0,0),(4,0,0,0)\}\\
+& tagreach(\{(1,1,1,0),(1,1,0,0),(2,0,0,0),(4,0,0,0)\}) = \{(1,1,1,0),(2,1,1,0),(2,1,0,0),(3,1,1,0)
+(1,1,0,0),(2,0,0,0)\}
+\end{tabular}
+\end{myex}
+\{(1,1,1,0),(1,1,0,0),(2,0,0,0)\}

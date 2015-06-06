@@ -2,14 +2,13 @@
 \label{sec:tnfa}
 The tagged NFA(TNFA) is introduced in \cite{Ville}. It introduces the concept of tagging NFA transitions. A TNFA adds a new transition table which contains $\epsilon$ transitions for the 3 different missmatch types.
 \begin{mydef}
-A mismatch $M$ is one of 3 types, insertion, deletion and alteration. Given a transition $(q,a,q') \in \Delta$ missmatches adds new $\epsilon$ transitions in the TNFA, where insertion is  defined as $(q,\epsilon,q)$, deletion and alterations is defined as $(q,\epsilon,q')$
+A mismatch $M=\{i,d,a\}$ is one of 3 trypes, insertion, deletion and alteration. Given a transition $(q,a,q') \in \Delta$ missmatches adds new $\epsilon$ transitions in the TNFA, where insertion is  defined as $(q,\epsilon,q)$, deletion and alterations is defined as $(q,\epsilon,q')$
 \end{mydef}
 \begin{mydef}
-A tagged NFA is a 6 tuple $(Q,\Sigma,\Delta,q^s,q^a,\Delta')$ where the first 5 elements is a standard NFA and $\Delta'$ is a set of 4 tuples containing $\epsilon$ transitions for missmatches. The type of $\Delta'$ is $\Delta' \subseteq Q ~x~ \{\epsilon\} ~x~ Q ~x~ M$.  
+A tagged NFA is a 6 tuple $(Q,\Sigma,\Delta,q^s,q^a,\Delta')$ where the first 5 elements is a standard NFA and $\Delta'$ is a set of tuples containing transitions for missmatches. The type of $\Delta'$ is $\Delta' \subseteq Q ~\cdot~ \{\epsilon\} ~\cdot~ Q ~\cdot~ M$.  
 \end{mydef}
 
-\subsection{Constructing TNFA}
-TNFA adds a new literal construction literal rule. A new set of $\epsilon$-transitions is added as shown in tabel \ref{tab:TNFA} on the new literal construction rule. The new transitions added in $\Delta'$ is shown as a red arrow which denotes a deletion transition, a green arrow for the insertion transition and a blue arrow for the alteration transition.
+TNFA adds a new literal construction rule. A new set of $\epsilon$-transitions is added as shown in tabel \ref{tab:TNFA} on the new literal construction rule. The new transitions added in $\Delta'$ is shown as a red arrow which denotes a deletion transition, a green arrow for the insertion transition and a blue arrow for the alteration transition.
 
 
 
@@ -41,10 +40,10 @@ TNFA adds a new literal construction literal rule. A new set of $\epsilon$-trans
   \node [accepting,state, right of=0] (1) {};
 
   \path[->] (0) edge node [above] {$a$} (1);
-  \path[->] (0) edge [color=green, in=100,out=80,loop] node [color=black, above] {$\epsilon$} (0);
-  \path[->] (0) edge [color=red,bend left] node [color=black, above] {$\epsilon$} (1);
+  \path[->] (0) edge [color=green, in=100,out=80,loop] node [color=black, above] {$\epsilon/i$} (0);
+  \path[->] (0) edge [color=red,bend left] node [color=black, above] {$\epsilon/d$} (1);
 
-  \path[->] (0) edge [color=blue,bend right] node [color=black, below] {$\epsilon$} (1);
+  \path[->] (0) edge [color=blue,bend right] node [color=black, below] {$\epsilon/a$} (1);
 \end{tikzpicture}\end{center}\\
 \hline
 \begin{center}$E^1E^2$\end{center} &\begin{center} 
@@ -115,7 +114,3 @@ TNFA adds a new literal construction literal rule. A new set of $\epsilon$-trans
 \end{tabular}
 \label{tab:TNFA}
 \end{table}
-
-
-
-
