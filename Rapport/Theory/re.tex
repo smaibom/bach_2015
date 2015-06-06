@@ -27,7 +27,7 @@ The language interpation L(E) of a regular expression is:
 \begin{align*}
 L(0)           &= \emptyset\\
 L(1)         &= \{\epsilon\} \\
-L({\tt a})     &= \{{\tt a}\} \\
+L(a)     &= \{a\} \\
 L(E_0 + E_1) &= L(E_0) \cup L(E_1) \\
 L(E_1 E_2)   &= \{w_1w_2 | w_1 \in L(E_1),w_2 \in L(E_2)\}=L(E_1)L(E_2) \\
 L(E)^0       &= \{\epsilon\}\\
@@ -41,21 +41,21 @@ L(E^*)       &= \bigcup\limits_{n=0}^\infty L(E)^n
 With definition \ref{re}, we can now form regular languages. 
 \begin{myex}Natural numbers can be described as a regular expression. Natural numbers have the alphabet $\Sigma$ = \{{\tt 0,1,2,3,4,5,6,7,8,9}\}, so the regular expression for natural numbers would look like:
 \begin{center}
-$E_{nat} = $(1+2+3+4+5+6+7+8+9)(0+1+2+3+4+5+6+7+8+9)$^*$
+$E_{nat} = ({\tt 1}+{\tt 2}+{\tt 3}+{\tt 4}+{\tt 5}+{\tt 6}+{\tt 7}+{\tt 8}+{\tt 9})({\tt 0}+{\tt 1}+{\tt 2}+{\tt 3}+{\tt 4}+{\tt 5}+{\tt 6}+{\tt 7}+{\tt 8}+{\tt 9})^*$
 \end{center}
 \end{myex}
 
 \begin{myex}
-Given the alphabet $\Sigma =$ {\tt\{a,b,c\}}, with this alphabet, a regular expression $E =$ {\tt c}({\tt a}+{\tt b})* could be formed. The language $L$ that is produced from this expression would consist of strings that is a $c$ followed by $0$ or more $a$ or $b$ for example {\tt "caaaa"},{\tt "cbb"},{\tt "cababba"} and so forth. The language interpretation of E is 
+Given the alphabet $\Sigma =$ {\tt\{a,b,c\}}, with this alphabet, a regular expression $E =$ {\tt c}({\tt a}+{\tt b})* could be formed. The language $L$ that is produced from this expression would consist of strings that is a {\tt c} followed by zero or more as or bs for example {\tt "caaaa"},{\tt "cbb"},{\tt "cababba"} and so forth. The language interpretation of E is 
 \begin{center}
 \begin{align*}
-L(E) &= L(c(a+b)^*)\\
-	 &= \{w_1 ~w_2|w_1 \in L(c),w_2 \in L((a+b)*)\}\\
-	 &= \{w_1~ w_2|w_1 \in c, w_2 \in \bigcup\limits_{n=0}^\infty L(a+b)^n \}\\
-	 &= \{w_1~ w_2|w_1 \in c, w_2 \in \bigcup\limits_{n=0}^\infty (L(a) \cup L(b))^n \}\\
-	 &= \{w_1~ w_2|w_1 \in c, w_2 \in \bigcup\limits_{n=0}^\infty (a \cup L(b))^n \}\\
-	 &= \{w_1~ w_2|w_1 \in c, w_2 \in \bigcup\limits_{n=0}^\infty (a \cup b)^n \}\\
-	 &= c \bigcup\limits_{n=0}^\infty (a \cup b)^n 
+L(E) &= L({\tt c}({\tt a}+{\tt b})^*)\\
+	 &= \{w_1 w_2|w_1 \in L({\tt c}),w_2 \in L({\tt a}+{\tt b})^*)\}\\
+	 &= \{w_1 w_2|w_1 \in \{{\tt c}\}, w_2 \in \bigcup\limits_{n=0}^\infty L({\tt a}+{\tt b})^n \}\\
+	 &= \{w_1 w_2|w_1 \in \{{\tt c}\}, w_2 \in \bigcup\limits_{n=0}^\infty (L({\tt a}) \cup L({\tt b}))^n \}\\
+	 &= \{w_1 w_2|w_1 \in \{{\tt c}\}, w_2 \in \bigcup\limits_{n=0}^\infty (\{{\tt a}\} \cup L({\tt b}))^n \}\\
+	 &= \{w_1 w_2|w_1 \in \{{\tt c}\}, w_2 \in \bigcup\limits_{n=0}^\infty (\{{\tt a}\} \cup \{{\tt b}\})^n \}\\
+	 &= {\tt c} \bigcup\limits_{n=0}^\infty \{{\tt a,b}\}^n 
 \end{align*}
 \end{center}
 \label{reinter}
