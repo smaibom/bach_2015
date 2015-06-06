@@ -32,8 +32,12 @@ class States{
         void add_state(std::vector<State>::iterator position, std::shared_ptr<Node> node, int pat, int ins, int del, int mut);
 
         States(){
-            /* Preallocates some memory */
-            states.reserve(1000);
+            /* 
+			Preallocates some memory
+			This needs to be big enough for all states,
+			more mismatches need more memory 
+			*/
+            states.reserve(10000);
         }
         ~States(){
             // deconstructor

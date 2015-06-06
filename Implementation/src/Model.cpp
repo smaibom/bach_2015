@@ -125,16 +125,13 @@ The States is given insertions, mutations and deletions allowed when searching t
 int main(int argc, char* argv[]){
     std::shared_ptr<States> states = std::make_shared<States>();
 
-    states->insertions = 2;
-    states->deletions = 2;
-    states->mutations = 1;
-    
     bool showgraph = false;
     bool showhits = false;
     int optind=1;
-    if(argc == 1){
-        std::cout << "Usage: nfa_search -s [for digraph print] -n [for pure hits] data_file" << std::endl;
-        return 0;
+    if(argc < 5){
+        std::cout << "Usage: nfa_search -s [for digraph print] -n [for pure hits] alternations deletions insertions data_file" << std::endl;
+        std::cout << "Example: nfa_search 1 0 1 ../data/chr1.fa" << std::endl;
+		return 0;
     }    
     while ((optind < argc) && (argv[optind][0]=='-')) {
         std::string sw = argv[optind];
@@ -157,6 +154,17 @@ int main(int argc, char* argv[]){
                  << argv[optind] << std::endl;
         optind++;
     }
+
+    states->insertions = atoi(argv[argc-2];
+    states->deletions = atoi(argv[argc-3];
+    states->mutations = atoi(argv[argc-4];
+
+	if(states->insertions > 9 or states->deletions > 9 or states->mutations > 9)
+	{
+		std::cout << "Value of mismatches seems a bit high, maybe lower a bit" << std::endl;
+		return -1;
+	}
+
     
     /*
     Each node created will have a value attached to it, 
