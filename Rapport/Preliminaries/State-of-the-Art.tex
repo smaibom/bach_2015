@@ -7,7 +7,7 @@ allows errors in its results and supports backreferencing. %TODO: CHECK BACKREF
  \subsection{RE2} %Google's RE engine
  RE2 is Google's regular expression library written in C++. It does not 
  support backreferencing, but claims to run faster if a pattern has a high degree 
- of alternations~\cite{javare2}. Due to RE2's lack of backreferencing and support for 
+ of alternations~\cite{re2java}. Due to RE2's lack of backreferencing and support for 
  matching with errors, it would be unable to properly reproduce 
  scan\_for\_matches' functionality. The project can be found on its github 
  page: \url{https://github.com/google/re2}.
@@ -29,4 +29,4 @@ allows errors in its results and supports backreferencing. %TODO: CHECK BACKREF
  in C by Gonzalo Navarro in 2000. It allows backreferences as well as matching 
  with errors, and would have been a candidate for modification alongside TRE had 
  we learned about it earlier. However, because we learned about the tool 
- relatively late in the process, we did not have time to work with it.
+ late in the process, we did not have time to work with it.
