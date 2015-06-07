@@ -15,12 +15,11 @@
 \BOOKMARK [1][-]{section.6}{Nondeterministic Finite Automaton}{}% 15
 \BOOKMARK [2][-]{subsection.6.1}{Matching using NFA}{section.6}% 16
 \BOOKMARK [2][-]{subsection.6.2}{Tagged NFA}{section.6}% 17
-\BOOKMARK [2][-]{subsection.6.3}{Constructing TNFA}{section.6}% 18
-\BOOKMARK [2][-]{subsection.6.4}{Simulating TNFA}{section.6}% 19
-\BOOKMARK [1][-]{section.7}{Scan\137For\137Matches}{}% 20
-\BOOKMARK [1][-]{section.8}{TRE}{}% 21
-\BOOKMARK [1][-]{section.9}{Our Implementation}{}% 22
-\BOOKMARK [1][-]{section.10}{Experimental Results \046 Tests}{}% 23
-\BOOKMARK [1][-]{section.11}{Alternative soloutions}{}% 24
-\BOOKMARK [2][-]{subsection.11.1}{Forming patterns using Regular expressions}{section.11}% 25
-\BOOKMARK [1][-]{section.12}{Summary \046 Future Work}{}% 26
+\BOOKMARK [2][-]{subsection.6.3}{Simulating TNFA}{section.6}% 18
+\BOOKMARK [1][-]{section.7}{Scan\137For\137Matches}{}% 19
+\BOOKMARK [1][-]{section.8}{TRE}{}% 20
+\BOOKMARK [1][-]{section.9}{Our Implementation}{}% 21
+\BOOKMARK [1][-]{section.10}{Experimental Results \046 Tests}{}% 22
+\BOOKMARK [1][-]{section.11}{Alternative soloutions}{}% 23
+\BOOKMARK [2][-]{subsection.11.1}{Forming patterns using Regular expressions}{section.11}% 24
+\BOOKMARK [1][-]{section.12}{Summary \046 Future Work}{}% 25

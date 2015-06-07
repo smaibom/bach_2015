@@ -15,12 +15,11 @@
 \contentsline {section}{\numberline {6}Nondeterministic Finite Automaton}{10}{section.6}
 \contentsline {subsection}{\numberline {6.1}Matching using NFA}{12}{subsection.6.1}
 \contentsline {subsection}{\numberline {6.2}Tagged NFA}{13}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Constructing TNFA}{13}{subsection.6.3}
-\contentsline {subsection}{\numberline {6.4}Simulating TNFA}{14}{subsection.6.4}
-\contentsline {section}{\numberline {7}Scan\_For\_Matches}{15}{section.7}
-\contentsline {section}{\numberline {8}TRE}{17}{section.8}
-\contentsline {section}{\numberline {9}Our Implementation}{18}{section.9}
-\contentsline {section}{\numberline {10}Experimental Results \& Tests}{18}{section.10}
-\contentsline {section}{\numberline {11}Alternative soloutions}{22}{section.11}
-\contentsline {subsection}{\numberline {11.1}Forming patterns using Regular expressions}{22}{subsection.11.1}
-\contentsline {section}{\numberline {12}Summary \& Future Work}{23}{section.12}
+\contentsline {subsection}{\numberline {6.3}Simulating TNFA}{13}{subsection.6.3}
+\contentsline {section}{\numberline {7}Scan\_For\_Matches}{16}{section.7}
+\contentsline {section}{\numberline {8}TRE}{18}{section.8}
+\contentsline {section}{\numberline {9}Our Implementation}{19}{section.9}
+\contentsline {section}{\numberline {10}Experimental Results \& Tests}{19}{section.10}
+\contentsline {section}{\numberline {11}Alternative soloutions}{23}{section.11}
+\contentsline {subsection}{\numberline {11.1}Forming patterns using Regular expressions}{23}{subsection.11.1}
+\contentsline {section}{\numberline {12}Summary \& Future Work}{24}{section.12}
