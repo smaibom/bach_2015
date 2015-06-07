@@ -1,8 +1,8 @@
 \section{Experimental Results \& Tests}
 %Using our implementation, TRE and scan\_for\_matches, we were able to do some benchmarking in order to compare performances.
-For this a virtual machine is created, using Oracle VirtualBox\footnote{virtualbox.org}. The machine running the virtualbox is running Windows 8.1 Pro x64 on an SSD, with 8,00 GB RAM, an AMD FX 4300 Quad-Core Processor 3.80 GHz, of which 1 core and 4096MB RAM was given to the virtual machine, which would run Ubuntu 14.04.2 LTS 64 bit.
+For this a virtual machine was created, using Oracle VirtualBox\footnote{virtualbox.org}. The machine running the virtualbox is running Windows 8.1 Pro x64 on an SSD, with 8,00 GB RAM, an AMD FX 4300 Quad-Core Processor 3.80 GHz, of which 1 core and 4096MB RAM was given to the virtual machine, which would run Ubuntu 14.04.2 LTS 64 bit.
 
-We choose to test four different tools, scan\_for\_matches, TRE, Python using the Regex module\footnote{See Appendix~\ref{app:py}} and finally our own implementation, TPaMa. Since TPaMa is focused on supporting insertion, deletion and alteration on a simple sequence, a DNA sequence $TGCAAGCGTTAAT$ with variable insertions is chosen as the search pattern. Each test was executed on a series of data files, a total of of 10 times, given an average runtime, which was used in the following results.
+We chose to test four different tools, scan\_for\_matches, TRE, Python using the Regex module [Appendix~\ref{app:py}] and our own implementation, TPaMa. Since TPaMa is focused on supporting insertion, deletion and alteration on a simple sequence, a DNA sequence $TGCAAGCGTTAAT$ with variable insertions was chosen as the search pattern. Each test was executed on a series of data files, a total of of 10 times, giving an average runtime, which was used in the following results.
 
 %\begin{wrapfigure}{r}{0.6\linewidth}
 %\centering
@@ -11,7 +11,7 @@ We choose to test four different tools, scan\_for\_matches, TRE, Python using th
 %\label{fig:size}
 %\end{wrapfigure}
 
-The testing data was selected to be in the form of the human genome chromosome sequences. Figure~\ref{fig:size} shows a series of fasta files, these files include nucleotide sequences, which all differ in size, decreasing from chr1 to chr22\footnote{http://hgdownload.cse.ucsc.edu/goldenPath/hg18/chromosomes/ JUNE 2015}. These fasta files are the kind of data which scan\_for\_matches is expected to run, and thus excellent for benchmark testing. It is worth noting, that each of these files' lines are 50 characters long, as TRE matches through lines separately, and longer or shorter line sizes might affect the performance of TRE in running time and hits.% This was not tested however.
+The testing data was selected to be in the form of the human genome chromosome sequences. Figure~\ref{fig:size} shows a series of fasta files. These files include nucleotide sequences, which all differ in size, decreasing from chr1 to chr22\footnote{http://hgdownload.cse.ucsc.edu/goldenPath/hg18/chromosomes/ JUNE 2015}. These fasta files are the kind of data which scan\_for\_matches is expected to run, and thus excellent for benchmark testing. It is worth noting, that each of these files' lines are 50 characters long, as TRE matches through lines separately, and longer or shorter line sizes might affect the performance of TRE in running time and hits.% This was not tested however.
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.7\textwidth]{Benchmarking/size.png}
@@ -19,7 +19,7 @@ The testing data was selected to be in the form of the human genome chromosome s
 \label{fig:size}
 \end{figure}
 
-In the first test we wanted see the runtime of each program, having no mismatches in the pattern $TGCAAGCGTTAAT$. Figure~\ref{fig:0miss} displays the results, and it is evident that scan\_for\_matches is faster all the alternatives. TPaMa and Python has slightly different runtime, TPaMa being slightly faster, and finally TRE is the slowest tool. Common to all four tools is their decrease in runtime corresponds to the sizes of the data files.
+In the first test we wanted see the runtime of each program, having no mismatches in the pattern $TGCAAGCGTTAAT$. Figure~\ref{fig:0miss} displays the results, and it is evident that scan\_for\_matches was faster than all the alternatives. TPaMa and Python had slightly different runtime, TPaMa being slightly faster, and finally TRE was the slowest tool. Common to all four tools was their decrease in runtime corresponds to the sizes of the data files.
 
 \begin{figure}[h!]
 \centering
@@ -36,7 +36,7 @@ In the first test we wanted see the runtime of each program, having no mismatche
 \label{fig:ins1}
 \end{figure}
 
-Next an insertion was added to the pattern, from Figure~\ref{fig:ins1} it is evident that there is an increase in the runtime for all four tools. Scan\_for\_matches continues to be the fastest tool, while TPaMa is the second fastest. Python ran at about double the speed of TPaMa, and TRE continues to be the slowest tool.
+Next an insertion was added to the pattern, from Figure~\ref{fig:ins1} it is evident that there is an increase in the runtime of all four tools. Scan\_for\_matches continued to be the fastest tool, while TPaMa was the second fastest. Python ran at about half the speed of TPaMa, and TRE continued to be the slowest tool.
 
 \begin{figure}[h!]
 \centering
@@ -45,7 +45,7 @@ Next an insertion was added to the pattern, from Figure~\ref{fig:ins1} it is evi
 \label{fig:ins2}
 \end{figure}
 
-The next test added another insertion. Looking at Figure~\ref{fig:ins2} scan\_for\_matches did increase its runtime slightly compared to Figure~\ref{fig:ins1}, but the second insertion greatly affected TPaMa, resulting in it running at about half the speed of TRE, which is still faster than Python.  While TRE also had its runtime slightly increased, it is almost unchanged from one insertion.
+The next test added another insertion. Looking at Figure~\ref{fig:ins2} scan\_for\_matches did increase its runtime slightly compared to Figure~\ref{fig:ins1}, but the second insertion greatly affected TPaMa, resulting in it being only twice as fast as TRE, which is still faster than Python.  While TRE also had its runtime slightly increased, it is almost unchanged from one insertion.
 
 \begin{figure}[h!]
 \centering
@@ -54,26 +54,36 @@ The next test added another insertion. Looking at Figure~\ref{fig:ins2} scan\_fo
 \label{fig:ins3}
 \end{figure}
 
-Testing with three insertions, Figure~\ref{fig:ins3} Python is now the slowest tool, and TPaMa is still faster than TRE, which is now the second slowest tool, and scan\_for\_matches is still the fastest tool.
+Testing with three insertions, Figure~\ref{fig:ins3} Python was the slowest tool, and TPaMa was faster than TRE, which were the second slowest tool. Scan\_for\_matches was still the fastest tool.
 
-From these three tests its evident that TPaMa experiences an increased runtime with an increasing number of insertions, affecting it at a much higher rate than both scan\_for\_matches and TRE. It does seem, however, that Python has a similar problem. From this we can conclude that TPaMa, as of now, might not be suitable for more advanced patterns.
+Finally we had a test where one of each mismatch type was allowed in Figure~\ref{fig:i1m1d1}. Here TPaMa performed slowest, Python being a close second. TRE and scan\_for\_matches were not greatly impacted by the more complex pattern. Scan\_for\_matches was still the fastest tool. 
 
-We suspect the reason for the rate increased runtime, is the rate of which new states are created. To test this claim, we ran TPaMa again, on fasta file chr22.fa, measuring how the number of states, and thereby the amount of work needed to pattern-match, relates to the number of mismatches allowed.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\textwidth]{Benchmarking/1ins1mut1del.png}
+\caption{Running time of search through fasta files mentioned in Figure~\ref{fig:size} allowing 1 insertions, 1 deletion and 1 alteration on pattern TGCAAGCGTTAAT}
+\label{fig:i1m1d1}
+\end{figure}
+
+From these four tests, it is evident that TPaMa experiences an increased runtime with an increasing number of insertions, affecting it at a much higher rate than both scan\_for\_matches and TRE.  It does seem, however, that Python has a similar problem.
+The most complex pattern, in Figure~\ref{fig:i1m1d1}, with one of each different mismatch type, results in a worse runtime for TPaMa and Python while TRE and scan\_for\_matches continues to perform with only a slightly increased runtime. From this we can conclude that TPaMa, as of now, is not yet suitable for more advanced patterns.
+
+We suspect that the rate of increasing runtime is proportional to the number of states created when allowing mismatching. To test this claim, we ran TPaMa again, on fasta file chr22.fa, measuring how the number of states, and thereby the amount of work needed to pattern-match, relates to the number of mismatches allowed.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.9\textwidth]{Benchmarking/states_graph.png}
-\caption{Bar chart showcasing the number of states created corresponding to the number of mismatches allowed.}
+\caption{Bar chart showcasing the number of states created, in chr22.fa, corresponding to the number of mismatches allowed.}
 \label{fig:statesgraph}
 \end{figure}
 
-The chart in Figure~\ref{fig:statesgraph} displays an increasing number of states, corresponding to the increasing number of mismatches. We can observe how allowing any number of mismatches of the same type, be it insertion, alternation or deletion, yields roughly the same number of states, actually deletions and alternations gives exactly the same amount of states, as their behavior is exactly the same.
+The chart in Figure~\ref{fig:statesgraph} displays an increasing number of states, corresponding to the increasing number of mismatches. We can observe how allowing any number of mismatches of the same type, be it insertion, alterations or deletion, yields roughly the same number of states. Deletions and alterations giving exactly the same amount of states, as their behavior is exactly the same.
 
-Another observation is how two mismatches of different types result in more new states than two or even three mismatches of the same type would. This can be explained due to TPaMa creating two new states every time a mismatch is encountered in the data. Causing an exponential growth of states, opposed to a linear growth. Finally there is a measurement with a mismatch of every type, causing a massive growth in states, again being due to an exponential growth, now making three states per mismatch, instead of two or one.  
+Another observation is how two mismatches of different types result in more new states than two or even three mismatches of the same type would. This can be explained due to TPaMa creating two new states every time a mismatch is encountered in the data, causing an exponential growth of states, opposed to a linear growth. Finally there is a measurement with a mismatch of every type, causing a massive growth in states due to an exponential growth, now making three states per mismatch, instead of one or two.  
 
 ~
 
-Another interesting thing to test for was the number of hits when searching the files, in Table~\ref{tab:hits} the number of hits which came up when searching on file chr1.fa are shown.
+Another interesting thing to test for was the number of hits when searching the files. In Table~\ref{tab:hits} the number of hits which came up when searching on file chr1.fa are shown.
 
 \begin{table}[h!]
 \centering
@@ -89,4 +99,4 @@ Python & 5 & 48 & 235
 \label{tab:hits}
 \end{table}
 
-The primary reason TPaMa gets more results than scan\_for\_matches is it finding every single match in the file, including overlapping matches, while scan\_for\_matches, by default, only finds matches which do not overlap. TRE has the major disadvantage here that it does not match across newlines, causing it to miss a lot of matches. Finally Python has the same amount of matches as TPaMa, it also looking for overlapping results.
+The primary reason TPaMa gets more results than scan\_for\_matches is it finding every single match in the file, including overlapping matches, while scan\_for\_matches, by default, only finds matches which do not overlap. TRE has the major disadvantage here that it does not match across newlines, causing it to miss a lot of matches. Finally Python has the same amount of matches as TPaMa, because it also looks for overlapping results.

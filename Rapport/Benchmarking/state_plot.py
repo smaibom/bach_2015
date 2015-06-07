@@ -24,8 +24,8 @@ ax.ticklabel_format(style='plain')       # Remark 2
 ax.set_xticks(range(len(labels)))
 ax.set_xticklabels(labels, rotation=80)
 ax.bar(range(len(grosses)), grosses)
-plt.xlabel('alterations, deletions and insertions')
-plt.ylabel('states created')
+plt.xlabel('alterations, deletions and insertions\n(In order)')
+plt.ylabel('states processed')
 plt.show()
 
 #0           =  62242364     0    hits

@@ -159,13 +159,12 @@ int main(int argc, char* argv[]){
     states->deletions = atoi(argv[argc-3]);
     states->mutations = atoi(argv[argc-4]);
 
-	if(states->insertions > 9 or states->deletions > 9 or states->mutations > 9)
-	{
-		std::cout << "Value of mismatches seems a bit high, maybe lower a bit" << std::endl;
-		return -1;
-	}
+    if(states->insertions > 9 or states->deletions > 9 or states->mutations > 9)
+    {
+        std::cout << "Value of mismatches seems a bit high, maybe lower a bit" << std::endl;
+        return -1;
+    }
 
-    
     /*
     Each node created will have a value attached to it, 
     to keep track of the node.  This counter is handled by a single
@@ -285,15 +284,10 @@ int main(int argc, char* argv[]){
 
                     if(result!=0){
                         if(!showhits)
-                            output += std::string(buffer).substr(i-result, result) + "\[" + f(cnt-result) + ":" + f(cnt) +  "]\n";
+                            std::cout << std::string(buffer).substr(i-result, result) << "\[" << f(cnt-result) << ":" << f(cnt) <<  "]\n";
                         else
                             hits += 1;
                     }
-                }
-                if(!showhits){
-                    // Prints hits after each sign
-                    std::cout << output;
-                    output.clear();
                 }
             }
             length -= read_chunk;
