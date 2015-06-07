@@ -48,14 +48,12 @@ class States{
 
 /* Function that creates a new node at the given location */
 void States::add_state(std::vector<State>::iterator position, std::shared_ptr<Node> node){
-    if(node->next){
-        states.emplace(position);
-        (*position).node = node;
-        (*position).path = 0;
-        (*position).insertions = insertions;
-        (*position).deletions = deletions;
-        (*position).mutations = mutations;
-    }
+    states.emplace(position);
+    (*position).node = node;
+    (*position).path = 0;
+    (*position).insertions = insertions;
+    (*position).deletions = deletions;
+    (*position).mutations = mutations;
     /*
     if(node->epsilon_left){
         add_state(position, node->epsilon_left);
