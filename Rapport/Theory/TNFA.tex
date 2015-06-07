@@ -1,17 +1,11 @@
-\subsection{Tagged NFA}
+\section{Tagged NFA}
 \label{sec:tnfa}
-The tagged NFA(TNFA) is introduced in \cite{Ville}. It introduces the concept of tagging NFA transitions. A TNFA adds a new transition table which contains $\epsilon$ transitions for the 3 different missmatch types.
+The tagged NFA(TNFA) is introduced in \cite{Ville}. It introduces the concept of tagging NFA transitions. A TNFA is a NFA which allows for mismatches in the input string.
+
 \begin{mydef}
-A mismatch $M=\{i,d,a\}$ is one of 3 trypes, insertion, deletion and alteration. Given a transition $(q,a,q') \in \Delta$ missmatches adds new $\epsilon$ transitions in the TNFA, where insertion is  defined as $(q,\epsilon,q)$, deletion and alterations is defined as $(q,\epsilon,q')$
+A tagged NFA is a 6 tuple $(Q,\Sigma,\Delta,q^s,q^a,\Delta')$ where the first 5 elements is a standard NFA and $\Delta'$ is a set of tuples containing transitions for mismatches. The type of $\Delta'$ is $\Delta' \subseteq Q \cdot\{\epsilon\} \cdot Q \cdot M$, where $M = \{i,d,a\}$ for mismatch types.  
 \end{mydef}
-\begin{mydef}
-A tagged NFA is a 6 tuple $(Q,\Sigma,\Delta,q^s,q^a,\Delta')$ where the first 5 elements is a standard NFA and $\Delta'$ is a set of tuples containing transitions for missmatches. The type of $\Delta'$ is $\Delta' \subseteq Q ~\cdot~ \{\epsilon\} ~\cdot~ Q ~\cdot~ M$.  
-\end{mydef}
-
-TNFA adds a new literal construction rule. A new set of $\epsilon$-transitions is added as shown in tabel \ref{tab:TNFA} on the new literal construction rule. The new transitions added in $\Delta'$ is shown as a red arrow which denotes a deletion transition, a green arrow for the insertion transition and a blue arrow for the alteration transition.
-
-
-
+TNFA adds a new literal construction rule. A new set of tagged $\epsilon$-transitions is added as shown in Tabel \ref{tab:TNFA} on the new literal construction rule. Transitions in $\Delta'$ are represented as $(q,\epsilon,q,i) \in \Delta'$ for insertions,$(q,\epsilon,q',d) \in \Delta'$ for deletions and $(q,\epsilon,q',a) \in \Delta'$ for alterations, we write these transitions as $(q {\color{green} \xrightarrow{{\color{black}\epsilon/i}}} q)$ for insertions, $(q {\color{red} \xrightarrow{{\color{black}\epsilon/d}}} q')$ for deletions and $(q {\color{blue} \xrightarrow{{\color{black}\epsilon/a}}} q')$
 \begin{table}[h]\label{nfac}
 \caption{Translating table for literal construction of TNFA}
 \centering

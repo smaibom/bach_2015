@@ -1,25 +1,26 @@
-
+\newpage
 \subsection{Simulating TNFA}\label{section_TNFA}
-TNFA simulation adds an additional argument for amount of mismatches allowed. The stateset is a 4 tuple of $(Q,i,d,a)$ where i,d and a is a count of how many of each transition has been used. $\epsilon-closure$ and $reachable$ transfers this count over to each of the states reached in these functions.
-\begin{mydef}
-Given a  
+TNFA simulation adds an additional argument for amount of mismatches allowed. The stateset contains 4 tuples of $(Q,i,d,a)$ where i,d and a is a count of how many of each transition has been used. The $\epsilon-closure$ and $reachable$ functions are extended to allow for for a set of 4 tuples.
+\begin{mydef} 
+Given a 4 tuple containing a state and mismatch counters $S(s,i,d,a)$, and a mismatch type $M$, the $t$-$reachable$ of S is a 4 tuple with the state that is reachable following the tagged transtion of the mismatch type $M$ in $\Delta'$ and the mismatch counters, with the mismatch type increased by one.  
 \end{mydef}
 \begin{algorithm}[h!]
   \caption{TNFA simulation
     \label{tnfasim}}
   \begin{algorithmic}[1]
-    \Require{$N$ is a TNFA and $x$ is a string,M is a 3-tuple of mismatches allowed}
-    \Function{Simulation}{$N(Q,\Sigma,\Delta,q^s,q^a,\Delta'), x,M$}
-      \Let{$stateset$}{$\{q^s\}$} 
-      \For{{\bf each} symbol {\bf in} $x$}
+    \Require{$N$ is a TNFA and $s$ is a string,M is a 3-tuple of mismatches allowed}
+    \Ensure{True if $s$ is accepted in $N$ with $M$ mismatches, False if $s$ is rejected in $N$}
+    \Function{Simulation}{$N(Q,\Sigma,\Delta,q^s,q^a,\Delta'), s,M$}
+      \Let{$stateset$}{$\{q^s,0,0,0\}$} 
+      \For{{\bf each} symbol {\bf in} $s$}
         \If{$stateset = \emptyset$} 
             \State \Return{False}
         \EndIf
         \Let{$next$}{$\emptyset$}
         \Let{$states$}{$\epsilon$-closure($stateset$)}
-        \Let{$states$}{$reachable(symbol,states)$}
-        	\Let{$next$}{$TNFA-trans(states,M)$}
-          \Let{$stateset$}{$next$}
+        \Let{$next$}{$reachable(symbol,states)$}
+        	\Let{$t\_next$}{$TNFA$-$reach(states,M)$}
+          \Let{$stateset$}{$next \cup t\_next$}
       \EndFor
       \If{$q^a \in stateset$}
         \State \Return{True}
@@ -33,19 +34,20 @@ Given a
   \caption{
     \label{tnfatrans}}
   \begin{algorithmic}[1]
-    \Require{$\Delta'$ is a tagged transition table, states is a set of 4 tuples with a state q and mismatches occured, M is a 3-tuple of mismatches allowed}
-    \Function{TNFA-trans}{$states,M(ins,del,alt)$}
+    \Require{$states$ is a set of 4 tuples with a state q and mismatches occured, $M$  is a 3-tuple of mismatches allowed}
+    \Ensure{A stateset with states that are reachable from $states$ using mismatches}
+    \Function{$TNFA$-$reach$}{$states,M(ins,del,alt)$}
       \Let{$stateset$}{$\emptyset$} 
       \For{{\bf each} state(s,i,d,a) {\bf in} $states$}
         \Let{$stateset$}{$stateset \cup reachable(state)$}
         \If{$i < ins$}
-        	\Let{$stateset$}{$stateset ~ \cup ~ (tagreach(state,I)$}
+        	\Let{$stateset$}{$stateset ~ \cup ~ (t$-$reachable(state,i)$}
         \EndIf
         \If{$d < del$}
-        	\Let{$stateset$}{$stateset ~\cup ~ (tagreach(state,D))$}
+        	\Let{$stateset$}{$stateset ~\cup ~ (t$-$reachable(state,d))$}
         \EndIf
         \If{$a < alt$}
-        	\Let{$stateset$}{$stateset ~\cup~ (tagreach(state,A))$}
+        	\Let{$stateset$}{$stateset ~\cup~ (t$-$reachable(state,a))$}
         \EndIf
       \EndFor
       \State \Return{$stateset$}
