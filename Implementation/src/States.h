@@ -69,14 +69,12 @@ void States::add_state(std::vector<State>::iterator position,
                        std::shared_ptr<Node> node,
                        int pat, int ins, int del, int mut)
 {
-    if(node->next){
-        states.emplace(position);
-        (*position).node = node;
-        (*position).path = pat;
-        (*position).insertions = ins;
-        (*position).deletions = del;
-        (*position).mutations = mut;
-    }
+    states.emplace(position);
+    (*position).node = node;
+    (*position).path = pat;
+    (*position).insertions = ins;
+    (*position).deletions = del;
+    (*position).mutations = mut;
     /*
     if(node->epsilon_left){
         add_state(position, node->epsilon_left,  pat,  ins,  del,  mut);
