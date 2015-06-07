@@ -58,7 +58,7 @@ Given a
 
 \begin{myex}
 Given the RE $E= {\tt abc}^*{\tt d}$ the resulting TNFA N can be seen in Figure \ref{tnfa:simsuc}
-\begin{figure}[h!]
+\begin{figure}[H]
 \begin{center}
 \begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=3 cm, scale = 0.75, transform shape,initial text={}]
   \node [initial, state] (0) {0};
@@ -153,4 +153,94 @@ symbol {\tt d}:&$\epsilon$-$closure$(\{(3,1,0,0),(3,0,1,0),(3,1,1,0),(5,1,1,0)\}
 \end{tabular}
 \end{table}\\
 The string {\tt "abbdd"} is accepted, since $q^a\in final\_stateset$, which have 1 insertion and 1 deletion.
+\end{myex}
+\begin{myex}
+Given the RE $E={\tt abbca}$ the TNFA $N$ of $E$ is seen in Figure \ref{tnfa:simfail}.
+\begin{figure}[h!]
+\begin{center}
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=3 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial, state] (0) {0};
+  \node [state,right of=0] (1) {1};
+  \node      [state,right of=1] (2) {2};
+   \node     [state,right of=2] (3) {3};
+   \node     [state,right of=3] (4) {4};
+   \node     [accepting,state,right of=4] (5) {5};
+
+
+   \path[->] (0) edge node {{\tt a}} (1)
+         (1) edge node {{\tt b}} (2)
+         (2) edge node {{\tt b}} (3)
+         (3) edge node {{\tt c}} (4)
+         (4) edge node {{\tt a}} (5);
+
+
+  \path[->] (0) edge [color=green, in=100,out=80,loop] node [color=black, above] {$\epsilon/i$} (0);
+  \path[->] (0) edge [color=red,bend left] node [color=black, above] {$\epsilon/d$} (1);
+  \path[->] (0) edge [color=blue,bend right] node [color=black, below] {$\epsilon/a$} (1);
+
+
+  \path[->] (1) edge [color=green, in=100,out=80,loop] node [color=black, above] {$\epsilon/i$} (1);
+  \path[->] (1) edge [color=red,bend left] node [color=black, above] {$\epsilon/d$} (2);
+  \path[->] (1) edge [color=blue,bend right] node [color=black, below] {$\epsilon/a$} (2);
+
+  \path[->] (2) edge [color=green, in=100,out=80,loop] node [color=black, above] {$\epsilon/i$} (2);
+  \path[->] (2) edge [color=red,bend left] node [color=black, above] {$\epsilon/d$} (3);
+  \path[->] (2) edge [color=blue,bend right] node [color=black, below] {$\epsilon/a$} (3);
+
+  \path[->] (3) edge [color=green, in=100,out=80,loop] node [color=black, above] {$\epsilon/i$} (3);
+  \path[->] (3) edge [color=red,bend left] node [color=black, above] {$\epsilon/d$} (4);
+  \path[->] (3) edge [color=blue,bend right] node [color=black, below] {$\epsilon/a$} (4);
+
+  \path[->] (4) edge [color=green, in=100,out=80,loop] node [color=black, above] {$\epsilon/i$} (4);
+  \path[->] (4) edge [color=red,bend left] node [color=black, above] {$\epsilon/d$} (5);
+  \path[->] (4) edge [color=blue,bend right] node [color=black, below] {$\epsilon/a$} (5);
+\end{tikzpicture}
+\end{center}
+\caption{TNFA of expression $E = {\tt abbca}$}
+\label{tnfa:simfail}
+\end{figure}
+We now want to see the string {\tt "abccec"} is accepted into $N$ given the initial stateset \{(0,0,0,0)\} and allowing 1 insertion and 1 alternation.\\
+\begin{table}[h!]
+\small
+\begin{tabular}{l l l}
+\multicolumn{2}{l}{TNFASimulate(N,{\tt abccec},(1,0,1)):}\\
+symbol {\tt a}:& $\epsilon$-$closure$(\{(0,0,0,0)\})&=\{(0,0,0,0)\}\\
+&$reachable$(\{(0,0,0,0)\},{\tt a})&=\{(1,0,0,0)\}\\
+&$t$-$reachable$(\{(0,0,0,0)\},i)&=\{(0,1,0,0)\}\\
+&$t$-$reachable$(\{(0,0,0,0)\},a)&=\{(1,0,0,1)\}\\
+&$next\_stateset$&=\{(1,0,0,0),(0,1,0,0),(1,0,0,1)\}\\
+\\
+symbol {\tt b}:& $\epsilon$-$closure$(\{(1,0,0,0),(0,1,0,0),(1,0,0,1)\})&=\{(1,0,0,0),(0,1,0,0),(1,0,0,1)\}\\
+&$reachable$(\{(1,0,0,0),(0,1,0,0),(1,0,0,1)\},{\tt b})&=\{(2,0,0,0),(2,0,0,1)\}\\
+&$t$-$reachable$(\{(1,0,0,0),(0,1,0,0),(1,0,0,1)\},i)&=\{(1,1,0,0),(1,1,0,1)\}\\
+&$t$-$reachable$(\{(1,0,0,0),(0,1,0,0),(1,0,0,1)\},a)&=\{(1,1,0,1),(2,0,0,1)\}\\
+&$next\_stateset$&=\{(1,1,0,0),(1,1,0,1),(2,0,0,0),(2,0,0,1)\}\\
+\\
+symbol {\tt c}:& $\epsilon$-$closure$(\{(1,1,0,0),(1,1,0,1),(2,0,0,0),(2,0,0,1)\})&=\{(1,1,0,0),(1,1,0,1),(2,0,0,0),(2,0,0,1)\}\\
+&$reachable$(\{(1,1,0,0),(1,1,0,1),(2,0,0,0),(2,0,0,1)\},{\tt c})&=$\emptyset$\\
+&$t$-$reachable$(\{(1,1,0,0),(1,1,0,1),(2,0,0,0),(2,0,0,1)\},i)&=\{(2,1,0,0),(2,1,0,1)\}\\
+&$t$-$reachable$(\{(1,1,0,0),(1,1,0,1),(2,0,0,0),(2,0,0,1)\},a)&=\{(2,1,0,1),(3,0,0,1)\}\\
+&$next\_stateset$&=\{(2,1,0,0),(2,1,0,1),(3,0,0,1)\}\\
+\\
+symbol {\tt c}:& $\epsilon$-$closure$(\{(2,1,0,0),(2,1,0,1),(3,0,0,1)\})&=\{(2,1,0,0),(2,1,0,1),(3,0,0,1)\}\\
+&$reachable$(\{(2,1,0,0),(2,1,0,1),(3,0,0,1)\},{\tt c})&=\{(4,0,0,1)\}\\
+&$t$-$reachable$(\{(2,1,0,0),(2,1,0,1),(3,0,0,1)\},i)&=\{(3,1,0,1)\}\\
+&$t$-$reachable$(\{(2,1,0,0),(2,1,0,1),(3,0,0,1)\},a)&=\{(3,1,0,1)\}\\
+&$next\_stateset$&=\{(3,1,0,1),(4,0,0,1)\}\\
+\\
+symbol {\tt e}:& $\epsilon$-$closure$(\{(3,1,0,1),(4,0,0,1)\})&=\{(3,1,0,1),(4,0,0,1)\}\\
+&$reachable$(\{(3,1,0,1),(4,0,0,1)\},{\tt e})&=$\emptyset$\\
+&$t$-$reachable$(\{(3,1,0,1),(4,0,0,1)\},i)&=\{(4,1,0,1)\}\\
+&$t$-$reachable$(\{(3,1,0,1),(4,0,0,1)\},a)&=$\emptyset$\\
+&$next\_stateset$&=\{(4,1,0,1)\}\\
+\\
+symbol {\tt c}:& $\epsilon$-$closure$(\{(4,1,0,1)\})&=\{(4,1,0,1)\}\\
+&$reachable$(\{(4,1,0,1)\},{\tt c})&=$\emptyset$\\
+&$t$-$reachable$(\{(4,1,0,1)\},i)&=$\emptyset$\\
+&$t$-$reachable$(\{(4,1,0,1)\},a)&=$\emptyset$\\
+&$next\_stateset$&=$\emptyset$\\
+\\
+\end{tabular}
+\end{table}\\\\\\
+At the end of reading input $\emptyset$ is found, the string {\tt abccec} is not accepted into $N$.
 \end{myex}
