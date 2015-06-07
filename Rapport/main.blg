@@ -1,0 +1,56 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Arch Linux)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: unsrt.bst
+Database file #1: ./References/references.bib
+Warning--empty journal in LaurikariComplex
+Warning--empty journal in crash
+Warning--empty year in crash
+Warning--empty journal in Ville
+Warning--empty year in Algorithmonstring
+Warning--empty journal in PangSrinivas
+Warning--empty year in PangSrinivas
+Warning--empty journal in REMatching
+Warning--empty journal in suffix
+You've used 18 entries,
+            1791 wiz_defined-function locations,
+            539 strings with 6086 characters,
+and the built_in function-call counts, 2632 in all, are:
+= -- 208
+> -- 102
+< -- 0
++ -- 45
+- -- 27
+* -- 95
+:= -- 444
+add.period$ -- 55
+call.type$ -- 18
+change.case$ -- 16
+chr.to.int$ -- 0
+cite$ -- 27
+duplicate$ -- 135
+empty$ -- 303
+format.name$ -- 27
+if$ -- 584
+int.to.chr$ -- 0
+int.to.str$ -- 18
+missing$ -- 16
+newline$ -- 94
+num.names$ -- 18
+pop$ -- 98
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 50
+stack$ -- 0
+substring$ -- 12
+swap$ -- 12
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 9
+while$ -- 19
+width$ -- 20
+write$ -- 179
+(There were 9 warnings)

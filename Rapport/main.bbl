@@ -1,0 +1,102 @@
+\begin{thebibliography}{10}
+
+\bibitem{hgp}
+National Human Genome~Research Institute.
+\newblock An overview of the human genome project.
+\newblock "\url{http://www.genome.gov/12011238}, November 2012.
+\newblock Accessed: 2015-06-06.
+
+\bibitem{re2java}
+Google.
+\newblock google/re2j - github.
+\newblock \url{https://github.com/google/re2j}, May 2015.
+\newblock Accessed: 2015-06-05. Is the only credible source for the capabilites
+  of RE2, despite it being the java port of RE2.
+
+\bibitem{LaurikariComplex}
+Ville Laurikari.
+\newblock Efficient submatch addressing for regular expressions.
+\newblock November 2001.
+
+\bibitem{pythonregex}
+Matthew Barnett.
+\newblock mrabarnett / mrab-regex - bitbucket.
+\newblock \url{https://bitbucket.org/mrabarnett/mrab-regex}, May 2015.
+\newblock Accessed: 2015-06-05.
+
+\bibitem{Navarro00nr-grep:a}
+Gonzalo Navarro.
+\newblock Nr-grep: A fast and flexible pattern matching tool.
+\newblock {\em Software Practice and Experience (SPE}, 31:2001, 2000.
+
+\bibitem{alberts}
+Alberts, Bray, Hopkin, Johnson, Lewis, Raff, Roberts, and Walter.
+\newblock {\em Essential Cell Biology}.
+\newblock Garland Science, 3rd edition, 2010.
+
+\bibitem{crash}
+Niels Bjørn Bugge~Grathwohl Fritz~Henglein and Ulrik~Terp Rasmussen.
+\newblock A crash-course in regular expression parsing and regular expressions
+  as types.
+
+\bibitem{compile}
+Torben Ægidius Mogensen.
+\newblock {\em An Introduction to Compiler Design}.
+\newblock Springer, 2001.
+
+\bibitem{Ville}
+Ville Laurikari.
+\newblock Nfas with tagged transitions, their conversion to deterministic
+  automata and application to regular expressions.
+\newblock 2000.
+
+\bibitem{Hopcroft1979}
+John~E. Hopcroft and Jeff~D. Ullman.
+\newblock {\em Introduction to Automata Theory, Languages, and Computation}.
+\newblock Addison-Wesley, 1st edition, 1979.
+
+\bibitem{Algorithmonstring}
+Dan Gusfield.
+\newblock {\em Algorithms on Strings, Trees and Sequences}.
+\newblock Cambridge University Press.
+
+\bibitem{web1}
+William Cherowitzo.
+\newblock Graph theory lecture notes 6.
+\newblock \url{http://www-math.ucdenver.edu/~wcherowi/courses/m4408/gtln6.htm},
+  January 2015.
+
+\bibitem{mathTree}
+Wolfram.
+\newblock Mathematica pattern searching and refactoring.
+\newblock
+  \url{http://reference.wolfram.com/workbench/index.jsp?topic=/com.wolfram.eclipse.help/html/tasks/patterns/patterns.html},
+  May 2015.
+
+\bibitem{FastText}
+R.~A. Baeza-Yates \& G.~H. Gonnet.
+\newblock Fast text searching for regular expressions or automaton searching on
+  tries.
+\newblock {\em ACM, vol. 43}, 1996.
+
+\bibitem{PangSrinivas}
+Pang Ko \&~Sromovas Aluru.
+\newblock Suffix tree applications in computational biology.
+
+\bibitem{REMatching}
+Russ Cox.
+\newblock Regular expression matching can be simple and fast (but is slow in
+  java, perl, php, python, ruby, ...).
+\newblock January 2007.
+
+\bibitem{tredoc}
+Ville Laurikari.
+\newblock Tre documentation.
+\newblock \url{http://laurikari.net/tre/documentation}.
+
+\bibitem{suffix}
+Mohammadreza Ghodsi.
+\newblock Approximate string matching using backtracking over suffix arrays.
+\newblock 2009.
+
+\end{thebibliography}
