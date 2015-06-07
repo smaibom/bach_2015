@@ -1,6 +1,6 @@
 \newpage
 \subsection{Simulating TNFA}\label{section_TNFA}
-TNFA simulation adds an additional argument for the amount of mismatches allowed. The stateset contains 4 tuples of $(Q,i,d,a)$ where i,d and a is a count of how many of each transition has been used. The $\epsilon-closure$ and $reachable$ functions are extended to allow for for a set of 4 tuples.
+TNFA simulation adds an additional argument for the amount of mismatches allowed. The stateset contains 4 tuples of $(Q,i,d,a)$ where $i$, $d$ and $a$ is a count of how many of each transition has been used. The $\epsilon$-$closure$ and $reachable$ functions are extended to allow for a set of 4 tuples.
 \begin{mydef} 
 Given a 4 tuple containing a state and mismatch counters $S(s,i,d,a)$, and a mismatch type $M$, the $t$-$reachable$ of S is a 4 tuple with the state that is reachable following the tagged transtion of the mismatch type $M$ in $\Delta'$ and the mismatch counters, with the mismatch type increased by one.  
 \end{mydef}
@@ -100,6 +100,7 @@ Given the RE $E= {\tt abc}^*{\tt d}$ the resulting TNFA N can be seen in Figure 
 \caption{TNFA of expression $E = {\tt abc}^*{\tt d}$}
 \label{tnfa:simsuc}
 \end{figure}
+\newpage % it wants to break free
 We now want to see if the input string {\tt "abbdd"} is accepted in N allowing 1 insertion and 1 deletion. The initial stateset \{($q^s$,i,d,a)\} =\{(0,0,0,0)\}\\\\
 \begin{table}[h!]
 \small
