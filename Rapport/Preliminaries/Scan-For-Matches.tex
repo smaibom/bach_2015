@@ -69,9 +69,8 @@ L({\tt length(E<n)} )~&=~\{{\tt |v|<n~|~v\in E},~0~{\tt <n}\}
 Definition~\ref{patlint} defines the language interpretation of 
 scan\_for\_matches. $f(L(\Sigma))$ defines a mapping \cite[p. 60]{Hopcroft1979} 
 which substitutes the current character with the complementary in alphabet 
-$\Sigma$.
+$\Sigma$. $w^R$ reverses the pattern. 
 %Needs something more here
-Below is an example of a scan\_for\_matches pattern.
 \begin{myex}\label{stemex}
 Say we want to write a pattern, which finds the sequence {\tt GUUC}, allowing 
 one alteration, followed by a random sequence, which has a length between 3 and 5, 
