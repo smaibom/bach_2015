@@ -1,7 +1,7 @@
 \section{Summary \& Future Work}
-We presented an alternative type of NFA.
-The extensions allow for insertions, deletions and mutations when matching a pattern.
-A runtime analysis showed that the new NFA type caused an increase in states which would grow as the errors were increased.
+We presented an alternative type of NFA based on Ville Laurikari's Tagged NFA.
+The extensions allow for insertions, deletions and alterations when matching a pattern.
+A runtime analysis showed that the new NFA type caused an increase in states which would grow as the mismatches were increased.
 Future work would consist of preventing said growth, by removing equivalent states from the stateset and extend the TNFA to support more SFM features, and backreferenceing. 
 
-Further more research into preproccesing data using suffix trees\cite{Algorithmonstring} could allow posible decrease in runtime.
+Furthermore research into preproccesing data using suffix trees\cite{Algorithmonstring} could allow posible decrease in runtime.
