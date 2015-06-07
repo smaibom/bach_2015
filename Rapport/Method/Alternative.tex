@@ -1,9 +1,13 @@
 \section{Alternative soloutions}
 \subsection{Forming patterns using REs}
-The initial goal of this project was to use REs to match the sequences. The problem with only using REs, is the amount of REs rapidly increase when adding mismatching. This section will detail a description of how many REs are formed from a pattern of length $n$.\\
-When new REs are formed, they can be concatenated into one RE using the or operator. Alterations are achieved by having a character replaced by a wildcard. This is done for every character in the pattern. When allowing multiple alterations, characters which are already wildcards are not changed. The amount of REs formed from alterations is the binomial coefficient ${n \choose a}=\dfrac{n!}{a!(n-a)!}$ where a is alterations.\\
-An insertion is a wildcard added between characters in the pattern, so for each insertion $n-1$ new REs occur. \\
-A deletion removes a character from the pattern. It is not allowed to remove a character next to an insertion, as this cannot occur in RNA and DNA strings. Given multiple insertions, they will be spread out throughout the pattern in most cases, so an approximation of how many REs formed would be $(n - insertions * 2)$.\\
+The initial goal of this project was to use REs to match the sequences. The problem with only using REs, is the amount of REs rapidly increase when adding mismatching. This section will detail a description of how many REs are formed from a pattern of length $n$.
+
+When new REs are formed, they can be concatenated into one RE using the or operator. Alterations are achieved by having a character replaced by a wildcard. This is done for every character in the pattern. When allowing multiple alterations, characters which are already wildcards are not changed. The amount of REs formed from alterations is the binomial coefficient ${n \choose a}=\dfrac{n!}{a!(n-a)!}$ where a is alterations.
+
+An insertion is a wildcard added between characters in the pattern, so for each insertion $n-1$ new REs occur. 
+
+A deletion removes a character from the pattern. It is not allowed to remove a character next to an insertion, as this cannot occur in RNA and DNA strings. Given multiple insertions, they will be spread out throughout the pattern in most cases, so an approximation of how many REs formed would be $(n - insertions * 2)$.
+
 The final formula looks like ${n \choose a}*(n-1)*i*(n-i*2)*d$, where $n$ is the length of the string, $a$ is amount of alterations and i is amount of insertions.
 
 \begin{myex}\label{altreg}

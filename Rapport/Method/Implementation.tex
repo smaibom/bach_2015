@@ -12,7 +12,7 @@ We wrote a simple program in C++, in order to ensure strict control of the types
 %\label{fig:gat}
 %\end{figure}
 
-Currently the search implementation of TPaMa only support simple patterns such as "GAT", which does not cause any $\epsilon$-transitions to be constructed. This choice was made, so we could focus on the performance of mismatching while giving support to the most crucial part of pattern-matching.
+Currently the search implementation of TPaMa only support simple patterns such as {\tt "GAT"}, which does not cause any $\epsilon$-transitions to be constructed. This choice was made, so we could focus on the performance of mismatching while giving support to the most crucial part of pattern-matching.
 
 This also meant that determining reachable states, as mentioned in Algorithm~\ref{tnfasim} \&~\ref{tnfatrans}, is rather straightforward, as there's only up to one possible next state for every state (zero for the final state). 
 

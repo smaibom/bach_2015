@@ -8,7 +8,7 @@ Given a 4 tuple containing a state and mismatch counters $S(s,i,d,a)$, and a mis
   \caption{TNFA Simulation
     \label{tnfasim}}
   \begin{algorithmic}[1]
-    \Require{$N$ is a TNFA and $s$ is a string,M is a 3-tuple of mismatches allowed}
+    \Require{$N$ is a TNFA and $s$ is a string, M is a 3-tuple of mismatches allowed}
     \Ensure{True if $s$ is accepted in $N$ with $M$ mismatches, False if $s$ is rejected in $N$}
     \Function{TNFA Simulation}{$N(Q,\Sigma,\Delta,q^s,q^a,\Delta'), s,M$}
       \Let{$stateset$}{$\{q^s,0,0,0\}$} 
