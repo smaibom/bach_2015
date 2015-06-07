@@ -12,6 +12,7 @@ We chose to test four different tools, scan\_for\_matches, TRE, Python using the
 %\end{wrapfigure}
 
 The testing data was selected to be in the form of the human genome chromosome sequences. Figure~\ref{fig:size} shows a series of fasta files. These files include nucleotide sequences, which all differ in size, decreasing from chr1 to chr22\footnote{http://hgdownload.cse.ucsc.edu/goldenPath/hg18/chromosomes/ JUNE 2015}. These fasta files are the kind of data which scan\_for\_matches is expected to run, and thus excellent for benchmark testing. It is worth noting, that each of these files' lines are 50 characters long, as TRE matches through lines separately, and longer or shorter line sizes might affect the performance of TRE in running time and hits.% This was not tested however.
+\newpage
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.7\textwidth]{Benchmarking/size.png}
@@ -46,7 +47,7 @@ Next an insertion was added to the pattern, from Figure~\ref{fig:ins1} it is evi
 \end{figure}
 
 The next test added another insertion. Looking at Figure~\ref{fig:ins2} scan\_for\_matches did increase its runtime slightly compared to Figure~\ref{fig:ins1}, but the second insertion greatly affected TPaMa, resulting in it being only twice as fast as TRE, which is still faster than Python.  While TRE also had its runtime slightly increased, it is almost unchanged from one insertion.
-
+\newpage
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.7\textwidth]{Benchmarking/3ins.png}
