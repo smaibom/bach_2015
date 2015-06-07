@@ -5,12 +5,12 @@ TNFA simulation adds an additional argument for amount of mismatches allowed. Th
 Given a 4 tuple containing a state and mismatch counters $S(s,i,d,a)$, and a mismatch type $M$, the $t$-$reachable$ of S is a 4 tuple with the state that is reachable following the tagged transtion of the mismatch type $M$ in $\Delta'$ and the mismatch counters, with the mismatch type increased by one.  
 \end{mydef}
 \begin{algorithm}[h!]
-  \caption{TNFA simulation
+  \caption{TNFA Simulation
     \label{tnfasim}}
   \begin{algorithmic}[1]
     \Require{$N$ is a TNFA and $s$ is a string,M is a 3-tuple of mismatches allowed}
     \Ensure{True if $s$ is accepted in $N$ with $M$ mismatches, False if $s$ is rejected in $N$}
-    \Function{Simulation}{$N(Q,\Sigma,\Delta,q^s,q^a,\Delta'), s,M$}
+    \Function{TNFA Simulation}{$N(Q,\Sigma,\Delta,q^s,q^a,\Delta'), s,M$}
       \Let{$stateset$}{$\{q^s,0,0,0\}$} 
       \For{{\bf each} symbol {\bf in} $s$}
         \If{$stateset = \emptyset$} 
@@ -41,7 +41,7 @@ Given a 4 tuple containing a state and mismatch counters $S(s,i,d,a)$, and a mis
       \For{{\bf each} state(s,i,d,a) {\bf in} $states$}
         \Let{$stateset$}{$stateset \cup reachable(state)$}
         \If{$i < ins$}
-        	\Let{$stateset$}{$stateset ~ \cup ~ (t$-$reachable(state,i)$}
+        	\Let{$stateset$}{$stateset ~ \cup ~ (t$-$reachable(state,i))$}
         \EndIf
         \If{$d < del$}
         	\Let{$stateset$}{$stateset ~\cup ~ (t$-$reachable(state,d))$}
