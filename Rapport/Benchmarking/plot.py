@@ -29,7 +29,6 @@ sfm0 = [4.465,4.574,3.427,3.385,3.193,2.929,2.79,2.611,2.403,2.365,2.376,2.339,1
 tre0 = [44.259,43.216,35.323,34.256,32.434,30.399,28.641,26.354,25.063,24.35,24.022,23.576,20.322,18.861,17.908,15.767,14.141,13.568,11.254,11.214,8.295,8.76]
 plt.plot(x, p0, 'g')
 l0, = plt.plot(x, p0, '+', linewidth=2, color='green')
-
 plt.plot(x, c0, 'b')
 l1, = plt.plot(x, c0, '*', linewidth=2, color='blue')
 plt.plot(x, sfm0, color='orange')
@@ -38,14 +37,13 @@ plt.plot(x, tre0, 'r')
 plt.xticks(x, labels, rotation='vertical')
 l3, = plt.plot(x, tre0, 'o', color='r',  linewidth=2)
 plt.ylabel('Time in Seconds')
-plt.legend( (l1, l2, l3, l0),('Implementation', 'scan_for_matches', 'TRE', 'Python'), loc='upper right', shadow=True)
+plt.legend( (l1, l2, l3, l0),('TPaMa', 'scan_for_matches', 'TRE', 'Python'), loc='upper right', shadow=True)
 plt.show()
 
 
 plt.figure('1 Insertion')
 # Python
 i20 = [30.138,30.224,25.947,24.258,22.177,21.182,19.565,17.943,17.151,16.693,16.654,16.626,14.129,13.265,12.439,11.116,9.909,9.84,7.981,7.852,5.871,6.156]
-
 # C
 i21 = [16.005,16.339,12.666,12.598,10.826,10.111,9.416,8.612,7.749,7.753,7.777,7.525,6.358,5.929,5.735,4.952,4.511,4.389,3.499,3.53,2.581,2.681]
 # SMF
@@ -62,7 +60,7 @@ plt.plot(x, i23, 'r')
 plt.xticks(x, labels, rotation='vertical')
 l3, = plt.plot(x, i23, 'o', color='r',  linewidth=2)
 plt.ylabel('Time in Seconds')
-plt.legend( (l1, l2, l3, l0),('Implementation', 'scan_for_matches', 'TRE', 'Python'), loc='upper right', shadow=True)
+plt.legend( (l1, l2, l3, l0),('TPaMa', 'scan_for_matches', 'TRE', 'Python'), loc='upper right', shadow=True)
 plt.show()
 
 plt.figure('2 Insertions')
@@ -84,7 +82,7 @@ plt.plot(x, i23, 'r')
 plt.xticks(x, labels, rotation='vertical')
 l3, = plt.plot(x, i23, 'o', color='r',  linewidth=2)
 plt.ylabel('Time in Seconds')
-plt.legend( (l1, l2, l3, l0),('Implementation', 'scan_for_matches', 'TRE', 'Python'), loc='upper right', shadow=True)
+plt.legend( (l1, l2, l3, l0),('TPaMa', 'scan_for_matches', 'TRE', 'Python'), loc='upper right', shadow=True)
 plt.show()
 
 plt.figure('3 Insertions')
@@ -103,7 +101,7 @@ plt.plot(x, tre3, 'r')
 plt.xticks(x, labels, rotation='vertical')
 l3, = plt.plot(x, tre3, 'o', color='r',  linewidth=2)
 plt.ylabel('Time in Seconds')
-plt.legend( (l1, l2, l3, l0),('Implementation', 'scan_for_matches', 'TRE', 'Python'), loc='upper right', shadow=True)
+plt.legend( (l1, l2, l3, l0),('TPaMa', 'scan_for_matches', 'TRE', 'Python'), loc='upper right', shadow=True)
 plt.show()
 
 
@@ -128,5 +126,5 @@ plt.plot(x, tre111, 'r')
 plt.xticks(x, labels, rotation='vertical')
 l3, = plt.plot(x, tre111, 'o', color='r',  linewidth=2)
 plt.ylabel('Time in Seconds')
-plt.legend( (l1, l2, l3, l0),('Implementation', 'scan_for_matches', 'TRE', 'Python'), loc='upper right', shadow=True)
+plt.legend( (l1, l2, l3, l0),('TPaMa', 'scan_for_matches', 'TRE', 'Python'), loc='upper right', shadow=True)
 plt.show()

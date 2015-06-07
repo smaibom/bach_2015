@@ -129,8 +129,8 @@ int main(int argc, char* argv[]){
     bool showhits = false;
     int optind=1;
     if(argc < 5){
-        std::cout << "Usage: nfa_search -s [for digraph print] -n [for pure hits] alternations deletions insertions data_file" << std::endl;
-        std::cout << "Example: nfa_search 1 0 1 ../data/chr1.fa" << std::endl;
+        std::cout << "Usage: TPaMa -s [for digraph print] -n [for pure hits] alternations deletions insertions data_file" << std::endl;
+        std::cout << "Example: TPaMa 1 0 1 ../data/chr1.fa" << std::endl;
 		return 0;
     }    
     while ((optind < argc) && (argv[optind][0]=='-')) {

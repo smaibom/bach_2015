@@ -1,40 +1,51 @@
-\section{Deoxyribonucleic and Ribonucleic Acids}%TODO: REWRITE THIS INTRO
-
-\begin{comment}
-Nucleic acids are one of the building blocks of life, and are composed of a 
-backbone made of a type of sugar, with bases that can bond with one another. 
-A series of these bases on a backbone is called a sequence. The 
-type of sugar as well as the bases depends on the nucleic acid. 
-\end{comment}
-
+\section{Deoxyribonucleic and Ribonucleic Acids}
+Deoxyribonucleic acids (DNA) and ribonucleic acids (RNA), collectively known as 
+nucleic acids, are one of the three 
+essential molecules for life, the last two being proteins and carbohydrates. 
+DNA creates RNA through transcription and RNA creates proteins through 
+translation, while proteins performs a variety of tasks, one 
+of which is packaging and controlling the long DNA molecules~\cite[p. 172]{alberts}. 
+In this section we will detail the functions of DNA and RNA as well as their 
+secondary structure.
 \subsection{DNA}
-%TODO: SAY WHAT DNA IS ALL ABOUT. MAYBE REARRANGE AND PUT SOME OF RNA HERE
 Deoxyribonucleic acid (DNA) is a macro molecule composed of nitrogenous bases 
-joined by a deoxyribose-phosphate. DNA is mostly found in nature as helixes, 
-where two strands have bonded. Similarly to RNA, DNA has four nitrogenous 
-bases, and shares three of the four that RNA have, (guanine, adenine and cytosine). 
-However instead of uracil, the fourth base is thymine (T). 
-%Source: http://en.wikipedia.org/wiki/DNA accessed 18/05-2015 12:28
-
-\subsection{RNA} %NEEDS FIGURES
-%TODO: WRITE ABOUT DIFFERENT KINDS OF RNA
-Ribonucleic acid (RNA) is a macro molecule composed of nitrogenous 
-bases joined by ribose-phosphate backbone into long strands. 
-The possible nitrogenous bases, or bases for short, 
-that can be joined by the backbone are guanine (G), adenine (A), uracil (U) 
-and cytosine (C). In nature, the predominant form of RNA are as a 
-single-stranded chain that can fold back on itself or bundled with other chains 
-to form a structure. This flexibility of the backbone that allows for the chain 
-to fold in on itself is possible because the RNA's backbone is composed of a 
-sugar called ribose, which allows more flexibility compared to its other form, 
-deoxyribose, used in deoxyribonucleic acid (DNA).\\
-
-The bases found in RNA can form hydrogen bonds with each other, though not all 
-bases can form bonds with each other. Bases that can bond with each other are 
-G with C, and A with U. Basepairing dictates 
-the shape of the RNA molecules, and will be elaborated on in section~\ref{structs}.
-%Source: http://en.wikipedia.org/wiki/RNA accessed 18/05-2015 12:10
-
+joined by deoxyribose-phosphate into long strands. One nitrogenous base which 
+is joined with a sugar\footnote{Deoxyribose or ribose}-phosphate is called a 
+nucleotide. DNA can have four nitrogenous bases:
+\begin{itemize}
+\item Guanine (G)
+\item Adenine (A)
+\item Cytosine (C)
+\item Thymine (T)
+\end{itemize}
+DNA is mostly found in nature as helixes, where two strands have bonded. Each 
+base has a complementary base which they can form a hydrogen bond with. 
+G is the complementary base of C and A is the complementary base of T.\\\\
+DNA holds the hereditary material of the cell and can replicate itself by 
+detaching two bonded strands, and use each as a template for a new strand 
+to bond with the detached strands~\cite[p. 199]{alberts}.
+\subsection{RNA}
+Ribonucleic acid (RNA) is a macro molecule composed of long strands of 
+nucleotides. RNA have the same nitrogenous bases as DNA except for T, which is 
+changed during transcription from DNA to RNA as Uracil (U) which bonds with 
+A. In nature, the predominant form of RNA are as a single-stranded chain that 
+can fold back on itself or bundled with other chains to form a structure. This 
+flexibility of the backbone that allows for the chain to fold in on itself is 
+possible because the RNA's backbone is composed of a sugar called ribose, which 
+allows more flexibility compared to its other form, deoxyribose, used in 
+deoxyribonucleic acid (DNA).\\\\
+When DNA creates RNA through transcribing portions of its sequence\footnote{A 
+sequence is a succession of nucleotides}, five different kinds of RNA are 
+created\cite[p. 236, table 7-1]{alberts}:
+\begin{itemize}
+\item Messenger RNA (mRNA)
+\item Ribosomal RNA (rRNA)
+\item Transfer RNA (tRNA)
+\item MicroRNAs (miRNA)
+\item Other small RNA
+\end{itemize}
+Where mRNA, rRNA and tRNA are responsible for protein synthesis, while miRNA 
+regulates the gene expression of DNA in the cell.
 \subsection{Secondary Structure}\label{structs}
 The secondary structure of DNA and RNA describes how the bases of the 
 strand has bonded to itself. The secondary structure can change if 
@@ -76,7 +87,7 @@ This kind of loop occurs typically in RNA as they are single-stranded, but may
 happen in single stranded DNA. Figure~\ref{fig:stem-loop} 
 shows a stem loop.
 \begin{figure}[h!]\centering
-\includegraphics[scale=0.3]{./lib/stem-loop.png}
+\includegraphics[scale=0.35]{./lib/stem-loop.png}
 \caption{A stem loop of the RNA sequence {\tt AAAAUUGGUCUUUU}.}
 \label{fig:stem-loop}
 \end{figure} 

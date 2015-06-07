@@ -6,9 +6,9 @@
 #   State.h - A state in the NFA, holds a node and values for insertions, deletions, mutations and path that lead to the node
 #   States.h - Used for matching the NFA, holds a datastructure of State objects
 #   World.h - The NFA structure, holds the nodes and keeps a start and end.
-nfa_search: Model.o
-	g++ -std=c++0x Model.o -Ofast -o nfa_search
+TPaMa: Model.o
+	g++ -std=c++0x Model.o -Ofast -o TPaMa
 Model.o: Model.cpp Model.h Node.h Pretty.h State.h States.h World.h
 	g++ -std=c++0x -c Model.cpp -Ofast
 clean:
-	rm *.o nfa_search
+	rm *.o TPaMa
