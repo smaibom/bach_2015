@@ -1,32 +1,32 @@
 \section{State-of-the-Art}
 The current tools readily available that provides scan\_for\_matches like 
-functionality are RE2, Google's regular expression library because of 
-how it handles alternations as well as its linear running time and TRE, 
+functionality are RE2, Google's regular expression library due to 
+how it handles alternations~\cite{re2java} as well as its linear running time and TRE, 
 python's regex library and non-deterministic grep (NR-grep), since all three 
-allows errors in its results and supports backreferencing. %TODO: CHECK BACKREF
+allows mismatches and supports backreferencing (though TRE does not allow 
+backreferncing when mismatches are allowed). %TODO: CHECK BACKREF
  \subsection{RE2} %Google's RE engine
  RE2 is Google's regular expression library written in C++. It does not 
  support backreferencing, but claims to run faster if a pattern has a high degree 
- of alternations~\cite{re2java}. Due to RE2's lack of backreferencing and support for 
- matching with errors, it would be unable to properly reproduce 
- scan\_for\_matches' functionality. The project can be found on its github 
- page: \url{https://github.com/google/re2}.
+ of alternations. Due to RE2's lack of support for backreferencing and mismatching, 
+ it would be unable to properly reproduce scan\_for\_matches' functionality. 
+ The project can be found on its github page: \url{https://github.com/google/re2}.
  \subsection{TRE} %Got both backtracking and backreferencing
  TRE was created by Ville Laurikari for his master's thesis in 
  2001\cite{LaurikariComplex}, and is a regular expression engine which supports 
- backreferences and matching with errors. Because of this, TRE is the best 
- candidate for modification in order to simulate scan\_for\_matches 
- functionality (see Section~\ref{tre}).
+ matching with mismatches and backreferences (though not when mismatches has 
+ been specified). This makes, TRE an interesting candidate for modification in 
+ order to simulate scan\_for\_matches functionality (see Section~\ref{tre}).
  \subsection{Python's Regex Library} %Group ref. instead of backref
  The python module regex~\cite{pythonregex} is an alternative regular expression 
- module to the native python module re created by Matt. It allows the 
+ module to the native python module re created by Matt Barnett. It allows the 
  specification of mismatches in its search terms, however because of the lack 
  of theoretical documentation pertaining to the module and the nature of 
  the language the module was written for, we didn't see the regex library as 
  a potential alternative for scan\_for\_matches. 
  \subsection{NR-grep}
  NR-grep~\cite{Navarro00nr-grep:a} is a pattern matching tool written 
- in C by Gonzalo Navarro in 2000. It allows backreferences as well as matching 
- with errors, and would have been a candidate for modification alongside TRE had 
- we learned about it earlier. However, because we learned about the tool 
- late in the process, we did not have time to work with it.
+ in C by Gonzalo Navarro in 2000. It allows backreferences as well as mismatching, 
+ and would have been a candidate alongside TRE had 
+ we learned about it earlier. However, we learned about the tool 
+ late in the process, and did not have sufficient time to include it in this thesis.
