@@ -1,19 +1,55 @@
 \section{Our Implementation}
-We constructed  a simple program, which would create a TNFA using the methods description in section~\ref{sec:tnfa} and use it to search data files for matches for a given pattern.
+Having defined an algorithm in Section~\ref{sec:tnfa}, we wished to construct a simple program based on TNFA, which would pattern-match data allowing for mismatches.
 
-Our implementation supports a series of regular expression symbols, including $+, ^*, |, ?$ along with concatenation of characters. This allows for construction of simple TNFAs from regular expressions, for example the regular expression "(GAT)+" would produce a structure as shown in figure~\ref{fig:gat}
+When wrote a simple program in C++ which we named TNFA Pattern-Matcher (TPaMa). TPaMa is able to create a TNFA from a RE, and it supports a series of RE symbols, including $+, ^*, |, ?$ along with concatenation of characters. An example of a TFNA from a RE could be RE "(GAT)+" which would produce a structure as shown in Figure~\ref{fig:gat}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.5\textwidth]{lib/gat.png}
-\caption{Example of how our implementation builds TNFA from regular expression (GAT)+}
+\caption{Example of how TPaMa constructs a TNFA from RE (GAT)+}
 \label{fig:gat}
 \end{figure}
 
-Each node in the figure has a number corresponding to the time it was created in the code, examining figure~\ref{fig:gat} we can see that the part having GAT was constructed first, and then the surrounding nodes responsible for the $+$ were added onto that, much like one would expect from the description in section~\ref{sec:tnfa}.
+However, currently the search implementation of TPaMa only support simple patterns such as "GAT" which does not cause any $\epsilon$-transitions to be constructed, this choice was made so we could focus on the performance of mismatching while giving support to the most crucial part of pattern-matching.
 
-When there's a TNFA, our implementation will try each possible transition when matching, causing new states to be made every time two or more possible transitions are viable. For example if there's two epsilon transitions, as in node1 in figure~\ref{fig:gat}, one state will move to node7 and terminate, and another to node4 and continue to match input until it either matches the pattern or is terminated.
+This also meant that determining reachable states, as mentioned in Algorithm~\ref{tnfasim} \&~\ref{tnfatrans} is rather straightforward, as there's only up to one possible next state for every state (zero for the final state).
 
-If a state can not match a character directly, but it has available insertions, mutations or deletions, it will, for each allowed mismatch,  create a new state, and move accordingly in the TNFA. This way we can guarantee that we will find every possible match for a given pattern. However it also causes an increased runtime given an increase in mismatches, causing one state to spawn up to three new states, and in worst case cause an exponential increase of states until the number of mismatches is exhausted, at which point the states will either match the pattern or be terminated.
+To handle mismatching, recall Table~\ref{nfac}:
 
-%One option for optimization could be to make the transition from tNFA to a deterministic finite automaton or DFA, which we will not describe in detail here. But as a counter argument to this, our implementation was made to primarily focus on matching straightforward RNA sequences with insertions, mutations and deletions, which would result in simple linear NFA's, with little to no epsilon transitions. 
+%\begin{table}[h]
+\begin{tabular}{*{2}{m{0.4\textwidth}}}
+\begin{center}$a$\end{center} &\begin{center}
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=2 cm, scale = 0.75, transform shape,initial text={}]
+  \node [initial, state] (0) {};
+  \node [accepting,state, right of=0] (1) {};
+
+  \path[->] (0) edge node [above] {$a$} (1);
+  \path[->] (0) edge [color=green, in=100,out=80,loop] node [color=black, above] {$\epsilon/i$} (0);
+  \path[->] (0) edge [color=red,bend left] node [color=black, above] {$\epsilon/d$} (1);
+
+  \path[->] (0) edge [color=blue,bend right] node [color=black, below] {$\epsilon/a$} (1);
+\end{tikzpicture}\end{center}\\
+\end{tabular}
+%\end{table}
+
+There's three different types of mismatches. Instead of having three types of transitions we simulate this by having three counters in each state, one for each type of mismatch (insertions, alternation and deletion), keeping track of the remaining number of mismatches allowed in the match. Whenever a match can not be made, for each mismatch counter with a positive value, a new state is created.
+
+
+\begin{lstlisting}[language=C++]
+if((*it).insertions > 0){
+    add_state(it, (*it).node, (*it).path+1, (*it).insertions-1, (*it).deletions, 
+        (*it).mutations);
+    ++it;
+}
+if((*it).mutations > 0){
+    add_state(it, (*it).node->next, (*it).path+1, (*it).insertions, (*it).deletions,
+        (*it).mutations-1);
+    ++it;
+}
+ if((*it).deletions > 0){
+    add_state(it, (*it).node->next, (*it).path, (*it).insertions, (*it).deletions-1,
+        (*it).mutations);
+    ++it;
+}
+\end{lstlisting}
+
