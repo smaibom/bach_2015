@@ -1,7 +1,8 @@
 \section{Our Implementation}
 Having defined an algorithm in Section~\ref{sec:tnfa}, we wished to construct a simple program based on TNFA, which would pattern-match data allowing for mismatches.
 
-We wrote a simple program in C++, which we named TNFA Pattern-Matcher (TPaMa). TPaMa is able to create an NFA from a RE, as described in Section~\ref{RA_TO_NFA}, by supporting a series of RE symbols along with concatenation of characters.
+% Torbens noter kræver begrundelse for beslutninger, hvorfor bruger vi C++
+We wrote a simple program in C++, in order to ensure strict control of the types and behavior of our code. We named the program TNFA Pattern-Matcher (TPaMa). TPaMa is able to create an NFA from a RE, as described in Section~\ref{RA_TO_NFA}, by supporting a series of RE symbols along with concatenation of characters.
 % An example of a TFNA from a RE could be RE "(GAT)+" which would produce a structure as shown in Figure~\ref{fig:gat}
 
 %\begin{figure}[h!]
@@ -11,7 +12,7 @@ We wrote a simple program in C++, which we named TNFA Pattern-Matcher (TPaMa). T
 %\label{fig:gat}
 %\end{figure}
 
-However, currently the search implementation of TPaMa only support simple patterns such as "GAT", which does not cause any $\epsilon$-transitions to be constructed. This choice was made, so we could focus on the performance of mismatching while giving support to the most crucial part of pattern-matching.
+Currently the search implementation of TPaMa only support simple patterns such as "GAT", which does not cause any $\epsilon$-transitions to be constructed. This choice was made, so we could focus on the performance of mismatching while giving support to the most crucial part of pattern-matching.
 
 This also meant that determining reachable states, as mentioned in Algorithm~\ref{tnfasim} \&~\ref{tnfatrans}, is rather straightforward, as there's only up to one possible next state for every state (zero for the final state). 
 
