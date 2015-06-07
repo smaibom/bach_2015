@@ -88,7 +88,11 @@
 
 \newpage
 \begin{abstract}
-We examine a regular expression based method for pattern-matching which support mismatching in the form of insertion, alteration and deletion, as an alternative to scan\_for\_matches currently used by biologists. We introduce an altered Thompson NFA based on Ville Laurikari's work, the tagged NFA which introduces three new types of transitions, and examine performance based on real-life human genome data. Currently we cannot match the performace of scan\_for\_matches.
+We examine a regular expression based method for pattern-matching which support mismatching in the form of insertion, deletion and alteration, as an alternative to scan\_for\_matches currently used by biologists. We introduce an altered Thompson NFA based on Ville Laurikari's work called tagged NFA, the tagged NFA which introduces three new types of transitions, and examine performance based on real-life human genome data. Currently we cannot match the performance of scan\_for\_matches.
+\end{abstract}
+\renewcommand*\abstractname{Resumé}
+\begin{abstract}
+Vi undersøger en regulær udtryks baseret metode for mønster genkendelse som understøtter fejl i form af indsætelser, slettelser og ændringer, som et alternativ til scan\_for\_matches der bruges af biologer. Vi præsentere en alternativ Thompson NFA baseret på Ville Laurikari's værk, kaldet tagged NFA, der introducerer tre nye transitions typer, og undersøger præstationen baseret reelt bioloigst sekvens data. Vi kan opnå samme køretid som scan\_for\_matches.
 \end{abstract}
 \newpage
 \tableofcontents
@@ -111,12 +115,11 @@ We examine a regular expression based method for pattern-matching which support 
 %Simulation of NFA
 
 \input{./Method/Alternative.tex}
-
+\input{./Method/TRE.tex}
 \input{./Preliminaries/Scan-For-Matches.tex}
 %implementation
 %\section{Method}
 %\newpage
-\input{./Method/TRE.tex}
 \input{./Method/Implementation.tex}
 \input{./Benchmarking/bench.tex}
 
