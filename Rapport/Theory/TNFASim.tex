@@ -6,7 +6,7 @@ Given a
 \end{mydef}
 \begin{algorithm}[h!]
   \caption{TNFA simulation
-    \label{nfasim}}
+    \label{tnfasim}}
   \begin{algorithmic}[1]
     \Require{$N$ is a TNFA and $x$ is a string,M is a 3-tuple of mismatches allowed}
     \Function{Simulation}{$N(Q,\Sigma,\Delta,q^s,q^a,\Delta'), x,M$}
@@ -31,7 +31,7 @@ Given a
 
 \begin{algorithm}[h!]
   \caption{
-    \label{nfasim}}
+    \label{tnfatrans}}
   \begin{algorithmic}[1]
     \Require{$\Delta'$ is a tagged transition table, states is a set of 4 tuples with a state q and mismatches occured, M is a 3-tuple of mismatches allowed}
     \Function{TNFA-trans}{$states,M(ins,del,alt)$}
