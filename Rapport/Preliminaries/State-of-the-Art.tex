@@ -1,14 +1,14 @@
 \section{State-of-the-Art}
 The current tools readily available that provides scan\_for\_matches like 
 functionality are RE2, Google's regular expression library due to 
-how it handles alternations~\cite{re2java} (logical OR) as well as its linear 
+how it handles alternations (logical OR) as well as its linear 
 running time and TRE, python's regex library and non-deterministic grep 
 (NR-grep), since all three allows mismatches and supports backreferencing 
 (though TRE does not allow backreferncing when mismatches are allowed). 
  \subsection{RE2} %Google's RE engine
  RE2 is Google's regular expression library written in C++. It does not 
  support backreferencing, but claims to run faster if a pattern has a high degree 
- of alternations. Due to RE2's lack of support for backreferencing and mismatching, 
+ of alternations~\cite{re2java}. Due to RE2's lack of support for backreferencing and mismatching, 
  it would be unable to properly reproduce scan\_for\_matches' functionality. 
  The project can be found on its github page: \url{https://github.com/google/re2}.
  \subsection{TRE} %Got both backtracking and backreferencing

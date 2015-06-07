@@ -17,7 +17,7 @@ Let $\Sigma$ denote an alphabet. Then we can define a \emph{pattern unit} as fol
 \hline
 {\tt x $|$ y}&Match either pattern x or pattern y\\
 \hline
-{\tt x[n,m,l]}&\pbox{20cm}{Match pattern x, allowing for n mismatches, m deletions and l insertions\\ where n,~m,~l $\geq$ 0}\\
+{\tt x[n,m,l]}&\pbox{20cm}{Match pattern x, allowing for n alterations, m deletions and l insertions\\ where n,~m,~l $\geq$ 0}\\
 \hline
 {\tt length(x+y) $<$ n}&The length of patterns x+y$<$n where n $>$ 0\\
 \hline
@@ -74,7 +74,7 @@ $\Sigma$.
 Below is an example of a scan\_for\_matches pattern.
 \begin{myex}\label{stemex}
 Say we want to write a pattern, which finds the sequence {\tt GUUC}, allowing 
-one mismatch, followed by a random sequence, which has a length between 3 and 5, 
+one alteration, followed by a random sequence, which has a length between 3 and 5, 
 followed by the reverse complement of the first found sequence. We can 
 then write this as \begin{center}
 {\tt p1=GUUC[1,0,0] 3...5 \textasciitilde p1}
