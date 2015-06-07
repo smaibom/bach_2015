@@ -1,13 +1,14 @@
 \section{Problem Analysis}\label{probanal}
 %INTRODUCTION TO PROBLEM ANALYSIS
-The functionality of scan\_for\_matches dictates what our solution must be able to do. While a more indepth analysis of the functionality 
-of scan\_for\_matches can be found in section~\ref{scanformatches}, 
+The functionality of scan\_for\_matches dictates what our solution must be able 
+to do. While a more indepth analysis of the functionality 
+of scan\_for\_matches can be found in Section~\ref{scanformatches}, 
 the requirements for our solution are as follows:
 \begin{enumerate}
 \item Read a data file
 \item Match
 \begin{enumerate}
-\item with errors allowed
+\item with mismatches allowed
 \item a previously found match
 \item a modified pattern
 \end{enumerate}
@@ -16,6 +17,6 @@ the requirements for our solution are as follows:
 While some of the functionality (items 1 and 3) will be trivial to implement 
 since they are standard functions of most programming languages, there are 
 some challenges to be found in regards of what we must match. Matching with 
-errors allowed are not supported natively in regular expressions, and 
+mismatches allowed are not supported natively in regular expressions, and 
 matching a modified text, which may first be determined at runtime, will be 
 challenging to implement with automata.

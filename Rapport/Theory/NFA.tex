@@ -108,7 +108,7 @@ Each RE can be converted to an NFA, and vice versa. Table~\ref{tab:NFA_TAB} show
 \end{tabular}
 \label{tab:NFA_TAB}
 \end{table}
-
+\newpage
 \begin{myex}
 In Example \ref{reinter}, the expression ${\tt c}({\tt a}+{\tt b})^*$ was used. The NFA buildup is done like the language interpretation in the example. We construct the $E_1E_2$ expression, where $E_1 = {\tt c}$ and $E_2 = ({\tt a}+{\tt b})^*$.
 
@@ -130,7 +130,7 @@ In Example \ref{reinter}, the expression ${\tt c}({\tt a}+{\tt b})^*$ was used. 
 \node [draw=blue, fit= (2) (4),dashed,inner sep=0.25cm] {};
 \end{tikzpicture}\\
 \end{center} 
-We construct $E_1$ 
+Construct $E_1$ produces 
 \begin{center}
 \begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1.5 cm, scale = 0.75, transform shape,initial text={}]
   \node [initial, state] (0) {};

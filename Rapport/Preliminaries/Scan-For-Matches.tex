@@ -1,8 +1,8 @@
 \section{Scan\_For\_Matches}\label{scanformatches}
 Scan\_for\_matches is a pattern-matching tool created by Ross Overbeek, David 
-Joerg and Morgan Price in C which searches through data files\footnote{http://blog.theseed.org/servers/2010/07/scan-for-matches.html}. Users specify 
+Joerg and Morgan Price in C, which searches through data files\footnote{http://blog.theseed.org/servers/2010/07/scan-for-matches.html}. Users specify 
 what they want to search for by defining a pattern, and scan\_for\_matches 
-returns all matches that corresponds to the specified pattern. 
+returns all matches, which corresponds to the specified pattern. 
 \begin{mydef}\label{patex}
 Let $\Sigma$ denote an alphabet. Then we can define a \emph{pattern unit} as follows:\\
 \begin{tabular}{|r|l|}
@@ -17,7 +17,7 @@ Let $\Sigma$ denote an alphabet. Then we can define a \emph{pattern unit} as fol
 \hline
 {\tt x $|$ y}&Match either pattern x or pattern y\\
 \hline
-{\tt x[n,m,l]}&\pbox{20cm}{Match pattern x, allowing for n mismatches, m deletions and l insertions\\ where n,m,l $\geq$ 0}\\
+{\tt x[n,m,l]}&\pbox{20cm}{Match pattern x, allowing for n mismatches, m deletions and l insertions\\ where n,~m,~l $\geq$ 0}\\
 \hline
 {\tt length(x+y) $<$ n}&The length of patterns x+y$<$n where n $>$ 0\\
 \hline
@@ -30,27 +30,27 @@ Let $\Sigma$ denote an alphabet. Then we can define a \emph{pattern unit} as fol
 \hline
 {\tt z$\sim$x}&\pbox{20cm}{Match the reverse complement of pattern x using pattern rule z=\{uv,vu\}}\\
 \hline
-{\tt \textasciicircum ~x}&\pbox{20cm}{Match only pattern x if it is at the start of a string}\\
+{\tt \textasciicircum ~x}&\pbox{20cm}{Match only pattern x, if it is at the start of a string}\\
 \hline
-{\tt x \$}&Match only pattern x if it is at the end of a string\\
+{\tt x \$}&Match only pattern x, if it is at the end of a string\\
 \hline
 \end{tabular}
 \end{mydef}
 
 \begin{mydef}\label{patc}
-Let $\Lambda$ be any pattern unit in definition~\ref{patex}. Let ${\tt E}\in\Lambda$.
-Let {\tt 0} be the empty string. Let $P$ be a pattern that we are processing.
+Let $\Lambda$ be any pattern unit in Definition~\ref{patex}. Let ${\tt E}\in\Lambda$.
+Let {\tt 0} be the empty string. Let $P$ be the pattern that we are processing.
 A pattern may then be constructed as such: 
 \begin{align*}
 {\tt P~}~=&~{\tt E~P~|~0}
 \end{align*}
 \end{mydef}
 Definition~\ref{patc} states that a pattern may be any combination of the pattern 
-units defined in definition~\ref{patex}.
+units defined in Definition~\ref{patex}.
 \begin{mydef}\label{patlint}
 Let $\Sigma$ be an alphabet. Let {\tt a $\in\Sigma$}. Let $\epsilon$ be the empty 
 string.
-Then the language interpretation of definition~\ref{patex} is defined as follows:
+Then the language interpretation of Definition~\ref{patex} is defined as follows:
 \begin{align*}
 L({\tt \epsilon})~&=~\emptyset\\
 L({\tt a})~&=~\{{\tt a}\}\\
@@ -73,15 +73,15 @@ $\Sigma$.
 %Needs something more here
 Below is an example of a scan\_for\_matches pattern.
 \begin{myex}\label{stemex}
-Say we want to write a pattern that finds the sequence {\tt GUUC}, allowing 
-one mismatch, followed by a random sequence which has a length between 3 and 5, 
-followed by the reverse complement of the first sequence that we found. We can 
+Say we want to write a pattern, which finds the sequence {\tt GUUC}, allowing 
+one mismatch, followed by a random sequence, which has a length between 3 and 5, 
+followed by the reverse complement of the first found sequence. We can 
 then write this as \begin{center}
 {\tt p1=GUUC[1,0,0] 3...5 \textasciitilde p1}
 \end{center}
 \end{myex}
-Example \ref{stemex} matches a stem loop as described in section 
+Example \ref{stemex} matches a stem loop as described in Section 
 \ref{structs}. Note that if we wanted to find all stem loops in a file where 
 the bonded bases are of length 
 4, we would replace {\tt GUUC[1,0,0]} with an arbitrary sequence of characters of length $4$ 
-by writing {\tt p1=4..4 3..5 \textasciitilde p1}.
+by writing {\centering {\tt p1=4...4 3...5 \textasciitilde p1}}.
