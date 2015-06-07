@@ -33,10 +33,10 @@ class States{
 
         States(){
             /* 
-			Preallocates some memory
-			This needs to be big enough for all states,
-			more mismatches need more memory 
-			*/
+            Preallocates some memory
+            This needs to be big enough for all states,
+            more mismatches need more memory 
+            */
             states.reserve(10000);
         }
         ~States(){

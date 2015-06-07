@@ -1,7 +1,7 @@
 \section{Our Implementation}
 Having defined an algorithm in Section~\ref{sec:tnfa}, we wished to construct a simple program based on TNFA, which would pattern-match data allowing for mismatches.
 
-When wrote a simple program in C++ which we named TNFA Pattern-Matcher (TPaMa). TPaMa is able to create a TNFA from a RE, and it supports a series of RE symbols, including $+, ^*, |, ?$ along with concatenation of characters. An example of a TFNA from a RE could be RE "(GAT)+" which would produce a structure as shown in Figure~\ref{fig:gat}
+We wrote a simple program in C++ which we named TNFA Pattern-Matcher (TPaMa). TPaMa is able to create a TNFA from a RE, and it supports a series of RE symbols, including $+, ^*, |, ?$ along with concatenation of characters. An example of a TFNA from a RE could be RE "(GAT)+" which would produce a structure as shown in Figure~\ref{fig:gat}
 
 \begin{figure}[h!]
 \centering
@@ -12,7 +12,7 @@ When wrote a simple program in C++ which we named TNFA Pattern-Matcher (TPaMa). 
 
 However, currently the search implementation of TPaMa only support simple patterns such as "GAT" which does not cause any $\epsilon$-transitions to be constructed, this choice was made so we could focus on the performance of mismatching while giving support to the most crucial part of pattern-matching.
 
-This also meant that determining reachable states, as mentioned in Algorithm~\ref{tnfasim} \&~\ref{tnfatrans} is rather straightforward, as there's only up to one possible next state for every state (zero for the final state).
+This also meant that determining reachable states, as mentioned in Algorithm~\ref{tnfasim} \&~\ref{tnfatrans} is rather straightforward, as there's only up to one possible next state for every state (zero for the final state). 
 
 To handle mismatching, recall Table~\ref{nfac}:
 
@@ -32,24 +32,6 @@ To handle mismatching, recall Table~\ref{nfac}:
 \end{tabular}
 %\end{table}
 
-There's three different types of mismatches. Instead of having three types of transitions we simulate this by having three counters in each state, one for each type of mismatch (insertions, alternation and deletion), keeping track of the remaining number of mismatches allowed in the match. Whenever a match can not be made, for each mismatch counter with a positive value, a new state is created.
+There's three different types of mismatches. Instead of having three types of transitions, as the theory call for, in the simulation we solve this by having three counters in each state, one for each type of mismatch (insertions, alternation and deletion), keeping track of the remaining number of mismatches allowed in the match. Whenever a match can not be made, for each mismatch counter with a positive value, a new state is created corresponding to the transitions above; alternations and deletions both advance the state to the next reachable, while insertions remain in the same state in the TNFA, the corresponding mismatch counter is decreased and the pattern-matching continues.
 
-
-\begin{lstlisting}[language=C++]
-if((*it).insertions > 0){
-    add_state(it, (*it).node, (*it).path+1, (*it).insertions-1, (*it).deletions, 
-        (*it).mutations);
-    ++it;
-}
-if((*it).mutations > 0){
-    add_state(it, (*it).node->next, (*it).path+1, (*it).insertions, (*it).deletions,
-        (*it).mutations-1);
-    ++it;
-}
- if((*it).deletions > 0){
-    add_state(it, (*it).node->next, (*it).path, (*it).insertions, (*it).deletions-1,
-        (*it).mutations);
-    ++it;
-}
-\end{lstlisting}
-
+For every state in the stateset, at some point it will either match the final state of the TFNA at which point a result is printed, or a state will not be able to match, even with mismatches, at which point it will be erased from the stateset. This continues until all the data has been checked, at which point the TPaMa terminates.
