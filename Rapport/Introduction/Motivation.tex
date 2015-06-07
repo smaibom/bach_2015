@@ -15,9 +15,13 @@ While scan\_for\_matches has proven to be a fast and reliable
 tool, due to the amount of data it shifts through, a faster alternative 
 is desired.
 
+\subsection{Initial Problem Definition} %GOOOOOOOOOOOOOOOOOOOOOOAAAL
+Our initial synopsis had us looking for a regular expression alternative to scan\_for\_matches in the form of an elaborate pattern, which could achieve the same results as any scan\_for\_matches pattern. However, this proved to be a very naive goal, as the complexity of the required patterns would grow to such extents that it could no longer be a conceivable alternative to scan\_for\_matches. The reasoning for rejecting a purely regular expression based pattern-solution is discussed in Section~\ref{sec:forming_re}.
+
+\subsection{Revised Problem Definition}
 In this thesis, we provide an alternative to scan\_for\_matches based on 
 automata theory and regular expressions. While the implementation currently 
-does not match scan\_for\_matches' speed, with optimization it could. We will 
+does not match scan\_for\_matches' speed, we hypothesize that with optimization it could. We will 
 discuss the implementation's strengths and weaknesses, and describe what 
 future work with the implementation will involve.
 Our implementation can be found at 
