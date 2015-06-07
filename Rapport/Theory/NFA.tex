@@ -1,9 +1,9 @@
 \section{Nondeterministic Finite Automaton}\label{RA_TO_NFA}
-A nondeterministic finite automaton(NFA) can be used to determine if an input string matches a particular set of strings.
+A nondeterministic finite automaton (\emph{NFA}) can be used to determine if an input string matches a particular set of strings.
 \begin{mydef}
-An nondeterministic finite automaton (NFA) is a 5-tuple $(Q,\Sigma,\Delta,q^s ,q^a)$, where $Q$ is a finite set of states, $\Sigma$ is the input alphabet, the initial state $q^s \in Q$,  the accepting state $q^a \in Q$ and $\Delta \subseteq Q \cdot (\Sigma \cup \{\epsilon\}) \cdot Q$ is the transition relation. 
+A nondeterministic finite automaton (NFA) is a 5-tuple $(Q,\Sigma,\Delta,q^s ,q^a)$, where $Q$ is a finite set of states, $\Sigma$ is the input alphabet, the initial state $q^s \in Q$,  the accepting state $q^a \in Q$ and $\Delta \subseteq Q \cdot (\Sigma \cup \{\epsilon\}) \cdot Q$ is the transition relation.
 \end{mydef}
-Each RE can be converted to an NFA, and vice versa. Table~\ref{tab:NFA_TAB} shows how each RE can be converted into an NFA. The states in $Q$ are represented as circles. The initial state $q^s$ is shown by adding a small arrow leading to it, while the accepting state $q^a$ is shown with a double circle. Transitions in $\Delta$ are represented as  $(q,a,q')\in \Delta$ or $(q,\epsilon ,q')\in\Delta$. We write these transitions as $q \xrightarrow{a} q'$ or $q \xrightarrow{\epsilon} q'$. For subexpressions we use boxes and split the transition arrow, marking it with an $E$, to denote the NFA resulted from converting the expression. 
+\noindent Each RE can be converted to an NFA, and vice versa. Table~\ref{tab:NFA_TAB} shows how each RE can be converted into an NFA. The states in $Q$ are represented as circles. The initial state $q^s$ is shown by adding a small arrow leading to it, while the accepting state $q^a$ is shown with a double circle. Transitions in $\Delta$ are represented as  $(q,a,q')\in \Delta$ or $(q,\epsilon ,q')\in\Delta$. We write these transitions as $q \xrightarrow{a} q'$ or $q \xrightarrow{\epsilon} q'$. For subexpressions we use boxes and split the transition arrow, marking it with an $E$, to denote the NFA resulted from converting the expression. 
 %\\
 %(( NOTE: We'll include a table with conversions ))
 %\\
