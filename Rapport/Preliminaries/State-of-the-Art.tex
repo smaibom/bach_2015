@@ -1,10 +1,10 @@
 \section{State-of-the-Art}
 The current tools readily available that provides scan\_for\_matches like 
 functionality are RE2, Google's regular expression library due to 
-how it handles alternations~\cite{re2java} as well as its linear running time and TRE, 
-python's regex library and non-deterministic grep (NR-grep), since all three 
-allows mismatches and supports backreferencing (though TRE does not allow 
-backreferncing when mismatches are allowed). %TODO: CHECK BACKREF
+how it handles alternations~\cite{re2java} (logical OR) as well as its linear 
+running time and TRE, python's regex library and non-deterministic grep 
+(NR-grep), since all three allows mismatches and supports backreferencing 
+(though TRE does not allow backreferncing when mismatches are allowed). 
  \subsection{RE2} %Google's RE engine
  RE2 is Google's regular expression library written in C++. It does not 
  support backreferencing, but claims to run faster if a pattern has a high degree 
@@ -25,7 +25,7 @@ backreferncing when mismatches are allowed). %TODO: CHECK BACKREF
  the language the module was written for, we didn't see the regex library as 
  a potential alternative for scan\_for\_matches. 
  \subsection{NR-grep}
- NR-grep~\cite{Navarro00nr-grep:a} is a pattern matching tool written 
+ NR-grep~\cite{Navarro00nr-grep:a} is a pattern-matching tool written 
  in C by Gonzalo Navarro in 2000. It allows backreferences as well as mismatching, 
  and would have been a candidate alongside TRE had 
  we learned about it earlier. However, we learned about the tool 
