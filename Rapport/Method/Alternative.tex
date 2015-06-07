@@ -1,17 +1,17 @@
 \section{Alternative soloutions}
-\subsection{Forming patterns using Regular expressions}
-The initial goal of this project was to use regular expressions to match the sequences. The problem of only using regular expressions, is the amount of patterns explode in size when adding mismatching. Following is a description of how many patterns are formed from a pattern of length $n$. When a new pattern is formed, it constructs them into 1 regular expression using the alternation operator separating each of the new expressions. 
+\subsection{Forming patterns using REs}
+The initial goal of this project was to use REs to match the sequences. The problem with only using REs, is the amount of RE explode when adding mismatching. Following is a description of how many REs are formed from a pattern of length $n$. When a new RE is formed, it constructs them into one RE using the plus operator separating each of the new expressions. 
 
-Mutations are done by having a character replaced by a wildcard. This is done for every character in the pattern. When adding multiple mutations, characters which are already wildcards are not changed. The formula for the amount of patterns formed from mutations is the number of combinations that can be formed from the amount of mutations in $t$. This is the binomial coefficient\footnote{\url{http://en.wikipedia.org/wiki/Binomial_coefficient}}. 
+Mutations are done by having a character replaced by a wildcard, this is done for every character in the pattern. When adding multiple mutations, characters which are already wildcards are not changed. The amount of REs formed from mutations is the binomial coefficient ${n choose m}=\dfrac{n!}{m!(n-m)!}$ where m is mutations.
 
-An insertion is a wildcard added between the characters in the pattern, so for each pattern $n-1$ new patterns occur.
+An insertion is a wildcard added between the characters in the pattern, so for each insertion $n-1$ new REs occur. 
 
-A deletion is removing a character from the pattern. It is not allowed to remove a character next to an insertion, as this cannot occur in RNA and DNA strings. Given multiple insertions, they will be spread out throughout the pattern in most cases, so an approximation of how many patterns formed would be $(n - insertions * 2)$.
+A deletion removes a character from the pattern. It is not allowed to remove a character next to an insertion, as this cannot occur in RNA and DNA strings. Given multiple insertions, they will be spread out throughout the pattern in most cases, so an approximation of how many REs formed would be $(n - insertions * 2)$.
 
-The final formula looks like ${n \choose m}*(n-1)*(n-i*2)$, where $n$ is the length of the string, $m$ is amount of mutations and i is amount of insertions.
+The final formula looks like ${n \choose m}*(n-1)*i*(n-i*2)*d$, where $n$ is the length of the string, $m$ is amount of mutations and i is amount of insertions.
 
 \begin{myex}\label{altreg}
-Given a pattern of size 30, with 2 mutations, 1 deletion, 1 insertion. It would produce the following amount of patterns: \\
+Given a pattern of size 30, with 2 mutations, 1 deletion, 1 insertion, the following amount of REs is produced: \\
 \begin{center}
 \text{After mutation:} $~{30 \choose 2} = 435$\\
 \text{After insertion:} $435 * (30-1) = 12615$\\
@@ -19,13 +19,6 @@ After~Deletion:~$12615*(30-2) = 353220$
 \end{center}
 \end{myex}
 
-As shown in example \ref{altreg}, the amount of patterns formed from using regular expressions could be too large for a regular expression matcher to find in a reasonable time. 
+As shown in example \ref{altreg}, the amount of REs formed is too large for a RE matcher to find in a reasonable time. 
 
-\section{Summary \& Future Work}
-We presented an alternative type of NFA in Section \ref{section_TNFA}.
-The alternation allowed for insertions, deletions and mutations when matching a pattern.
-A runtime analysis showed that the new NFA type caused an increase in states which would grow as the errors were increased.
-Future work would consist of preventing said growth, by making sure states which does repeated work are handled as a single state. 
-Further work would extent on the TNFA to support more SFM features, and backreferenceing. 
 
-Further more a research into preproccesing using suffix trees\footnote{\url{http://en.wikipedia.org/wiki/Suffix_tree}} could allow posible decrease in runtime.

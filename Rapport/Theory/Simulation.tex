@@ -1,5 +1,5 @@
 \subsection{Matching using NFA}
-To match if a given string is accepted in an NFA, two functions $\epsilon$-$closure$ and $reachable$ of the simulation algorithm \ref{nfaalg1} are introduced.
+To match if a given string is accepted in an NFA, two functions $\epsilon$-$closure$ and $reachable$ of the simulation Algorithm \ref{nfaalg1} are introduced.
 \begin{mydef}
 Given a set of NFA states M, the $\epsilon $-$ closure$ of M is a set of states that are reachable from states in M by following any number of $\epsilon$-transitions in $\Delta$.
 \begin{center}
@@ -9,7 +9,7 @@ $\epsilon$-$closure(M)$ =$ M \cup \{q'|q\in \epsilon$-$closure(M) ~and ~(q,\epsi
 \end{mydef}
 
 \begin{mydef}
-Given a set of NFA states and a input symbol {\tt a}, the $reachable$ states of $M$ are a set of states that are reachable from states in M by following transitions in $\Delta$ which match the input symbol a. 
+Given a set of NFA states and an input symbol {\tt a}, the $reachable$ states of $M$ are a set of states that are reachable from states in M by following transitions in $\Delta$ which match the input symbol a. 
 \begin{center}
 $reachable(M,a)$ = $\{q'|q \in M,(q,a,q')\in \Delta \}$
 \end{center}
@@ -18,7 +18,7 @@ $reachable(M,a)$ = $\{q'|q \in M,(q,a,q')\in \Delta \}$
   \caption{NFA simulation}
     \label{nfaalg1}
   \begin{algorithmic}[1]
-    \Require{$N$ is a NFA and $s$ is a string}
+    \Require{$N$ is an NFA and $s$ is a string}
     \Ensure{True if $s$ is accepted in $N$, False if $s$ is rejected}
     \Function{Simulation}{$N(Q,\Sigma,\Delta,q^s,q^a), s$}
       \Let{$stateset$}{$\{q^s\}$} 
@@ -40,7 +40,7 @@ $reachable(M,a)$ = $\{q'|q \in M,(q,a,q')\in \Delta \}$
 \end{algorithm}
 
 \begin{myex}\label{simsuc}
-Given the the RE  $E={\tt c}({\tt ab}+{\tt a})^*{\tt b}$, the resulting NFA $N$ is seen in figure \ref{nfasimsucc}
+Given the RE  $E={\tt c}({\tt ab}+{\tt a})^*{\tt b}$, the resulting NFA $N$ is seen in Figure \ref{nfasimsucc}
 
 \begin{figure}[h!]
 \begin{center}
@@ -89,10 +89,10 @@ symbol {\tt b}: & $\epsilon$-$closure(\{4,7\})$& = $\{1,2,3,4,6,7,8\}$\\
 symbol {\tt b}: & $\epsilon$-$closure(\{5,9\})$& = $\{1,2,3,5,6,8,9\}$\\
 &$reachable(\{1,2,3,6,5,8,9\},{\tt b})$ &= $\{9\}$\\
 \end{tabular}\\
-After the final input symbol, it can be seen that the accepting state $q^a$ is in the final stateset. So the string caaabb is accepted in N.
+After the final input symbol, it can be seen that the accepting state $q^a$ is in the final stateset. So the string {\tt caaabb} is accepted in N.
 \end{myex}
 \begin{myex}
-Using the NFA N from example \ref{simsuc} where $q^s=0$, the simulation attempts to check if string {\tt cabbbb} is accepted in N.\\
+Using the NFA N from Example \ref{simsuc} where $q^s=0$, the simulation attempts to check if string {\tt cabbbb} is accepted in N.\\
 \begin{tabular}{l l l}
 Simulate(N,{\tt cabbbb}) & & \\
 symbol {\tt c}: & $\epsilon$-$closure(\{0\})$ &$ = \{0\}$\\
